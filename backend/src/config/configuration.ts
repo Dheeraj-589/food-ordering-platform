@@ -23,4 +23,7 @@ export default () => ({
     pass: process.env.SMTP_PASS,
     from: process.env.SMTP_FROM || 'no-reply@foodplatform.com',
   },
+  resend: {
+    apiKey: process.env.RESEND_API_KEY,
+  },
 });

@@ -22,4 +22,5 @@ export const configValidationSchema = Joi.object({
   SMTP_USER: Joi.string().optional(),
   SMTP_PASS: Joi.string().optional(),
   SMTP_FROM: Joi.string().default('no-reply@foodplatform.com'),
+  RESEND_API_KEY: Joi.string().optional(),
 });

@@ -32,7 +32,7 @@ export class AuthService {
     private readonly refreshTokenRepository: Repository<RefreshToken>,
     @InjectRepository(AuditLog)
     private readonly auditLogRepository: Repository<AuditLog>,
-  ) {}
+  ) { }
 
   private generateOtp(): string {
     const digits = '0123456789';
@@ -107,8 +107,12 @@ export class AuthService {
     await this.otpRepository.save(otpVerification);
 
     // Send OTP to email
-    await this.mailerService.sendOtpEmail(email, otp, 'register');
-
+    try {
+      await this.mailerService.sendOtpEmail(email, otp, 'register');
+    } catch (error) {
+      console.error('Mail sending failed:', error);
+      // Continue registration
+    }
     return {
       message:
         'Registration OTP sent to email. Please verify within 5 minutes.',
@@ -216,7 +220,11 @@ export class AuthService {
     await this.otpRepository.save(otpVerification);
 
     // Send OTP using SMTP
-    await this.mailerService.sendOtpEmail(user.email, otp, 'login');
+    try {
+      await this.mailerService.sendOtpEmail(user.email, otp, 'login');
+    } catch (error) {
+      console.error('Login mail sending failed:', error);
+    }
 
     return {
       requireOtp: true,
@@ -336,7 +344,11 @@ export class AuthService {
       await this.otpRepository.save(newRecord);
     }
 
-    await this.mailerService.sendOtpEmail(email, otp, type);
+    try {
+      await this.mailerService.sendOtpEmail(email, otp, type);
+    } catch (error) {
+      console.error('Resend OTP mail sending failed:', error);
+    }
 
     return {
       message: 'A new 6-digit OTP code has been sent to your email.',
@@ -369,7 +381,11 @@ export class AuthService {
     });
     await this.otpRepository.save(otpVerification);
 
-    await this.mailerService.sendOtpEmail(email, otp, 'forgot_password');
+    try {
+      await this.mailerService.sendOtpEmail(email, otp, 'forgot_password');
+    } catch (error) {
+      console.error('Forgot password mail sending failed:', error);
+    }
 
     return {
       message: 'Forgot password reset OTP sent to email.',

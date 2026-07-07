@@ -6,28 +6,35 @@ import * as nodemailer from 'nodemailer';
 export class MailerService {
   private readonly logger = new Logger(MailerService.name);
   private transporter: nodemailer.Transporter | null = null;
+  private resendApiKey: string | null = null;
 
   constructor(private readonly configService: ConfigService) {
-    const host = this.configService.get<string>('smtp.host');
-    const port = this.configService.get<number>('smtp.port') || 587;
-    const user = this.configService.get<string>('smtp.user');
-    const pass = this.configService.get<string>('smtp.pass');
+    this.resendApiKey = this.configService.get<string>('resend.apiKey') || null;
 
-    if (host && user && pass) {
-      this.transporter = nodemailer.createTransport({
-        host,
-        port,
-        secure: port === 465, // true for 465, false for other ports
-        auth: {
-          user,
-          pass,
-        },
-      });
-      this.logger.log('SMTP Mailer transporter initialized successfully.');
+    if (this.resendApiKey) {
+      this.logger.log('Resend API Mailer initialized successfully (using HTTP API).');
     } else {
-      this.logger.warn(
-        'SMTP configurations missing (SMTP_HOST, SMTP_USER, SMTP_PASS). Mailer will log OTPs directly to terminal console.',
-      );
+      const host = this.configService.get<string>('smtp.host');
+      const port = this.configService.get<number>('smtp.port') || 587;
+      const user = this.configService.get<string>('smtp.user');
+      const pass = this.configService.get<string>('smtp.pass');
+
+      if (host && user && pass) {
+        this.transporter = nodemailer.createTransport({
+          host,
+          port,
+          secure: port === 465, // true for 465, false for other ports
+          auth: {
+            user,
+            pass,
+          },
+        });
+        this.logger.log('SMTP Mailer transporter initialized successfully.');
+      } else {
+        this.logger.warn(
+          'SMTP/Resend configurations missing (RESEND_API_KEY or SMTP_HOST, SMTP_USER, SMTP_PASS). Mailer will log OTPs directly to terminal console.',
+        );
+      }
     }
   }
 
@@ -104,7 +111,37 @@ export class MailerService {
       </table>
     `;
 
-    if (this.transporter) {
+    if (this.resendApiKey) {
+      try {
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.resendApiKey}`,
+          },
+          body: JSON.stringify({
+            from: from.includes('<') ? from : `"Foodies Express" <${from}>`,
+            to: email,
+            subject,
+            html: htmlContent,
+          }),
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          throw new Error(`Resend API error: ${response.status} - ${errText}`);
+        }
+
+        this.logger.log(
+          `OTP successfully sent via Resend API to ${email} for ${purpose}`,
+        );
+        return;
+      } catch (error: any) {
+        this.logger.error(
+          `Failed to send email via Resend API to ${email}: ${error.message || error}`,
+        );
+      }
+    } else if (this.transporter) {
       try {
         await this.transporter.sendMail({
           from: `"Foodies Express" <${from}>`,
@@ -246,7 +283,37 @@ export class MailerService {
       </table>
     `;
 
-    if (this.transporter) {
+    if (this.resendApiKey) {
+      try {
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.resendApiKey}`,
+          },
+          body: JSON.stringify({
+            from: from.includes('<') ? from : `"Foodies Express" <${from}>`,
+            to: email,
+            subject,
+            html: htmlContent,
+          }),
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          throw new Error(`Resend API error: ${response.status} - ${errText}`);
+        }
+
+        this.logger.log(
+          `Order status email successfully sent via Resend API to ${email} for status ${status}`,
+        );
+        return;
+      } catch (error: any) {
+        this.logger.error(
+          `Failed to send order email via Resend API to ${email}: ${error.message || error}`,
+        );
+      }
+    } else if (this.transporter) {
       try {
         await this.transporter.sendMail({
           from: `"Foodies Express" <${from}>`,
@@ -329,7 +396,35 @@ export class MailerService {
       </table>
     `;
 
-    if (this.transporter) {
+    if (this.resendApiKey) {
+      try {
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.resendApiKey}`,
+          },
+          body: JSON.stringify({
+            from: from.includes('<') ? from : `"Foodies Express" <${from}>`,
+            to: email,
+            subject,
+            html: htmlContent,
+          }),
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          throw new Error(`Resend API error: ${response.status} - ${errText}`);
+        }
+
+        this.logger.log(`Broadcast email successfully sent via Resend API to ${email}`);
+        return;
+      } catch (error: any) {
+        this.logger.error(
+          `Failed to send broadcast email via Resend API to ${email}: ${error.message || error}`,
+        );
+      }
+    } else if (this.transporter) {
       try {
         await this.transporter.sendMail({
           from: `"Foodies Express" <${from}>`,
