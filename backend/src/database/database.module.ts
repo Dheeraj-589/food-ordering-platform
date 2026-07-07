@@ -20,7 +20,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         },
 
         autoLoadEntities: true,
-        synchronize: true,
+        synchronize: false,
         logging: configService.get<string>('NODE_ENV') === 'development',
       }),
     }),
