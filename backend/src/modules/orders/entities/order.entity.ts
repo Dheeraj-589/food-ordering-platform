@@ -42,6 +42,21 @@ export class Order {
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   totalAmount!: number;
 
+  @Column({ type: 'varchar', length: 50, nullable: true })
+  couponCode?: string;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  discountAmount!: number;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  gstAmount!: number;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  deliveryCharge!: number;
+
+  @Column({ type: 'decimal', precision: 10, scale: 2, default: 0 })
+  subtotal!: number;
+
   @Column({ type: 'text' })
   deliveryAddress!: string;
 

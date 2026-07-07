@@ -37,12 +37,48 @@ export class ProductsController {
     return this.productsService.findAll(category);
   }
 
+  @Get('categories')
+  @ApiOperation({ summary: 'Retrieve active menu categories list' })
+  @ApiResponse({ status: 200, description: 'Categories list returned.' })
+  async findCategories() {
+    return this.productsService.findCategories();
+  }
+
+  @Get('coupons')
+  @ApiOperation({ summary: 'Retrieve active public coupons list' })
+  @ApiResponse({ status: 200, description: 'Coupons list returned.' })
+  async findCoupons() {
+    return this.productsService.findCoupons();
+  }
+
+  @Get('cms')
+  @ApiOperation({ summary: 'Retrieve layouts CMS banners strings' })
+  @ApiResponse({ status: 200, description: 'CMS layouts returned.' })
+  async getPublicCms() {
+    return this.productsService.getPublicCms();
+  }
+
+  @Get('settings')
+  @ApiOperation({ summary: 'Retrieve public system settings' })
+  @ApiResponse({ status: 200, description: 'Public system settings returned.' })
+  async getPublicSettings() {
+    return this.productsService.getPublicSettings();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve specific product detail by ID' })
   @ApiResponse({ status: 200, description: 'Product detail returned.' })
   @ApiResponse({ status: 404, description: 'Product not found.' })
   async findById(@Param('id', ParseIntPipe) id: number) {
     return this.productsService.findById(id);
+  }
+
+  @Get('slug/:slug')
+  @ApiOperation({ summary: 'Retrieve specific product detail by slug' })
+  @ApiResponse({ status: 200, description: 'Product detail returned.' })
+  @ApiResponse({ status: 404, description: 'Product not found.' })
+  async findBySlug(@Param('slug') slug: string) {
+    return this.productsService.findBySlug(slug);
   }
 
   @Post()

@@ -1,181 +1,173 @@
-# Pizza Hut Inspired Food Ordering Platform - Architecture & Workspace Setup
+# Foodies Express - Production-Grade Food Ordering Platform
 
-This repository contains the architecture, tooling, and foundation for a production-grade, full-stack food ordering platform built with **Next.js 15**, **NestJS**, **MySQL**, **TypeORM**, and **Docker Compose**.
+Foodies Express is a production-grade, highly optimized, accessible, secure, and SEO-friendly food ordering platform inspired by global pizza delivery platforms like Pizza Hut. Built as a full-stack JavaScript application leveraging **Next.js 15**, **NestJS**, **MySQL (TypeORM)**, and **Progressive Web App (PWA)** capabilities.
 
-## 1. System Architecture
+---
 
-The platform follows a decoupled client-server architecture with the following system design:
+## 1. Project Overview & Architecture
+
+The platform follows a decoupled client-server architecture. All dynamic data (menu items, cart modifications, orders, reviews, user profiles, dashboard metrics) is queried through REST API endpoints and live WebSocket connections.
 
 ```mermaid
 graph TD
-    Client[Next.js 15 Frontend] -- HTTP / REST --> API[NestJS Backend API]
+    Client[Next.js 15 Frontend PWA] -- HTTP / WebSocket --> API[NestJS Backend API]
     API -- TypeORM --> DB[(MySQL 8.0 Database)]
-    Client -- Dev Tooling --> LintStaged[Husky & Lint-Staged]
-    GitHubActions[GitHub Actions CI] -- Validates --> Client
-    GitHubActions[GitHub Actions CI] -- Validates --> API
+    Client -- Offline Mode --> SW[Service Worker Cache]
+    API -- SMTP --> Email[Mailer Service]
 ```
 
-### Components:
-
-1. **Frontend (Next.js 15)**: Leverages React 19, TailwindCSS, Shadcn UI, and React App Router. Integrates Axios for client-side queries, and uses state management to orchestrate shopping carts, checkout, and authentication sessions.
-2. **Backend (NestJS)**: Restructures routing via modular containers (`AuthModule`, `UsersModule`, `ProductsModule`, `OrdersModule`). Features strict TypeScript typing, validation pipes, global exception filters, and interactive Swagger OpenAPI documentation.
-3. **Database (MySQL 8)**: Hosted in Docker Compose, utilizing TypeORM migrations and entities for schema syncing and relationship enforcement.
-4. **DevOps & Tooling**: Configured with Prettier, ESLint, Husky git pre-commit hook checks, and GitHub Actions continuous integration testing.
+### Decoupled Subprojects:
+- **Frontend (`/frontend`)**: A Next.js 15 App Router application optimized for SEO and accessibility (WCAG compliance, ARIA markup).
+- **Backend (`/backend`)**: A modular NestJS application structuring REST controllers and services. Enforces global exception filters, CORS, input validation pipes, and Swagger documentation.
 
 ---
 
-## 2. Authentication Architecture
+## 2. Technology Stack
 
-The application enforces state-of-the-art authentication:
-
-- **Authentication Flow**:
-  1. A user submits credentials to `POST /api/auth/login`.
-  2. The server authenticates credentials (using `bcrypt` for password checks) and generates a JWT.
-  3. The JWT contains basic payload information (`userId`, `email`, `role`).
-  4. The client stores the JWT securely and attaches it via HTTP `Authorization: Bearer <token>` headers inside client-side request interceptors.
-- **Role-Based Access Control (RBAC)**:
-  - Users are assigned roles: `customer`, `admin`, or `delivery`.
-  - Roles are enforced on the backend via NestJS Route Guards (`RolesGuard`) using custom decorator definitions.
-  - Next.js middleware restricts dashboard routes (`/admin/*`) based on decoded token states.
+- **Frontend Core**: Next.js 15.5.20, React 19.1.0, TailwindCSS 4, Framer Motion 12.4.2
+- **Frontend State**: Zustand 5.0.14
+- **Backend Core**: NestJS 11.0.1, Express, Passport JWT, TypeORM 0.3.30
+- **Database**: MySQL 8.0 (MySQL2 driver)
+- **Emailing**: Nodemailer 9.0.3
+- **Tooling**: TypeScript 5, Prettier 3, ESLint 9, Husky 9
 
 ---
 
-## 3. Database Schema
+## 3. Features
 
-The database model is mapped via TypeORM:
-
-```mermaid
-erDiagram
-    USERS {
-        int id PK
-        string name
-        string email UK
-        string password
-        enum role "customer | admin | delivery"
-        datetime createdAt
-        datetime updatedAt
-    }
-    PRODUCTS {
-        int id PK
-        string name
-        string description
-        decimal price
-        string imageUrl
-        boolean isAvailable
-        enum category "pizza | sides | drinks | desserts"
-        datetime createdAt
-        datetime updatedAt
-    }
-    ORDERS {
-        int id PK
-        int userId FK
-        enum status "pending | preparing | out-for-delivery | delivered | cancelled"
-        decimal totalAmount
-        string deliveryAddress
-        enum paymentStatus "pending | paid | failed"
-        datetime createdAt
-        datetime updatedAt
-    }
-    ORDER_ITEMS {
-        int id PK
-        int orderId FK
-        int productId FK
-        int quantity
-        decimal price
-        string specialInstructions
-    }
-    CART_ITEMS {
-        int id PK
-        int userId FK
-        int productId FK
-        int quantity
-    }
-
-    USERS ||--o{ ORDERS : "places"
-    USERS ||--o{ CART_ITEMS : "has"
-    ORDERS ||--|{ ORDER_ITEMS : "contains"
-    PRODUCTS ||--o{ ORDER_ITEMS : "ordered"
-    PRODUCTS ||--o{ CART_ITEMS : "in-cart"
-```
+- 🍕 **Gourmet Pizza Customizer**: Adjust sizes, select crust types, toggle extra mozzarella, and add individual custom toppings.
+- 📦 **Interactive Combo Builder**: Drag-and-drop or select items to construct custom meal platters.
+- ⚡ **Progressive Web App (PWA)**: Register service worker, implement custom offline layouts, cache assets, and display PWA installation prompts.
+- 🔍 **Global Autocomplete Search**: Highly responsive search modal highlighting matching queries, listing popular keywords, and caching recent searches.
+- 🎛️ **Advanced Filters**: Filter pizzas and sides by Price limit, Veg/Non-Veg, average Customer Rating, Stock Availability, and Special Offers.
+- 📬 **Transactional Mailer**: Custom table-based HTML email templates for OTP registration, logins, and order updates (highly compatible with Outlook/Gmail).
+- 🔒 **Security Measures**:
+  - Encrypted Password storage using `bcrypt`.
+  - CSRF-safe Authorization headers using Passport JWT.
+  - Custom IP Rate-Limiting middleware globally applied.
+  - Role-Based Access Control guards (`RolesGuard`) for administrative endpoints.
+- 📊 **Admin Dashboard**: Live order dispatch screens, CMS managers, coupon editors, visual analytics charts, and inline input validations.
 
 ---
 
-## 4. Workspace & Folder Structure
+## 4. Folder Structure
 
 ```
 food-ordering-platform/
 ├── backend/                   # NestJS Server Application
 │   ├── src/
-│   │   ├── config/            # Env config settings & Joi validation schemas
-│   │   ├── database/          # TypeORM database initialization module
-│   │   ├── modules/
-│   │   │   ├── auth/          # Authentication flows (login, signup, JWT)
-│   │   │   ├── users/         # Users entity & storage module
-│   │   │   ├── products/      # Pizza and item catalogs
-│   │   │   └── orders/        # Order and checkout management
-│   │   └── main.ts            # Entrypoint (pipes, CORS, prefix, Swagger docs)
-│   └── package.json
-├── frontend/                  # Next.js 15 Client Application
+│   │   ├── common/            # Custom global middlewares (Rate Limiting)
+│   │   ├── config/            # Environment configurations & validation schemas
+│   │   ├── database/          # Database connection module
+│   │   └── modules/
+│   │       ├── auth/          # Authentications (JWT, OTP code generation, Mailer)
+│   │       ├── users/         # Customer profiles & roles
+│   │       ├── products/      # Food catalogs & name slug endpoints
+│   │       └── orders/        # Checkout and order managers
+├── frontend/                  # Next.js 15 Client PWA
+│   ├── public/                # Static assets, icons, browserconfigs, sw.js
 │   ├── src/
-│   │   ├── app/               # Page routing nodes (App Router)
-│   │   ├── components/        # Tailwind Components & Shadcn UI elements
-│   │   ├── hooks/             # Custom utility React hooks
-│   │   ├── lib/               # Utility scripts & HTTP/Axios instance
-│   │   ├── store/             # Zustand cart & user contexts
-│   │   └── types/             # Common TS type contracts
-│   └── package.json
-├── .github/
-│   └── workflows/
-│       └── ci.yml             # Automated CI pipeline
+│   │   ├── app/               # Server/Client routes & dynamic sitemaps/robots
+│   │   ├── components/        # Dialogs, Search, Navbars, Error boundaries
+│   │   ├── store/             # Zustand Cart, Auth and Toast states
+│   │   └── types/             # TypeScript contract types
 ├── docker-compose.yml         # Database infrastructure (MySQL & Adminer)
-└── package.json               # Monorepo task runner & Husky configurations
+└── package.json               # Root workspace script definitions
 ```
 
 ---
 
-## 5. Development Quickstart
+## 5. Environment Variables
 
-### Prerequisites
+### Backend Configuration (`/backend/.env`)
+```ini
+PORT=4000
+NODE_ENV=production
 
-- Node.js (v20+)
-- npm (v10+)
-- Docker & Docker Compose
+# Database Settings
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=dbuser
+DB_PASSWORD=dbpassword
+DB_DATABASE=food_platform
 
-### Step 1: Clone and Install Dependencies
+# JWT Secret
+JWT_SECRET=super-secure-jwt-secret-key-pizza-hut
+JWT_EXPIRATION_TIME=1d
 
-Install dependencies at the workspace root (this will install dependencies for the root, frontend, and backend packages):
-
-```bash
-npm install
+# SMTP Email Settings
+SMTP_HOST=smtp.mailtrap.io
+SMTP_PORT=587
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
+SMTP_FROM=no-reply@foodies-express.com
 ```
 
-### Step 2: Start the Database Container
-
-Run the following command to boot the MySQL database and Adminer web interfaces:
-
-```bash
-docker compose up -d
+### Frontend Configuration (`/frontend/.env.local`)
+```ini
+NEXT_PUBLIC_API_URL=http://localhost:4000/api
 ```
-
-- **MySQL Address**: `localhost:3306`
-- **Adminer Portal**: `http://localhost:8080` (use Database: `food_platform`, Username: `dbuser`, Password: `dbpassword`)
-
-### Step 3: Set Environment Configurations
-
-Configure target `.env` files in both the frontend and backend directories (examples are provided inside their respective folders).
-
-### Step 4: Run Applications in Development Mode
-
-To boot both applications in parallel, run:
-
-- Backend server: `npm run dev:backend` (runs on `http://localhost:4000`)
-- Frontend client: `npm run dev:frontend` (runs on `http://localhost:3000`)
-- Swagger Documentation: Available at `http://localhost:4000/api/docs`
 
 ---
 
-## 6. Git Commit Hook & Coding Standards
+## 6. Installation & Database Setup
 
-- Commit checks are governed by **Husky** and **lint-staged**.
-- Any commit automatically triggers Prettier formatting checks and ESLint repairs across modified TypeScript files.
-- The pipeline will reject commits containing code style violations or syntax/type compilation issues.
+1. **Install Root Workspaces Dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Boot Database Infrastructure**:
+   Ensure Docker is running and launch the MySQL container:
+   ```bash
+   docker compose up -d
+   ```
+   *Note: Adminer is available on `http://localhost:8080` for visual database inspection.*
+
+3. **Start Development Servers**:
+   ```bash
+   # Run both apps in parallel
+   npm run dev:frontend
+   npm run dev:backend
+   ```
+   - Client Portal: `http://localhost:3000`
+   - Server swagger API Documentation: `http://localhost:4000/api/docs`
+
+---
+
+## 7. SMTP Setup
+
+To enable transaction mailers (sending registration code or order updates):
+1. Obtain credentials from an SMTP email service (e.g. Mailtrap for development or SendGrid for production).
+2. Configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASS` in your backend `.env` file.
+3. If SMTP variables are missing, the server falls back to logging OTP codes directly to the terminal console to avoid interruptions.
+
+---
+
+## 8. Deployment
+
+### Frontend (Vercel)
+The Next.js 15 client compiles static pages at build time.
+1. Connect repository to Vercel.
+2. Configure the build framework as **Next.js**.
+3. Set the Environment Variable:
+   - `NEXT_PUBLIC_API_URL`: Path to your deployed NestJS Backend API.
+
+### Backend & Database (Railway / Heroku)
+1. Provision a **MySQL** database resource on Railway.
+2. Deployed NestJS Backend API:
+   - Configure the start command as `npm run start:prod --workspace=backend`.
+   - Map MySQL connection environment variables (`DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`) from Railway's internal credentials.
+   - Inject `JWT_SECRET` and SMTP credentials.
+
+---
+
+## 9. Demo Credentials
+
+The database seeds catalog items, analytics, and mock users automatically on initial module load:
+
+| Role | Username / Email | Password |
+|---|---|---|
+| **Admin** | `admin@foodies.com` | `admin123` |
+| **Customer** | `customer@foodies.com` | `customer123` |
+| **Delivery Rider** | `delivery@foodies.com` | `delivery123` |

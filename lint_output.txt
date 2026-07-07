@@ -1,0 +1,176 @@
+
+> food-ordering-platform-root@1.0.0 lint:frontend
+> npm run lint --workspace=frontend
+
+
+> frontend@0.1.0 lint
+> eslint
+
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\CategoriesTab.tsx
+    4:66  warning  'ArrowUpDown' is defined but never used                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+   41:6   warning  React Hook useEffect has a missing dependency: 'fetchCategories'. Either include it or remove the dependency array                                                                                                                                                                       react-hooks/exhaustive-deps
+  166:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\CmsTab.tsx
+   4:35  warning  'Info' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+  59:6   warning  React Hook useEffect has a missing dependency: 'fetchCms'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\CombosTab.tsx
+    6:19  warning  'ComboSlot' is defined but never used                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+    6:30  warning  'ProductCategory' is defined but never used                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  196:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\CouponsTab.tsx
+   45:6   warning  React Hook useEffect has a missing dependency: 'fetchCoupons'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  247:33  error    Unexpected any. Specify a different type                                                                         @typescript-eslint/no-explicit-any
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\CustomersTab.tsx
+   4:31  warning  'Check' is defined but never used                                                                              @typescript-eslint/no-unused-vars
+   4:38  warning  'X' is defined but never used                                                                                  @typescript-eslint/no-unused-vars
+  30:6   warning  React Hook useEffect has a missing dependency: 'fetchUsers'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\DeliveryTab.tsx
+  39:6  warning  React Hook useEffect has a missing dependency: 'fetchDeliveryOrders'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\KitchenTab.tsx
+  5:32  warning  'Clock' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\LiveOrdersTab.tsx
+   5:17  warning  'Play' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+   5:23  warning  'CheckCircle' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+   5:50  warning  'AlertCircle' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+   5:81  warning  'ShieldAlert' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+  25:63  error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+  86:6   warning  React Hook useEffect has a missing dependency: 'fetchLiveOrders'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\MediaTab.tsx
+    4:46  warning  'Plus' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   33:6   warning  React Hook useEffect has a missing dependency: 'fetchFiles'. Either include it or remove the dependency array                                                                                                                                                                            react-hooks/exhaustive-deps
+  150:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\NotificationsTab.tsx
+  86:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\OffersTab.tsx
+   44:6   warning  React Hook useEffect has a missing dependency: 'fetchOffers'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  253:33  error    Unexpected any. Specify a different type                                                                        @typescript-eslint/no-explicit-any
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\OrdersTab.tsx
+   4:18   warning  'AnimatePresence' is defined but never used                                                                     @typescript-eslint/no-unused-vars
+   5:10   warning  'Search' is defined but never used                                                                              @typescript-eslint/no-unused-vars
+   5:71   warning  'Trash2' is defined but never used                                                                              @typescript-eslint/no-unused-vars
+   5:79   warning  'Edit2' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+   5:86   warning  'ShieldAlert' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+   5:99   warning  'Award' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+   5:116  warning  'CheckCircle' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+   7:30   warning  'PaymentStatus' is defined but never used                                                                       @typescript-eslint/no-unused-vars
+  57:6    warning  React Hook useEffect has a missing dependency: 'fetchOrders'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  82:9    error    'multiplier' is never reassigned. Use 'const' instead                                                           prefer-const
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\ProductsTab.tsx
+    4:10   warning  'motion' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+    4:18   warning  'AnimatePresence' is defined but never used                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+    5:66   warning  'Sparkles' is defined but never used                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+    5:76   warning  'FolderOpen' is defined but never used                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+    5:95   warning  'ShieldAlert' is defined but never used                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+    5:108  warning  'Check' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+   76:53   error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                 @typescript-eslint/no-explicit-any
+  230:23   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  353:86   warning  Image elements must have an alt prop, either with meaningful text, or an empty string for decorative images                                                                                                                                                                              jsx-a11y/alt-text
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\ReviewsTab.tsx
+  35:6  warning  React Hook useEffect has a missing dependency: 'fetchReviews'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\SecurityTab.tsx
+   4:33  warning  'CheckCircle2' is defined but never used                                                                      @typescript-eslint/no-unused-vars
+  45:6   warning  React Hook useEffect has a missing dependency: 'fetchLogs'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\SettingsTab.tsx
+  83:6  warning  React Hook useEffect has a missing dependency: 'fetchSettings'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\fynd\food-ordering-platform\frontend\src\app\admin\components\Topbar.tsx
+  126:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\app\cart\page.tsx
+    5:10  warning  'motion' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+    5:18  warning  'AnimatePresence' is defined but never used                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+    6:63  warning  'Sparkles' is defined but never used                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+    6:78  warning  'HelpCircle' is defined but never used                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+   18:60  warning  'clearCart' is assigned a value but never used                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  202:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  286:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\app\checkout\page.tsx
+   5:10  warning  'motion' is defined but never used           @typescript-eslint/no-unused-vars
+   5:18  warning  'AnimatePresence' is defined but never used  @typescript-eslint/no-unused-vars
+   6:88  warning  'HelpCircle' is defined but never used       @typescript-eslint/no-unused-vars
+  18:28  warning  'user' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+D:\fynd\food-ordering-platform\frontend\src\app\dashboard\page.tsx
+    16:3   warning  'Languages' is defined but never used                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+    23:3   warning  'CheckCircle' is defined but never used                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+    26:3   warning  'Star' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+    33:3   warning  'ChevronRight' is defined but never used                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+    36:3   warning  'CheckCircle2' is defined but never used                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+    45:26  warning  'TimelineStage' is defined but never used                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+   448:18  warning  'e' is defined but never used                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+   601:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  1074:35  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\app\menu\page.tsx
+    6:18  warning  'Heart' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+    6:77  warning  'SlidersHorizontal' is defined but never used                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+   10:19  warning  'ProductCategory' is defined but never used                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  351:27  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  442:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\app\order\[id]\page.tsx
+    9:3   warning  'CreditCard' is defined but never used                                                                                       @typescript-eslint/no-unused-vars
+   15:3   warning  'ShoppingBag' is defined but never used                                                                                      @typescript-eslint/no-unused-vars
+   23:28  warning  'OrderStatus' is defined but never used                                                                                      @typescript-eslint/no-unused-vars
+   23:41  warning  'PaymentStatus' is defined but never used                                                                                    @typescript-eslint/no-unused-vars
+   67:6   warning  React Hook useEffect has a missing dependency: 'fetchOrder'. Either include it or remove the dependency array                react-hooks/exhaustive-deps
+   88:6   warning  React Hook useEffect has missing dependencies: 'fetchOrder' and 'order'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  577:34  warning  'e' is defined but never used                                                                                                @typescript-eslint/no-unused-vars
+
+D:\fynd\food-ordering-platform\frontend\src\app\product\[id]\page.tsx
+    6:36  warning  'ShieldCheck' is defined but never used                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+    6:49  warning  'RefreshCw' is defined but never used                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+  141:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  155:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  403:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\components\Hero.tsx
+  127:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\components\LoyaltyDashboard.tsx
+  4:10  warning  'motion' is defined but never used       @typescript-eslint/no-unused-vars
+  5:41  warning  'AlertCircle' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\fynd\food-ordering-platform\frontend\src\components\Navbar.tsx
+   13:8   warning  'api' is defined but never used                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+   18:78  warning  'clearCart' is assigned a value but never used                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+   25:25  warning  'setIsCheckingOut' is assigned a value but never used                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+   65:9   warning  'handleScrollToSection' is assigned a value but never used                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+  263:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\components\ProductCard.tsx
+  174:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  267:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\components\ProductRecommendations.tsx
+    6:35  warning  'Star' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   66:18  warning  'e' is defined but never used                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+  153:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  221:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\components\SearchModal.tsx
+  178:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\fynd\food-ordering-platform\frontend\src\components\UserMenu.tsx
+  71:9  warning  'openOrdersModal' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 104 problems (6 errors, 98 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

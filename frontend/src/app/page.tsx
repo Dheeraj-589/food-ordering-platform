@@ -1,83 +1,108 @@
-import Image from 'next/image';
+import React from 'react';
+import { Metadata } from 'next';
+import AnnouncementBar from '@/components/AnnouncementBar';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import DeliverySelector from '@/components/DeliverySelector';
+import BestSellerSection from '@/components/BestSellerSection';
+import WhyChooseUs from '@/components/WhyChooseUs';
+import Timeline from '@/components/Timeline';
+import Testimonials from '@/components/Testimonials';
+import Newsletter from '@/components/Newsletter';
+import Footer from '@/components/Footer';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'Foodies Express - Fresh Hot Pizzas & Sides Delivered Fast',
+  description:
+    'Order premium artisanal pizzas, delicious sides, desserts, and cold beverages online. Real-time delivery tracking inspired by Pizza Hut.',
+  alternates: {
+    canonical: 'https://foodies-express.com',
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://foodies-express.com',
+    title: 'Foodies Express - Premium Food Ordering Platform',
+    description:
+      'Order premium artisanal pizzas, sides, desserts, and drinks online. Hot and fresh at your door in 30 minutes.',
+    images: [
+      {
+        url: 'https://foodies-express.com/images/pizza-placeholder.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Foodies Express Gourmet Pizza',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Foodies Express - Premium Food Ordering Platform',
+    description:
+      'Order premium artisanal pizzas, sides, desserts, and drinks online. Hot and fresh at your door in 30 minutes.',
+    images: ['https://foodies-express.com/images/pizza-placeholder.jpg'],
+  },
+};
+
+export default function HomePage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FoodEstablishment',
+    name: 'Foodies Express',
+    image: 'https://foodies-express.com/images/pizza-placeholder.jpg',
+    url: 'https://foodies-express.com',
+    telephone: '+91-99999-99999',
+    priceRange: '$$',
+    servesCuisine: 'Pizza, Italian, Fast Food',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Vizianagaram',
+      addressLocality: 'Vizianagaram',
+      addressRegion: 'Andhra Pradesh',
+      postalCode: '535003',
+      addressCountry: 'IN',
+    },
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{' '}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">Save and see your changes instantly.</li>
-        </ol>
+    <>
+      {/* JSON-LD Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <main className="min-h-screen bg-neutral-950 text-neutral-100 relative overflow-hidden select-none font-sans antialiased flex flex-col">
+        {/* Top Announcements Scrolling Bar */}
+        <AnnouncementBar />
+
+        {/* Sticky Glassmorphic Navbar */}
+        <Navbar />
+
+        {/* Hero Section */}
+        <Hero />
+
+        {/* Delivery / Pickup Geolocation Select Row */}
+        <div className="w-full px-4 relative z-25 mt-[-40px] md:mt-[-60px] mb-8 md:mb-12">
+          <DeliverySelector />
         </div>
+
+        {/* Dynamic Menu & Bestseller Grid */}
+        <BestSellerSection />
+
+        {/* Brand Standards / Why Choose Us */}
+        <WhyChooseUs />
+
+        {/* Step Timeline Order Workflow */}
+        <Timeline />
+
+        {/* Testimonials Customer Sliding reviews */}
+        <Testimonials />
+
+        {/* Newsletter Signup form */}
+        <Newsletter />
+
+        {/* Sitemap, social connections & Footer details */}
+        <Footer />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }

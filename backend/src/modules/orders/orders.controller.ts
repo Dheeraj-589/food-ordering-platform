@@ -19,7 +19,7 @@ import {
 import { Request as ExpressRequest } from 'express';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { OrderStatus } from './entities/order.entity';
+import { OrderStatus, PaymentStatus } from './entities/order.entity';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
@@ -35,6 +35,17 @@ interface RequestWithUser extends ExpressRequest {
 @ApiBearerAuth()
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
+
+  @Post('validate-coupon')
+  @ApiOperation({ summary: 'Validate coupon for order' })
+  @ApiResponse({ status: 200, description: 'Coupon validation result.' })
+  async validateCoupon(
+    @Body('code') code: string,
+    @Body('subtotal') subtotal: number,
+    @Request() req: RequestWithUser,
+  ) {
+    return this.ordersService.validateCoupon(code, subtotal, req.user.id);
+  }
 
   @Post()
   @ApiOperation({ summary: 'Place a new pizza order' })
@@ -104,5 +115,44 @@ export class OrdersController {
     @Body('status') status: OrderStatus,
   ) {
     return this.ordersService.updateStatus(id, status);
+  }
+
+  @Patch(':id/simulate-status')
+  @ApiOperation({
+    summary: 'Update order status for simulation (Customer/Admin)',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Order status successfully modified.',
+  })
+  @ApiResponse({ status: 404, description: 'Order not found.' })
+  async simulateStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status') status: OrderStatus,
+  ) {
+    return this.ordersService.updateStatus(id, status);
+  }
+
+  @Patch(':id/payment')
+  @ApiOperation({
+    summary: 'Update order payment status (User/Admin)',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Order payment status successfully modified.',
+  })
+  @ApiResponse({ status: 404, description: 'Order not found.' })
+  async updatePaymentStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('paymentStatus') paymentStatus: PaymentStatus,
+    @Request() req: RequestWithUser,
+  ) {
+    const order = await this.ordersService.findById(id);
+    if (order.user.id !== req.user.id && req.user.role !== UserRole.ADMIN) {
+      throw new ForbiddenException(
+        'You do not have permission to update this order payment status',
+      );
+    }
+    return this.ordersService.updatePaymentStatus(id, paymentStatus);
   }
 }

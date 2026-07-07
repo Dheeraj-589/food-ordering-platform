@@ -24,13 +24,30 @@ export class RegisterDto {
   email!: string;
 
   @ApiProperty({
-    example: 'securePassword123',
-    description: 'Password, minimum 6 characters',
+    example: '+1234567890',
+    description: 'Unique phone number',
   })
   @IsNotEmpty()
   @IsString()
-  @MinLength(6)
+  phoneNumber!: string;
+
+  @ApiProperty({
+    example: 'securePassword123',
+    description:
+      'Password, minimum 8 characters with at least one uppercase, lowercase, number, and special character',
+  })
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(8)
   password!: string;
+
+  @ApiProperty({
+    example: 'securePassword123',
+    description: 'Password confirmation',
+  })
+  @IsNotEmpty()
+  @IsString()
+  confirmPassword!: string;
 
   @ApiProperty({
     example: 'customer',

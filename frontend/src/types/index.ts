@@ -1,15 +1,35 @@
-export type UserRole = 'customer' | 'admin' | 'delivery';
+export type UserRole = 'customer' | 'admin' | 'delivery' | 'manager' | 'kitchen';
 
 export interface User {
   id: number;
   name: string;
   email: string;
+  phoneNumber: string;
+  isEmailVerified: boolean;
   role: UserRole;
+  status?: 'active' | 'blocked';
+  avatarUrl?: string;
+  language?: string;
+  darkMode?: boolean;
+  addresses?: string;
+  wishlist?: string;
+  notifications?: string;
+  loyaltyPoints?: number;
+  rewardLevel?: string;
   createdAt: string;
   updatedAt: string;
 }
 
-export type ProductCategory = 'pizza' | 'sides' | 'drinks' | 'desserts';
+export type ProductCategory =
+  'pizza' | 'sides' | 'drinks' | 'desserts' | 'pasta' | 'combos' | 'rice';
+
+export interface ComboSlot {
+  slotId: number;
+  name: string;
+  category: string;
+  size?: string;
+  defaultProduct?: string;
+}
 
 export interface Product {
   id: number;
@@ -19,6 +39,13 @@ export interface Product {
   imageUrl?: string;
   isAvailable: boolean;
   category: ProductCategory;
+  variants?: { size: string; price: number }[];
+  crusts?: string[];
+  extraToppings?: { name: string; price: number }[];
+  ingredients?: string[];
+  nutrition?: { calories: number; protein: string; fat: string; carbs: string };
+  reviews?: { user: string; rating: number; comment: string }[];
+  comboItems?: ComboSlot[];
   createdAt: string;
   updatedAt: string;
 }
@@ -42,12 +69,40 @@ export interface Order {
   deliveryAddress: string;
   paymentStatus: PaymentStatus;
   items: OrderItem[];
+  subtotal?: number;
+  discountAmount?: number;
+  gstAmount?: number;
+  deliveryCharge?: number;
+  couponCode?: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface CartItemCustomization {
+  size?: string;
+  crust?: string;
+  extraCheese?: boolean;
+  extraToppings?: string[];
+  comboSelections?: {
+    slotId: number;
+    productId: number;
+    name: string;
+    customization?: Omit<CartItemCustomization, 'comboSelections'>;
+  }[];
 }
 
 export interface CartItem {
   product: Product;
   quantity: number;
   specialInstructions?: string;
+  customization?: CartItemCustomization;
 }
+
+export type TimelineStage =
+  | 'received'
+  | 'preparing'
+  | 'baking'
+  | 'quality_check'
+  | 'out_for_delivery'
+  | 'delivered'
+  | 'cancelled';
