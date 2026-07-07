@@ -17,7 +17,7 @@
     "lint": "npm run lint:frontend && npm run lint:backend",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:write": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
-    "prepare": "husky"
+    "prepare": "command -v husky >/dev/null 2>&1 && husky || true"
   },
   "devDependencies": {
     "husky": "^9.1.7",
