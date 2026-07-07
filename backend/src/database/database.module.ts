@@ -20,11 +20,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         },
 
         autoLoadEntities: true,
-        synchronize: configService.get<string>('NODE_ENV') !== 'production',
+        synchronize: false,
         logging: configService.get<string>('NODE_ENV') === 'development',
       }),
     }),
   ],
   exports: [TypeOrmModule],
 })
-export class DatabaseModule {}
+export class DatabaseModule { }

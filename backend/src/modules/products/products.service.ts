@@ -20,7 +20,7 @@ export class ProductsService implements OnModuleInit {
     private readonly cmsContentRepository: Repository<CmsContent>,
     @InjectRepository(SystemSetting)
     private readonly systemSettingRepository: Repository<SystemSetting>,
-  ) {}
+  ) { }
 
   async onModuleInit() {
     try {

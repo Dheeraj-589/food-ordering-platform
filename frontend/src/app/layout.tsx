@@ -15,6 +15,15 @@ export const metadata: Metadata = {
   description:
     'Order premium artisanal pizzas, delicious sides, desserts, and cold beverages online. Real-time delivery tracking inspired by Pizza Hut.',
   keywords: 'pizza, online ordering, food delivery, order pizza, fast food, foodies express',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/favicon.png', sizes: '512x512', type: 'image/png' },
+    ],
+  },
   openGraph: {
     type: 'website',
     url: 'https://foodies-express.com',

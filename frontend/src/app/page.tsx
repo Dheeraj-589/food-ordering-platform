@@ -15,6 +15,15 @@ export const metadata: Metadata = {
   title: 'Foodies Express - Fresh Hot Pizzas & Sides Delivered Fast',
   description:
     'Order premium artisanal pizzas, delicious sides, desserts, and cold beverages online. Real-time delivery tracking inspired by Pizza Hut.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/favicon.png', sizes: '512x512', type: 'image/png' },
+    ],
+  },
   alternates: {
     canonical: 'https://foodies-express.com',
   },
