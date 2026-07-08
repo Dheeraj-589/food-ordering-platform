@@ -553,16 +553,27 @@ export default function CombosTab({ products, fetchProducts, searchTerm }: Combo
                               handleSelectSlotProduct(idx, matchedProduct);
                             }
                           }}
-                          optionRender={(option) => (
-                            <div className="flex items-center gap-2">
-                              <img
-                                src={option.data.imageUrl}
-                                alt={String(option.label)}
-                                className="h-8 w-8 rounded object-cover border border-border"
-                              />
-                              <span>{option.label}</span>
-                            </div>
-                          )}
+                          optionRender={(option) => {
+                            const product = products.find(
+                              (p) => p.id === Number(option.value)
+                            );
+
+                            return (
+                              <div className="flex items-center gap-2">
+                                <img
+                                  src={getProductImage(
+                                    product?.imageUrl,
+                                    product?.category,
+                                    product?.name ?? ''
+                                  )}
+                                  alt={String(option.label)}
+                                  className="h-8 w-8 rounded object-cover border border-border"
+                                />
+
+                                <span>{option.label}</span>
+                              </div>
+                            );
+                          }}
                         />
                       </div>
 
