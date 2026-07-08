@@ -11,6 +11,10 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+   metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      'https://food-ordering-platform-frontend-omega.vercel.app'
+  ),
   title: 'Foodies Express - Fresh Hot Pizzas & Sides Delivered Fast',
   description:
     'Order premium artisanal pizzas, delicious sides, desserts, and cold beverages online. Real-time delivery tracking inspired by Pizza Hut.',
