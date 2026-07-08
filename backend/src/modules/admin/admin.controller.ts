@@ -53,7 +53,7 @@ const mediaStorage = diskStorage({
 @Roles(UserRole.ADMIN, UserRole.MANAGER)
 @ApiBearerAuth()
 export class AdminController {
-  constructor(private readonly adminService: AdminService) {}
+  constructor(private readonly adminService: AdminService) { }
 
   @Get('dashboard-stats')
   @ApiOperation({ summary: 'Get overview metadata and chart aggregates' })
@@ -340,7 +340,7 @@ export class AdminController {
     if (!file) {
       throw new BadRequestException('No image file provided');
     }
-    const publicUrl = `http://localhost:4000/uploads/${folder}/${file.filename}`;
+    const publicUrl = `https://food-ordering-platform-zhi9.onrender.com/uploads/${folder}/${file.filename}`;
     await this.adminService.createAuditLog(
       'UPLOAD_MEDIA',
       `Uploaded image to uploads/${folder}: ${file.filename}`,
@@ -369,7 +369,7 @@ export class AdminController {
         name: file,
         size: stats.size,
         folder,
-        url: `http://localhost:4000/uploads/${folder}/${file}`,
+        url: `https://food-ordering-platform-zhi9.onrender.com/uploads/${folder}/${file}`,
         createdAt: stats.birthtime,
       };
     });

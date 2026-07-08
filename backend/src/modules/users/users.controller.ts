@@ -43,7 +43,7 @@ export class UsersController {
     private readonly usersService: UsersService,
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   @Get('profile')
   @ApiOperation({ summary: 'Get current user profile' })
@@ -167,7 +167,7 @@ export class UsersController {
     }
 
     const user = await this.usersService.findById(req.user.id);
-    const publicUrl = `http://localhost:4000/uploads/avatars/${file.filename}`;
+    const publicUrl = `https://food-ordering-platform-zhi9.onrender.com/uploads/avatars/${file.filename}`;
     user.avatarUrl = publicUrl;
 
     const saved = await this.userRepository.save(user);
