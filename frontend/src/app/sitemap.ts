@@ -5,8 +5,11 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPaths = ['', '/menu', '/about', '/contact', '/privacy', '/terms'];
+  const SITE_URL =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    'https://food-ordering-platform-frontend-omega.vercel.app';
   const staticUrls = staticPaths.map((path) => ({
-    url: `https://foodies-express.com${path}`,
+    url: `${SITE_URL}${path}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: path === '' ? 1.0 : 0.8,
@@ -23,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           .replace(/(^-|-$)+/g, '');
         const path = product.category === 'combos' ? `/combo/${slug}` : `/product/${slug}`;
         return {
-          url: `https://foodies-express.com${path}`,
+          url: `${SITE_URL}${path}`,
           lastModified: new Date(),
           changeFrequency: 'weekly' as const,
           priority: 0.7,
@@ -33,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       // Add category sitemap pages E.g. /menu/pizza
       const categories = Array.from(new Set(products.map((p: Product) => p.category))) as string[];
       const categoryUrls = categories.map((cat) => ({
-        url: `https://foodies-express.com/menu/${cat}`,
+        url: `${SITE_URL}/menu/${cat}`,
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
         priority: 0.7,

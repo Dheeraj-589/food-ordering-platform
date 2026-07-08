@@ -26,13 +26,13 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://foodies-express.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     title: 'Foodies Express - Premium Food Ordering Platform',
     description:
       'Order premium artisanal pizzas, sides, desserts, and drinks online. Hot and fresh at your door in 30 minutes.',
     images: [
       {
-        url: 'https://foodies-express.com/images/pizza-placeholder.jpg',
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
         alt: 'Foodies Express Gourmet Pizza',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: 'Foodies Express - Premium Food Ordering Platform',
     description:
       'Order premium artisanal pizzas, sides, desserts, and drinks online. Hot and fresh at your door in 30 minutes.',
-    images: ['https://foodies-express.com/images/pizza-placeholder.jpg'],
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/og-image.png`],
   },
 };
 
