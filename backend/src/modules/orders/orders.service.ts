@@ -10,7 +10,6 @@ import { OrderItem } from './entities/order-item.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { User } from '../users/entities/user.entity';
 import { ProductsService } from '../products/products.service';
-import { MailerService } from '../auth/mailer.service';
 import { Coupon } from '../admin/entities/coupon.entity';
 import { CouponUsage } from '../admin/entities/coupon-usage.entity';
 
@@ -24,7 +23,6 @@ export class OrdersService {
     @InjectRepository(CouponUsage)
     private readonly couponUsageRepository: Repository<CouponUsage>,
     private readonly productsService: ProductsService,
-    private readonly mailerService: MailerService,
   ) {}
 
   async validateCoupon(code: string, subtotal: number, userId: number) {
@@ -189,17 +187,6 @@ export class OrdersService {
     const prevStatus = order.status;
     order.status = status;
     const savedOrder = await this.orderRepository.save(order);
-
-    if (
-      status !== prevStatus &&
-      (status === OrderStatus.DELIVERED || status === OrderStatus.CANCELLED)
-    ) {
-      if (order.user && order.user.email) {
-        this.mailerService
-          .sendOrderStatusEmail(order.user.email, order, status)
-          .catch((err) => console.error('Failed to send status email:', err));
-      }
-    }
 
     return savedOrder;
   }

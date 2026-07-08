@@ -28,9 +28,6 @@ export class User {
   @Column({ type: 'varchar', length: 20, unique: true })
   phoneNumber!: string;
 
-  @Column({ type: 'boolean', default: false })
-  isEmailVerified!: boolean;
-
   @Column({ type: 'varchar', length: 255 })
   password!: string;
 

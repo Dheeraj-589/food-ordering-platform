@@ -80,8 +80,8 @@ export default function RegisterPage() {
         confirmPassword: data.confirmPassword,
       });
 
-      addToast(response.data.message || 'OTP verification sent to your email.', 'success');
-      router.push(`/verify-email?email=${encodeURIComponent(data.email)}`);
+      addToast(response.data.message || 'Registration successful! Please log in.', 'success');
+      router.push('/login');
     } catch (err: unknown) {
       const error = err as { response?: { data?: { message?: string } } };
       const errMsg = error.response?.data?.message || 'Registration failed.';

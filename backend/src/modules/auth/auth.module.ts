@@ -7,15 +7,13 @@ import { UsersModule } from '../users/users.module';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { MailerService } from './mailer.service';
 import { RefreshToken } from './entities/refresh-token.entity';
-import { OtpVerification } from './entities/otp-verification.entity';
 import { AuditLog } from '../admin/entities/audit-log.entity';
 
 @Module({
   imports: [
     UsersModule,
-    TypeOrmModule.forFeature([RefreshToken, OtpVerification, AuditLog]),
+    TypeOrmModule.forFeature([RefreshToken, AuditLog]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
@@ -30,7 +28,7 @@ import { AuditLog } from '../admin/entities/audit-log.entity';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, MailerService],
-  exports: [AuthService, PassportModule, MailerService],
+  providers: [AuthService, JwtStrategy],
+  exports: [AuthService, PassportModule],
 })
 export class AuthModule {}

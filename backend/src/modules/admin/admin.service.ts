@@ -16,7 +16,6 @@ import { AuditLog } from './entities/audit-log.entity';
 import { CmsContent } from './entities/cms-content.entity';
 import { SystemSetting } from './entities/system-setting.entity';
 import { Broadcast } from './entities/broadcast.entity';
-import { MailerService } from '../auth/mailer.service';
 
 @Injectable()
 export class AdminService implements OnModuleInit {
@@ -41,7 +40,6 @@ export class AdminService implements OnModuleInit {
     private readonly systemSettingRepository: Repository<SystemSetting>,
     @InjectRepository(Broadcast)
     private readonly broadcastRepository: Repository<Broadcast>,
-    private readonly mailerService: MailerService,
   ) {}
 
   async onModuleInit() {
@@ -1298,20 +1296,7 @@ export class AdminService implements OnModuleInit {
       customer.notifications = JSON.stringify([newNotif, ...currentNotifs]);
       await this.userRepository.save(customer);
 
-      try {
-        await this.mailerService.sendBroadcastEmail(
-          customer.email,
-          subject,
-          message,
-        );
-        deliveryDetails.push({ email: customer.email, status: 'success' });
-      } catch (err: any) {
-        deliveryDetails.push({
-          email: customer.email,
-          status: 'failed',
-          error: err.message || 'Unknown error',
-        });
-      }
+      deliveryDetails.push({ email: customer.email, status: 'success' });
     }
 
     savedBroadcast.status = deliveryDetails.some((d) => d.status === 'success')

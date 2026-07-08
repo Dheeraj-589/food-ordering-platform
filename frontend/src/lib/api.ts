@@ -57,12 +57,7 @@ api.interceptors.response.use(
       const url = originalRequest.url || '';
 
       // If authenticating or refreshing itself fails, clear token and reject immediately
-      if (
-        url.includes('/auth/refresh') ||
-        url.includes('/auth/login') ||
-        url.includes('/auth/login/verify') ||
-        url.includes('/auth/register/verify')
-      ) {
+      if (url.includes('/auth/refresh') || url.includes('/auth/login')) {
         if (typeof window !== 'undefined') {
           localStorage.removeItem('auth_token');
           localStorage.removeItem('auth_refresh_token');
