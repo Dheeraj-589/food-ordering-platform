@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
 import api from '@/lib/api';
+import { useAuthStore } from '@/store/authStore';
 import { useToastStore } from '@/store/toastStore';
 import PublicRoute from '@/components/PublicRoute';
 import { Button } from '@/components/ui/button';
@@ -25,6 +26,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 export default function LoginPage() {
   const router = useRouter();
   const addToast = useToastStore((state) => state.addToast);
+  const setAuth = useAuthStore((state) => state.setAuth);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -48,14 +50,11 @@ export default function LoginPage() {
         password: data.password,
       });
 
-      if (response.data.requireOtp) {
-        addToast(response.data.message || 'OTP verification required.', 'success');
-        router.push(`/verify-login?email=${encodeURIComponent(data.email)}`);
-      } else {
-        // Fallback (if backend didn't require OTP)
-        addToast('Login successful!', 'success');
-        router.push('/');
-      }
+      const { accessToken, refreshToken, user } = response.data;
+      setAuth(user, accessToken, refreshToken);
+
+      addToast('Login successful!', 'success');
+      router.push('/');
     } catch (err: unknown) {
       const error = err as { response?: { data?: { message?: string } } };
       const errMsg = error.response?.data?.message || 'Invalid email or password.';
@@ -118,12 +117,6 @@ export default function LoginPage() {
                     <Label htmlFor="password" className="text-xs font-semibold text-foreground">
                       Password
                     </Label>
-                    <Link
-                      href="/forgot-password"
-                      className="text-xs text-red-500 hover:text-red-700 font-medium transition-all"
-                    >
-                      Forgot password?
-                    </Link>
                   </div>
                   <div className="relative">
                     <Input

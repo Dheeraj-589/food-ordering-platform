@@ -62,7 +62,6 @@ export class UsersService implements OnModuleInit {
             email: u.email,
             phoneNumber: u.phone,
             password: hashedPassword,
-            isEmailVerified: true,
             role: u.role,
             status: 'active',
             loyaltyPoints: u.role === UserRole.CUSTOMER ? 150 : 0,
