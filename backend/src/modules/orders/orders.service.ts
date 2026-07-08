@@ -95,10 +95,22 @@ export class OrdersService {
         );
       }
 
+      let unitPrice = Number(product.price);
+      const parsedCustomization = this.parseCustomization(itemDto.specialInstructions);
+      if (parsedCustomization?.size && Array.isArray(product.variants)) {
+        const selectedVariant = product.variants.find(
+          (variant: { size?: string; price?: number }) =>
+            variant?.size === parsedCustomization.size,
+        );
+        if (selectedVariant?.price !== undefined) {
+          unitPrice = Number(selectedVariant.price);
+        }
+      }
+
       const orderItem = new OrderItem();
       orderItem.product = product;
       orderItem.quantity = itemDto.quantity;
-      orderItem.price = Number(product.price);
+      orderItem.price = unitPrice;
       orderItem.specialInstructions = itemDto.specialInstructions;
 
       total += orderItem.price * orderItem.quantity;
@@ -154,6 +166,23 @@ export class OrdersService {
     }
 
     return savedOrder;
+  }
+
+  private parseCustomization(specialInstructions?: string): { size?: string } | null {
+    if (!specialInstructions) {
+      return null;
+    }
+
+    try {
+      const parsed = JSON.parse(specialInstructions);
+      if (parsed && typeof parsed === 'object') {
+        return parsed as { size?: string };
+      }
+    } catch {
+      return null;
+    }
+
+    return null;
   }
 
   async findByUser(userId: number): Promise<Order[]> {

@@ -27,6 +27,8 @@ export interface ComboSlot {
   slotId: number;
   name: string;
   category: string;
+  productId?: number;
+  selectedVariant?: string;
   size?: string;
   defaultProduct?: string;
 }

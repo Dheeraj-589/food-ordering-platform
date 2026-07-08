@@ -166,10 +166,11 @@ export default function Navbar() {
               {isAuthenticated ? (
                 <UserMenu />
               ) : (
-                <Link href="/login">
-                  <button className="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 text-foreground font-bold text-sm tracking-wide shadow-lg shadow-red-950/20 hover:shadow-red-700/20 transition-all duration-250 cursor-pointer select-none">
-                    Log In
-                  </button>
+                <Link
+                  href="/login"
+                  className="inline-flex items-center px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 text-foreground font-bold text-sm tracking-wide shadow-lg shadow-red-950/20 hover:shadow-red-700/20 transition-all duration-250 cursor-pointer select-none"
+                >
+                  Log In
                 </Link>
               )}
             </div>

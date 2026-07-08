@@ -642,6 +642,7 @@ export default function OrderTrackingPage() {
                             <p className="text-[9px] text-foreground font-semibold mt-0.5">
                               {options.size && `Size: ${options.size}`}
                               {options.crust && ` | Crust: ${options.crust}`}
+                              {options.variant && ` | Variant: ${options.variant}`}
                               {options.extraCheese && ` | Extra Cheese`}
                               {options.extraToppings &&
                                 options.extraToppings.length > 0 &&

@@ -11,12 +11,6 @@ import api from '@/lib/api';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { getProductImage } from '@/lib/utils';
 
-const SIZES = [
-  { id: 'small', label: 'Small', details: 'Base - ₹50' },
-  { id: 'medium', label: 'Medium', details: 'Regular' },
-  { id: 'large', label: 'Large', details: '+₹150' },
-] as const;
-
 const CRUSTS = [
   { id: 'classic', label: 'Classic Hand Tossed', details: 'Traditional recipe crust' },
   { id: 'thin', label: 'Thin Crust', details: 'Light and crispy wheat base' },
@@ -37,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
   // Customization States inside Quick View
-  const [selectedSize, setSelectedSize] = useState<'small' | 'medium' | 'large'>('medium');
+  const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedCrust, setSelectedCrust] = useState<'classic' | 'thin' | 'cheese-burst'>(
     'classic',
   );
@@ -66,6 +60,16 @@ export default function ProductCard({ product }: ProductCardProps) {
       console.error(e);
     }
   }, [product.id, user]);
+
+  const variantOptions = (product.variants || []).filter(
+    (variant): variant is { size: string; price: number } => Boolean(variant?.size),
+  );
+  const hasVariants = variantOptions.length > 0;
+  const selectedVariant = variantOptions.find((variant) => variant.size === selectedSize) || null;
+
+  useEffect(() => {
+    setSelectedSize('');
+  }, [product.id]);
 
   const toggleFavorite = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -105,24 +109,33 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   // Pricing calculations
   const basePrice = Number(product.price);
-  const sizeCost = selectedSize === 'small' ? -50 : selectedSize === 'large' ? 150 : 0;
+  const selectedVariantPrice = selectedVariant ? Number(selectedVariant.price) : basePrice;
+  const sizeCost = selectedVariantPrice - basePrice;
   const crustCost = selectedCrust === 'cheese-burst' ? 99 : 0;
   const toppingsCost = extraToppings.length * 39;
-  const singleUnitPrice = basePrice + sizeCost + crustCost + toppingsCost;
+  const singleUnitPrice = selectedVariantPrice + crustCost + toppingsCost;
   const totalPrice = singleUnitPrice * quickViewQuantity;
 
-  const oldPrice = Math.round((basePrice + sizeCost) * 1.25);
+  const oldPrice = Math.round(selectedVariantPrice * 1.25);
 
   const handleAddToCart = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    addItem(product, 1);
+    if (hasVariants && !selectedVariant) {
+      addToast('Please select a variant before adding to cart.', 'error');
+      return;
+    }
+
+    const customizationObj: CartItemCustomization | undefined =
+      hasVariants && selectedVariant ? { size: selectedVariant.size } : undefined;
+
+    addItem(product, 1, customizationObj);
     addToast(`${product.name} added to cart!`, 'success');
   };
 
   const handleQuickViewAdd = () => {
     // Construct instructions mapping customizations
     const customizationDesc = [
-      `Size: ${selectedSize.toUpperCase()}`,
+      `Size: ${selectedVariant?.size || selectedSize}`,
       `Crust: ${selectedCrust.replace('-', ' ')}`,
       extraToppings.length > 0 ? `Toppings: ${extraToppings.join(', ')}` : '',
       specialInstructions.trim() ? `Instructions: ${specialInstructions}` : '',
@@ -130,15 +143,20 @@ export default function ProductCard({ product }: ProductCardProps) {
       .filter(Boolean)
       .join(' | ');
 
+    if (hasVariants && !selectedVariant) {
+      addToast('Please select a variant before adding to cart.', 'error');
+      return;
+    }
+
     // Adjust product details based on size/options for cart display
     const customizedProduct: Product = {
       ...product,
-      name: `${product.name} (${selectedSize.toUpperCase()})`,
+      name: `${product.name} (${selectedVariant?.size || 'Standard'})`,
       price: singleUnitPrice,
     };
 
     const customizationObj: CartItemCustomization = {
-      size: selectedSize === 'small' ? 'Regular' : selectedSize === 'large' ? 'Large' : 'Medium',
+      size: selectedVariant?.size,
       crust:
         selectedCrust === 'thin'
           ? 'Thin Crust'
@@ -154,7 +172,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     setIsQuickViewOpen(false);
 
     // Reset customizations
-    setSelectedSize('medium');
+    setSelectedSize(variantOptions[0]?.size || '');
     setSelectedCrust('classic');
     setExtraToppings([]);
     setSpecialInstructions('');
@@ -247,23 +265,42 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Pricing & Add to Cart Footer */}
-        <div className="flex justify-between items-center mt-4 pt-3 border-t border-border">
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-lg font-black text-primary">₹{basePrice}</span>
-              <span className="text-xs text-foreground line-through">₹{oldPrice}</span>
+        <div className="mt-4 pt-3 border-t border-border">
+          {hasVariants && (
+            <div className="mb-3 flex flex-wrap gap-1.5">
+              {variantOptions.map((variant) => (
+                <button
+                  key={variant.size}
+                  onClick={() => setSelectedSize(variant.size)}
+                  className={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold transition-all cursor-pointer ${selectedSize === variant.size
+                    ? 'bg-primary/10 border-primary text-primary'
+                    : 'bg-secondary border-border text-foreground hover:bg-secondary/80 hover:text-primary'
+                    }`}
+                >
+                  {variant.size}
+                </button>
+              ))}
             </div>
-            <span className="text-[8px] text-foreground font-bold uppercase tracking-widest">
-              Exclude Tax
-            </span>
-          </div>
+          )}
 
-          <button
-            onClick={handleAddToCart}
-            className="px-4 py-2 rounded-xl bg-secondary hover:bg-primary border border-border hover:border-primary text-foreground hover:text-primary-foreground font-bold text-xs transition-all flex items-center gap-1 cursor-pointer select-none"
-          >
-            <Plus className="h-3.5 w-3.5" /> Add
-          </button>
+          <div className="flex justify-between items-center">
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-lg font-black text-primary">₹{selectedVariantPrice}</span>
+                <span className="text-xs text-foreground line-through">₹{oldPrice}</span>
+              </div>
+              <span className="text-[8px] text-foreground font-bold uppercase tracking-widest">
+                Exclude Tax
+              </span>
+            </div>
+
+            <button
+              onClick={handleAddToCart}
+              className="px-4 py-2 rounded-xl bg-secondary hover:bg-primary border border-border hover:border-primary text-foreground hover:text-primary-foreground font-bold text-xs transition-all flex items-center gap-1 cursor-pointer select-none"
+            >
+              <Plus className="h-3.5 w-3.5" /> Add
+            </button>
+          </div>
         </div>
       </motion.div>
 
@@ -299,10 +336,10 @@ export default function ProductCard({ product }: ProductCardProps) {
                   <span>Base Price</span>
                   <span>₹{basePrice}</span>
                 </div>
-                {selectedSize !== 'medium' && (
+                {hasVariants && selectedVariant && (
                   <div className="flex justify-between text-neutral-700">
-                    <span>Size Upgrade ({selectedSize.toUpperCase()})</span>
-                    <span>{sizeCost > 0 ? `+₹${sizeCost}` : `-₹${Math.abs(sizeCost)}`}</span>
+                    <span>Selected Variant ({selectedVariant.size})</span>
+                    <span>{sizeCost > 0 ? `+₹${sizeCost}` : sizeCost < 0 ? `-₹${Math.abs(sizeCost)}` : 'Included'}</span>
                   </div>
                 )}
                 {selectedCrust !== 'classic' && (
@@ -331,19 +368,19 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <label className="text-[10px] font-bold text-foreground uppercase tracking-widest">
                   Select Size
                 </label>
-                <div className="grid grid-cols-3 gap-2">
-                  {SIZES.map((size) => (
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {variantOptions.map((variant) => (
                     <button
-                      key={size.id}
-                      onClick={() => setSelectedSize(size.id)}
-                      className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${selectedSize === size.id
+                      key={variant.size}
+                      onClick={() => setSelectedSize(variant.size)}
+                      className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${selectedSize === variant.size
                         ? 'bg-primary/10 border-primary text-primary font-extrabold shadow-sm'
                         : 'bg-secondary border-border text-foreground hover:bg-secondary/80 hover:text-primary'
                         }`}
                     >
-                      <p className="text-xs">{size.label}</p>
+                      <p className="text-xs">{variant.size}</p>
                       <p className="text-[9px] text-foreground font-semibold mt-0.5">
-                        {size.details}
+                        ₹{variant.price}
                       </p>
                     </button>
                   ))}

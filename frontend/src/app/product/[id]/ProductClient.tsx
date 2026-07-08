@@ -23,9 +23,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
   const addToast = useToastStore((state) => state.addToast);
 
   // Customization selection states
-  const [selectedSize, setSelectedSize] = useState<string>(() => {
-    return product.variants && product.variants.length > 0 ? product.variants[0].size : 'Medium';
-  });
+  const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedCrust, setSelectedCrust] = useState<string>(() => {
     return product.crusts && product.crusts.length > 0 ? product.crusts[0] : 'Classic Hand Tossed';
   });
@@ -33,6 +31,10 @@ export default function ProductClient({ product, related }: ProductClientProps) 
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
   const [quantity, setQuantity] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<'details' | 'ingredients' | 'reviews'>('details');
+
+  const hasVariants = Boolean((product.variants || []).length);
+  const selectedVariant =
+    (product.variants || []).find((variant) => variant.size === selectedSize) || null;
 
   // Build the customization payload
   const customization: CartItemCustomization = {
@@ -55,6 +57,11 @@ export default function ProductClient({ product, related }: ProductClientProps) 
 
   // Add customized item to cart
   const handleAddToCart = () => {
+    if (hasVariants && !selectedVariant) {
+      addToast('Please select a variant before adding to cart.', 'error');
+      return;
+    }
+
     addItem(product, quantity, customization);
     addToast(`${product.name} (customized) added to cart!`, 'success');
   };
@@ -90,7 +97,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
             </motion.div>
 
             {/* Thumbnail Placeholders for gallery */}
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
@@ -103,7 +110,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                   />
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Right Column: Descriptions, Configs, Live Price & Cart triggers */}

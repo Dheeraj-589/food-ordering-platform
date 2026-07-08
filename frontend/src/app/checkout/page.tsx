@@ -355,7 +355,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Time Slot Selector */}
-            <div className="space-y-2 pt-2">
+            {/* <div className="space-y-2 pt-2">
               <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block flex items-center gap-1">
                 <Clock className="h-3.5 w-3.5 text-primary" /> Select Delivery Time
               </label>
@@ -373,7 +373,7 @@ export default function CheckoutPage() {
                   </button>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Payment Methods */}
@@ -383,9 +383,7 @@ export default function CheckoutPage() {
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
-                { id: 'card', label: 'Credit Card' },
-                { id: 'upi', label: 'Demo UPI' },
-                { id: 'wallet', label: 'Demo Wallet' },
+                { id: 'upi', label: 'UPI Payment' },
                 { id: 'cod', label: 'Cash on Delivery' },
               ].map((method) => (
                 <button

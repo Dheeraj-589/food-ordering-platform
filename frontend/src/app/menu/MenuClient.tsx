@@ -58,6 +58,9 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
   const [ratingFilter, setRatingFilter] = useState<number>(0);
   const [availabilityFilter, setAvailabilityFilter] = useState<boolean>(false);
   const [offersFilter, setOffersFilter] = useState<boolean>(false);
+  const [selectedVariantByProductId, setSelectedVariantByProductId] = useState<
+    Record<number, string>
+  >({});
 
   // Combo Builder states
   const [comboModalOpen, setComboModalOpen] = useState(false);
@@ -172,6 +175,11 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
       return reviewsB - reviewsA;
     });
 
+  const getSelectedVariant = (product: Product) => {
+    const selectedSize = selectedVariantByProductId[product.id];
+    return (product.variants || []).find((variant) => variant.size === selectedSize) || product.variants?.[0] || null;
+  };
+
   // Add standard product to cart
   const handleAddToCart = (product: Product) => {
     if (product.category === 'combos') {
@@ -189,6 +197,18 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
       });
       setComboSelections(initialSelections);
       setComboModalOpen(true);
+      return;
+    }
+
+    const hasVariants = Boolean((product.variants || []).length);
+    if (product.category === 'pizza' && hasVariants) {
+      const selectedVariant = getSelectedVariant(product);
+      if (!selectedVariant) {
+        addToast('Please select a variant before adding to cart.', 'error');
+        return;
+      }
+      addItem(product, 1, { size: selectedVariant.size });
+      addToast(`${product.name} added to cart!`, 'success');
       return;
     }
 
@@ -450,6 +470,9 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
               <AnimatePresence mode="popLayout">
                 {filteredProducts.map((product) => {
                   const isVeg = isProductVeg(product);
+                  const hasVariants = Boolean((product.variants || []).length);
+                  const selectedVariant = getSelectedVariant(product);
+                  const selectedVariantPrice = selectedVariant ? Number(selectedVariant.price) : Number(product.price);
                   return (
                     <motion.div
                       key={product.id}
@@ -514,13 +537,39 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                               {product.name}
                             </h4>
                             <span className="text-xs font-extrabold text-primary">
-                              ₹{product.price}
+                              ₹{selectedVariantPrice}
                             </span>
                           </div>
                           <p className="text-[11px] text-foreground font-medium leading-relaxed mt-1.5 line-clamp-2">
                             {product.description ||
                               'No description available for this delicious menu item.'}
                           </p>
+                          {hasVariants && (
+                            <div className="mt-2 flex flex-wrap gap-1.5">
+                              {(product.variants || []).map((variant) => {
+                                const isSelected = selectedVariant?.size === variant.size;
+                                return (
+                                  <button
+                                    key={variant.size}
+                                    type="button"
+                                    onClick={(event) => {
+                                      event.stopPropagation();
+                                      setSelectedVariantByProductId((prev) => ({
+                                        ...prev,
+                                        [product.id]: variant.size,
+                                      }));
+                                    }}
+                                    className={`text-[10px] font-bold px-2 py-1 rounded-lg border transition-colors cursor-pointer ${isSelected
+                                      ? 'border-primary bg-primary/10 text-primary'
+                                      : 'border-neutral-700/60 bg-background/70 text-foreground hover:border-primary/50'
+                                      }`}
+                                  >
+                                    {variant.size}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          )}
                         </div>
                       </div>
 
