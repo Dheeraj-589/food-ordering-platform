@@ -134,7 +134,7 @@ export default function SettingsTab() {
 
   if (loading) {
     return (
-      <div className="p-8 text-center text-neutral-500 font-bold">
+      <div className="p-8 text-center text-foreground font-bold">
         Loading store settings panel...
       </div>
     );
@@ -144,19 +144,19 @@ export default function SettingsTab() {
     <div className="space-y-6">
       {/* Header controls */}
       <div>
-        <h2 className="text-xl font-bold text-neutral-100 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
           <Settings className="h-5 w-5 text-red-500" /> Store Configurations
         </h2>
-        <p className="text-xs text-neutral-500 mt-1">
+        <p className="text-xs text-foreground mt-1">
           Configure business operating timings, delivery fees, GST tax brackets, and mail protocols.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs font-semibold text-neutral-400">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs font-semibold text-foreground">
         {/* Store Profile */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
           <div className="flex justify-between items-center border-b border-neutral-950 pb-2">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Store Profile Details
             </span>
             <button
@@ -175,59 +175,59 @@ export default function SettingsTab() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Business Name
               </label>
               <input
                 type="text"
                 value={storeName}
                 onChange={(e) => setStoreName(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Contact Email
               </label>
               <input
                 type="email"
                 value={storeEmail}
                 onChange={(e) => setStoreEmail(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Contact Phone
               </label>
               <input
                 type="text"
                 value={storePhone}
                 onChange={(e) => setStorePhone(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Corporate HQ Address
               </label>
               <input
                 type="text"
                 value={storeAddress}
                 onChange={(e) => setStoreAddress(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
           </div>
         </div>
 
         {/* Timings */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
           <div className="flex justify-between items-center border-b border-neutral-950 pb-2">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Business Timings
             </span>
             <button
@@ -246,7 +246,7 @@ export default function SettingsTab() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Open Timing
               </label>
               <input
@@ -254,11 +254,11 @@ export default function SettingsTab() {
                 value={businessOpen}
                 onChange={(e) => setBusinessOpen(e.target.value)}
                 placeholder="11:00 AM"
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Close Timing
               </label>
               <input
@@ -266,13 +266,13 @@ export default function SettingsTab() {
                 value={businessClose}
                 onChange={(e) => setBusinessClose(e.target.value)}
                 placeholder="11:00 PM"
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+            <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
               Operating Days
             </label>
             <input
@@ -280,15 +280,15 @@ export default function SettingsTab() {
               value={businessDays}
               onChange={(e) => setBusinessDays(e.target.value)}
               placeholder="Monday - Sunday"
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+              className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
             />
           </div>
         </div>
 
         {/* Charges GST */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
           <div className="flex justify-between items-center border-b border-neutral-950 pb-2">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Margins, Fees & Taxes
             </span>
           </div>
@@ -296,13 +296,13 @@ export default function SettingsTab() {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <div className="flex justify-between items-center">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   Flat Delivery Fee (INR)
                 </label>
                 <button
                   onClick={() => handleSaveItem('delivery_charges', deliveryFee)}
                   disabled={savingKey === 'delivery_charges'}
-                  className="text-[10px] text-red-500 hover:text-red-400 font-bold"
+                  className="text-[10px] text-red-500 hover:text-red-700 font-bold"
                 >
                   Save
                 </button>
@@ -311,19 +311,19 @@ export default function SettingsTab() {
                 type="number"
                 value={deliveryFee}
                 onChange={(e) => setDeliveryFee(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
 
             <div className="space-y-1.5">
               <div className="flex justify-between items-center">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   GST Rate (%)
                 </label>
                 <button
                   onClick={() => handleSaveItem('gst_rate', gstRate)}
                   disabled={savingKey === 'gst_rate'}
-                  className="text-[10px] text-red-500 hover:text-red-400 font-bold"
+                  className="text-[10px] text-red-500 hover:text-red-700 font-bold"
                 >
                   Save
                 </button>
@@ -332,16 +332,16 @@ export default function SettingsTab() {
                 type="number"
                 value={gstRate}
                 onChange={(e) => setGstRate(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
           </div>
         </div>
 
         {/* SMTP Mail settings */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
           <div className="flex justify-between items-center border-b border-neutral-950 pb-2">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               SMTP Mail Server Configs
             </span>
             <button
@@ -360,7 +360,7 @@ export default function SettingsTab() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 SMTP Mail Host
               </label>
               <input
@@ -368,27 +368,27 @@ export default function SettingsTab() {
                 value={smtpHost}
                 onChange={(e) => setSmtpHost(e.target.value)}
                 placeholder="smtp.gmail.com"
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 SMTP Port
               </label>
               <input
                 type="number"
                 value={smtpPort}
                 onChange={(e) => setSmtpPort(Number(e.target.value))}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
           </div>
         </div>
 
         {/* Payment options */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4 lg:col-span-2">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4 lg:col-span-2">
           <div className="flex justify-between items-center border-b border-neutral-950 pb-2">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Payment Options & Gateways
             </span>
             <button
@@ -407,7 +407,7 @@ export default function SettingsTab() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="space-y-2">
-              <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <span className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Cash On Delivery
               </span>
               <div className="flex items-center gap-3">
@@ -416,11 +416,11 @@ export default function SettingsTab() {
                   id="pay-cod-option"
                   checked={payCash}
                   onChange={(e) => setPayCash(e.target.checked)}
-                  className="h-4.5 w-4.5 accent-red-600 rounded bg-neutral-950 border border-neutral-850 cursor-pointer"
+                  className="h-4.5 w-4.5 accent-red-600 rounded bg-background border border-neutral-300/50 cursor-pointer"
                 />
                 <label
                   htmlFor="pay-cod-option"
-                  className="text-neutral-300 select-none cursor-pointer"
+                  className="text-foreground select-none cursor-pointer"
                 >
                   Enable COD Payment
                 </label>
@@ -428,7 +428,7 @@ export default function SettingsTab() {
             </div>
 
             <div className="space-y-2">
-              <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <span className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Card / UPI Online
               </span>
               <div className="flex items-center gap-3">
@@ -437,11 +437,11 @@ export default function SettingsTab() {
                   id="pay-online-option"
                   checked={payOnline}
                   onChange={(e) => setPayOnline(e.target.checked)}
-                  className="h-4.5 w-4.5 accent-red-600 rounded bg-neutral-950 border border-neutral-850 cursor-pointer"
+                  className="h-4.5 w-4.5 accent-red-600 rounded bg-background border border-neutral-300/50 cursor-pointer"
                 />
                 <label
                   htmlFor="pay-online-option"
-                  className="text-neutral-300 select-none cursor-pointer"
+                  className="text-foreground select-none cursor-pointer"
                 >
                   Enable Online Payment
                 </label>
@@ -449,14 +449,14 @@ export default function SettingsTab() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Default Demo Gateway
               </label>
               <input
                 type="text"
                 value={payGateway}
                 onChange={(e) => setPayGateway(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
           </div>

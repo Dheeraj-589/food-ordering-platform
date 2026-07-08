@@ -21,18 +21,18 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4">
         <Loader2 className="h-8 w-8 text-red-500 animate-spin" />
-        <span className="text-sm font-medium text-neutral-400">Loading your profile...</span>
+        <span className="text-sm font-medium text-foreground">Loading your profile...</span>
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4">
         <Loader2 className="h-8 w-8 text-red-500 animate-spin" />
-        <span className="text-sm font-medium text-neutral-400">Redirecting to login...</span>
+        <span className="text-sm font-medium text-foreground">Redirecting to login...</span>
       </div>
     );
   }

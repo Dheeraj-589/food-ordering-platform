@@ -22,7 +22,7 @@ function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
   const iconMap = {
     success: <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0" />,
     error: <AlertCircle className="h-5 w-5 text-red-500 shrink-0" />,
-    info: <Info className="h-5 w-5 text-neutral-400 shrink-0" />,
+    info: <Info className="h-5 w-5 text-foreground shrink-0" />,
     warning: <AlertCircle className="h-5 w-5 text-amber-500 shrink-0" />,
   };
 
@@ -40,15 +40,15 @@ function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.15 } }}
       transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-      className={`pointer-events-auto flex items-center justify-between gap-3 p-4 rounded-xl border border-l-4 border-neutral-800 bg-neutral-900/90 backdrop-blur-md shadow-lg ${borderMap[toast.type]} select-none`}
+      className={`pointer-events-auto flex items-center justify-between gap-3 p-4 rounded-xl border border-l-4 border-neutral-800 bg-card/90 backdrop-blur-md shadow-lg ${borderMap[toast.type]} select-none`}
     >
       <div className="flex items-center gap-3">
         {iconMap[toast.type]}
-        <span className="text-sm font-medium text-neutral-100">{toast.message}</span>
+        <span className="text-sm font-medium text-foreground">{toast.message}</span>
       </div>
       <button
         onClick={onClose}
-        className="text-neutral-500 hover:text-neutral-300 transition-colors p-1 rounded-lg hover:bg-neutral-800/50"
+        className="text-foreground hover:text-primary transition-colors p-1 rounded-lg hover:bg-neutral-800/50"
       >
         <X className="h-4 w-4" />
       </button>

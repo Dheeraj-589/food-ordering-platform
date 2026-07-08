@@ -67,7 +67,7 @@ export default function LoginPage() {
 
   return (
     <PublicRoute>
-      <main className="min-h-screen bg-neutral-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
+      <main className="min-h-screen bg-background flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
         {/* Apple/Stripe-like subtle glow gradients */}
         <div className="absolute top-1/4 right-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-red-500/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 left-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-neutral-800/10 rounded-full blur-[120px] pointer-events-none" />
@@ -87,23 +87,23 @@ export default function LoginPage() {
               </Link>
             </div>
 
-            <div className="bg-neutral-900/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
+            <div className="bg-card/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
               <div className="mb-6">
-                <h2 className="text-xl font-bold text-neutral-100">Welcome back</h2>
-                <p className="text-sm text-neutral-400 mt-1">Log in to your account to continue</p>
+                <h2 className="text-xl font-bold text-foreground">Welcome back</h2>
+                <p className="text-sm text-foreground mt-1">Log in to your account to continue</p>
               </div>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 {/* Email Field */}
                 <div className="space-y-1.5">
-                  <Label htmlFor="email" className="text-xs font-semibold text-neutral-400">
+                  <Label htmlFor="email" className="text-xs font-semibold text-foreground">
                     Email Address
                   </Label>
                   <Input
                     id="email"
                     type="email"
                     placeholder="name@example.com"
-                    className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
+                    className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
                     disabled={isLoading}
                     {...register('email')}
                   />
@@ -115,12 +115,12 @@ export default function LoginPage() {
                 {/* Password Field */}
                 <div className="space-y-1.5">
                   <div className="flex justify-between items-center">
-                    <Label htmlFor="password" className="text-xs font-semibold text-neutral-400">
+                    <Label htmlFor="password" className="text-xs font-semibold text-foreground">
                       Password
                     </Label>
                     <Link
                       href="/forgot-password"
-                      className="text-xs text-red-500 hover:text-red-400 font-medium transition-all"
+                      className="text-xs text-red-500 hover:text-red-700 font-medium transition-all"
                     >
                       Forgot password?
                     </Link>
@@ -130,14 +130,14 @@ export default function LoginPage() {
                       id="password"
                       type={showPassword ? 'text' : 'password'}
                       placeholder="••••••••"
-                      className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40 pr-10"
+                      className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40 pr-10"
                       disabled={isLoading}
                       {...register('password')}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 focus:outline-none"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground hover:text-primary focus:outline-none"
                     >
                       {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -152,7 +152,7 @@ export default function LoginPage() {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 shadow-lg shadow-red-950/20"
+                  className="w-full bg-red-600 hover:bg-red-700 text-foreground font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 shadow-lg shadow-red-950/20"
                 >
                   {isLoading ? (
                     <>
@@ -165,10 +165,10 @@ export default function LoginPage() {
               </form>
 
               <div className="mt-6 text-center text-sm">
-                <span className="text-neutral-400">Don&apos;t have an account? </span>
+                <span className="text-foreground">Don&apos;t have an account? </span>
                 <Link
                   href="/register"
-                  className="text-red-500 hover:text-red-400 font-semibold transition-all"
+                  className="text-red-500 hover:text-red-700 font-semibold transition-all"
                 >
                   Sign Up
                 </Link>

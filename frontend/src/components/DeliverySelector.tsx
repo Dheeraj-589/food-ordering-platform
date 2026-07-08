@@ -24,21 +24,19 @@ export default function DeliverySelector() {
       <div className="relative flex p-1 rounded-2xl bg-neutral-100 border border-neutral-200">
         <button
           onClick={() => setMode('delivery')}
-          className={`flex-1 relative py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-colors cursor-pointer z-10 ${
-            mode === 'delivery'
-              ? 'text-primary-foreground font-extrabold'
-              : 'text-muted-foreground hover:text-foreground'
-          }`}
+          className={`flex-1 relative py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-colors cursor-pointer z-10 ${mode === 'delivery'
+            ? 'text-primary-foreground font-extrabold'
+            : 'text-foreground hover:text-primary'
+            }`}
         >
           Delivery
         </button>
         <button
           onClick={() => setMode('pickup')}
-          className={`flex-1 relative py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-colors cursor-pointer z-10 ${
-            mode === 'pickup'
-              ? 'text-primary-foreground font-extrabold'
-              : 'text-muted-foreground hover:text-foreground'
-          }`}
+          className={`flex-1 relative py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-colors cursor-pointer z-10 ${mode === 'pickup'
+            ? 'text-primary-foreground font-extrabold'
+            : 'text-foreground hover:text-primary'
+            }`}
         >
           Pickup
         </button>
@@ -57,7 +55,7 @@ export default function DeliverySelector() {
             {/* Address input */}
             <div className="flex gap-2">
               <div className="flex-1 flex items-center gap-2 px-3 py-2.5 rounded-2xl bg-secondary border border-border focus-within:border-primary/40 transition-colors">
-                <Search className="h-4 w-4 text-muted-foreground shrink-0" />
+                <Search className="h-4 w-4 text-foreground shrink-0" />
                 <input
                   type="text"
                   placeholder="Enter your delivery address..."
@@ -68,7 +66,7 @@ export default function DeliverySelector() {
                 {address && (
                   <button
                     onClick={() => setAddress('')}
-                    className="text-xs font-bold text-muted-foreground hover:text-foreground cursor-pointer"
+                    className="text-xs font-bold text-foreground hover:text-primary cursor-pointer"
                   >
                     Clear
                   </button>
@@ -76,7 +74,7 @@ export default function DeliverySelector() {
               </div>
               <button
                 onClick={handleUseLocation}
-                className="p-2.5 rounded-2xl bg-secondary border border-border text-muted-foreground hover:text-foreground hover:border-neutral-300 transition-colors cursor-pointer shrink-0"
+                className="p-2.5 rounded-2xl bg-secondary border border-border text-foreground hover:text-primary hover:border-neutral-300 transition-colors cursor-pointer shrink-0"
                 title="Use current location"
               >
                 <Navigation className="h-4 w-4" />
@@ -84,7 +82,7 @@ export default function DeliverySelector() {
             </div>
 
             {/* Time estimation and indicators */}
-            <div className="flex items-center gap-3 text-xs font-semibold text-muted-foreground pt-1 flex-wrap">
+            <div className="flex items-center gap-3 text-xs font-semibold text-foreground pt-1 flex-wrap">
               <div className="flex items-center gap-1.5 bg-secondary px-3.5 py-2 rounded-xl border border-border shadow-sm">
                 <Clock className="h-3.5 w-3.5 text-primary" />
                 <span>30 Mins Express Delivery</span>
@@ -101,7 +99,7 @@ export default function DeliverySelector() {
             <div className="p-3.5 rounded-2xl bg-secondary border border-border flex justify-between items-center shadow-sm">
               <div>
                 <p className="text-xs font-bold text-foreground">Express Hub - Vizianagaram</p>
-                <p className="text-[10px] text-muted-foreground font-semibold mt-0.5">
+                <p className="text-[10px] text-foreground font-semibold mt-0.5">
                   Vizianagaram, Andhra Pradesh, 535003, India
                 </p>
               </div>
@@ -111,7 +109,7 @@ export default function DeliverySelector() {
             </div>
 
             {/* Pickup time estimation */}
-            <div className="flex items-center gap-3 text-xs font-semibold text-muted-foreground flex-wrap">
+            <div className="flex items-center gap-3 text-xs font-semibold text-foreground flex-wrap">
               <div className="flex items-center gap-1.5 bg-secondary px-3.5 py-2 rounded-xl border border-border shadow-sm">
                 <Clock className="h-3.5 w-3.5 text-amber-500" />
                 <span>Ready for pickup in 15 mins</span>

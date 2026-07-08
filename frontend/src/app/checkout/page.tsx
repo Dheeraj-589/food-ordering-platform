@@ -296,16 +296,16 @@ export default function CheckoutPage() {
   };
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans select-none overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground flex flex-col font-sans select-none overflow-x-hidden">
       <Navbar />
 
       {/* Hero */}
       <section className="py-12 bg-gradient-to-b from-red-600/5 via-transparent to-transparent border-b border-neutral-900">
         <div className="max-w-6xl mx-auto px-4">
-          <h1 className="text-3xl font-extrabold text-neutral-100 tracking-tight flex items-center gap-3">
+          <h1 className="text-3xl font-extrabold text-foreground tracking-tight flex items-center gap-3">
             <ShieldCheck className="h-8 w-8 text-red-500" /> Secure Checkout
           </h1>
-          <p className="text-xs text-neutral-500 font-medium mt-1">
+          <p className="text-xs text-foreground font-medium mt-1">
             Complete your delivery information and checkout using our demo sandbox options.
           </p>
         </div>
@@ -316,12 +316,12 @@ export default function CheckoutPage() {
         {/* Left: Input sections */}
         <div className="flex-1 space-y-6">
           {/* Address input */}
-          <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
-            <h3 className="text-sm font-bold text-neutral-300 flex items-center gap-2 border-b border-neutral-900 pb-3">
+          <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
+            <h3 className="text-sm font-bold text-foreground flex items-center gap-2 border-b border-neutral-900 pb-3">
               <MapPin className="h-4.5 w-4.5 text-red-500" /> Delivery Address
             </h3>
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                 Home / Office Address
               </label>
               <textarea
@@ -329,20 +329,20 @@ export default function CheckoutPage() {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Enter complete door no., street, and locality details"
-                className="w-full bg-neutral-950 border border-neutral-900 rounded-2xl px-4 py-3 text-xs font-semibold text-neutral-200 placeholder-neutral-700 outline-none focus:border-red-500/50 resize-none"
+                className="w-full bg-background border border-neutral-900 rounded-2xl px-4 py-3 text-xs font-semibold text-foreground placeholder:text-foreground outline-none focus:border-red-500/50 resize-none"
               />
             </div>
           </div>
 
           {/* Delivery instructions & slot */}
-          <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
-            <h3 className="text-sm font-bold text-neutral-300 flex items-center gap-2 border-b border-neutral-900 pb-3">
+          <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
+            <h3 className="text-sm font-bold text-foreground flex items-center gap-2 border-b border-neutral-900 pb-3">
               <Compass className="h-4.5 w-4.5 text-red-500" /> Instructions & Timing
             </h3>
 
             {/* Special delivery instructions */}
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                 Delivery Instructions (Optional)
               </label>
               <input
@@ -350,13 +350,13 @@ export default function CheckoutPage() {
                 value={instructions}
                 onChange={(e) => setInstructions(e.target.value)}
                 placeholder="E.g. Leave with security guard, do not ring bell"
-                className="w-full bg-neutral-950 border border-neutral-900 rounded-xl px-4 py-3 text-xs font-semibold text-neutral-200 placeholder-neutral-700 outline-none focus:border-red-500/50"
+                className="w-full bg-background border border-neutral-900 rounded-xl px-4 py-3 text-xs font-semibold text-foreground placeholder:text-foreground outline-none focus:border-red-500/50"
               />
             </div>
 
             {/* Time Slot Selector */}
             <div className="space-y-2 pt-2">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block flex items-center gap-1">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block flex items-center gap-1">
                 <Clock className="h-3.5 w-3.5 text-primary" /> Select Delivery Time
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -364,11 +364,10 @@ export default function CheckoutPage() {
                   <button
                     key={slot.id}
                     onClick={() => setDeliveryTime(slot.id)}
-                    className={`p-3 rounded-xl border text-xs font-bold text-left transition-all flex items-center justify-between cursor-pointer ${
-                      deliveryTime === slot.id
-                        ? 'border-primary bg-primary/10 text-primary'
-                        : 'border-border bg-secondary text-muted-foreground hover:border-neutral-350 hover:text-foreground'
-                    }`}
+                    className={`p-3 rounded-xl border text-xs font-bold text-left transition-all flex items-center justify-between cursor-pointer ${deliveryTime === slot.id
+                      ? 'border-primary bg-primary/10 text-primary'
+                      : 'border-border bg-secondary text-foreground hover:border-neutral-350 hover:text-primary'
+                      }`}
                   >
                     <span>{slot.label}</span>
                   </button>
@@ -378,8 +377,8 @@ export default function CheckoutPage() {
           </div>
 
           {/* Payment Methods */}
-          <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
-            <h3 className="text-sm font-bold text-neutral-300 flex items-center gap-2 border-b border-neutral-900 pb-3">
+          <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
+            <h3 className="text-sm font-bold text-foreground flex items-center gap-2 border-b border-neutral-900 pb-3">
               <CreditCard className="h-4.5 w-4.5 text-red-500" /> Payment Sandbox
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -392,11 +391,10 @@ export default function CheckoutPage() {
                 <button
                   key={method.id}
                   onClick={() => setPaymentMethod(method.id as 'cod' | 'card' | 'upi' | 'wallet')}
-                  className={`p-4 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center gap-2 ${
-                    paymentMethod === method.id
-                      ? 'border-primary bg-primary/10 text-primary'
-                      : 'border-border bg-secondary text-muted-foreground hover:border-neutral-350 hover:text-foreground'
-                  }`}
+                  className={`p-4 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center gap-2 ${paymentMethod === method.id
+                    ? 'border-primary bg-primary/10 text-primary'
+                    : 'border-border bg-secondary text-foreground hover:border-neutral-350 hover:text-primary'
+                    }`}
                 >
                   <span className="text-xs font-bold">{method.label}</span>
                 </button>
@@ -408,8 +406,8 @@ export default function CheckoutPage() {
         {/* Right: Checkout summary card */}
         <div className="w-full lg:w-96 shrink-0 space-y-6">
           {/* Coupon / Voucher Section */}
-          <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
-            <h3 className="text-sm font-bold text-neutral-300 flex items-center gap-2 border-b border-neutral-900 pb-3">
+          <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
+            <h3 className="text-sm font-bold text-foreground flex items-center gap-2 border-b border-neutral-900 pb-3">
               <Ticket className="h-4.5 w-4.5 text-red-500" /> Apply Coupon
             </h3>
 
@@ -421,7 +419,7 @@ export default function CheckoutPage() {
                 onChange={(e) => setInputCode(e.target.value)}
                 placeholder="PROMO CODE"
                 disabled={!!couponCode}
-                className="flex-1 bg-neutral-950 border border-neutral-900 rounded-xl px-3 py-2 text-xs font-bold text-neutral-200 placeholder-neutral-700 uppercase outline-none focus:border-red-500/50 font-sans"
+                className="flex-1 bg-background border border-neutral-900 rounded-xl px-3 py-2 text-xs font-bold text-foreground placeholder:text-foreground uppercase outline-none focus:border-red-500/50 font-sans"
               />
               {couponCode ? (
                 <Button
@@ -434,7 +432,7 @@ export default function CheckoutPage() {
               ) : (
                 <Button
                   onClick={() => handleValidateCoupon(inputCode)}
-                  className="bg-red-600 hover:bg-red-700 text-white font-bold px-4 text-xs rounded-xl cursor-pointer"
+                  className="bg-red-600 hover:bg-red-700 text-foreground font-bold px-4 text-xs rounded-xl cursor-pointer"
                 >
                   Apply
                 </Button>
@@ -444,9 +442,8 @@ export default function CheckoutPage() {
             {/* Validation Message */}
             {validationMessage && (
               <p
-                className={`text-[10px] font-bold ${
-                  validationType === 'success' ? 'text-emerald-500' : 'text-red-500'
-                }`}
+                className={`text-[10px] font-bold ${validationType === 'success' ? 'text-emerald-500' : 'text-red-500'
+                  }`}
               >
                 {validationMessage}
               </p>
@@ -457,7 +454,7 @@ export default function CheckoutPage() {
               <div className="pt-1">
                 <Button
                   onClick={handleApplyBestCoupon}
-                  className="w-full bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 text-neutral-350 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
+                  className="w-full bg-card hover:bg-neutral-850 border border-neutral-800 text-neutral-350 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
                 >
                   <Sparkles className="h-3.5 w-3.5 text-yellow-500" /> Apply Best Coupon
                 </Button>
@@ -467,7 +464,7 @@ export default function CheckoutPage() {
             {/* Available Coupons list */}
             {availableCoupons.length > 0 && (
               <div className="pt-2 space-y-2">
-                <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <span className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   Available Coupons
                 </span>
                 <div className="max-h-36 overflow-y-auto space-y-1.5 pr-1 scrollbar-none">
@@ -483,13 +480,12 @@ export default function CheckoutPage() {
                           }
                         }}
                         disabled={!!couponCode}
-                        className={`w-full p-2.5 rounded-xl border text-left flex flex-col gap-1 transition-all font-sans ${
-                          couponCode === coupon.code
-                            ? 'border-emerald-500 bg-emerald-950/10 text-emerald-400'
-                            : isApplicable
-                              ? 'border-neutral-850 bg-neutral-950 hover:border-red-500/30 text-neutral-300 cursor-pointer'
-                              : 'border-neutral-900 bg-neutral-950/40 text-neutral-600 cursor-not-allowed'
-                        }`}
+                        className={`w-full p-2.5 rounded-xl border text-left flex flex-col gap-1 transition-all font-sans ${couponCode === coupon.code
+                          ? 'border-emerald-500 bg-emerald-950/10 text-emerald-700'
+                          : isApplicable
+                            ? 'border-neutral-300/50 bg-background hover:border-red-500/30 text-foreground cursor-pointer'
+                            : 'border-neutral-900 bg-background/40 text-foreground cursor-not-allowed'
+                          }`}
                       >
                         <div className="flex justify-between items-center w-full">
                           <span className="font-bold text-xs flex items-center gap-1">
@@ -501,7 +497,7 @@ export default function CheckoutPage() {
                               : `₹${coupon.value} OFF`}
                           </span>
                         </div>
-                        <p className="text-[9px] text-neutral-500 leading-tight">
+                        <p className="text-[9px] text-foreground leading-tight">
                           Min order: ₹{coupon.minOrder} • Limit: {coupon.usageLimit}
                         </p>
                       </button>
@@ -512,8 +508,8 @@ export default function CheckoutPage() {
             )}
           </div>
 
-          <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
-            <h3 className="text-sm font-bold text-neutral-300 border-b border-neutral-900 pb-3">
+          <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
+            <h3 className="text-sm font-bold text-foreground border-b border-neutral-900 pb-3">
               Checkout Summary
             </h3>
 
@@ -522,7 +518,7 @@ export default function CheckoutPage() {
               {items.map((item, idx) => (
                 <div
                   key={`${item.product.id}-${idx}`}
-                  className="flex justify-between text-xs font-medium text-neutral-300 font-sans"
+                  className="flex justify-between text-xs font-medium text-foreground font-sans"
                 >
                   <span className="truncate max-w-xs">
                     {item.product.name} x {item.quantity}
@@ -535,7 +531,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Calculation breakdown */}
-            <div className="space-y-2 text-xs font-semibold text-neutral-400 font-sans">
+            <div className="space-y-2 text-xs font-semibold text-foreground font-sans">
               <div className="flex justify-between">
                 <span>Subtotal</span>
                 <span>₹{subtotal}</span>
@@ -563,7 +559,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Grand Total */}
-            <div className="border-t border-neutral-900 pt-3 flex justify-between items-center text-sm font-extrabold text-neutral-100 font-sans">
+            <div className="border-t border-neutral-900 pt-3 flex justify-between items-center text-sm font-extrabold text-foreground font-sans">
               <span>Grand Total</span>
               <span className="text-red-500 text-lg">₹{grandTotal}</span>
             </div>
@@ -572,7 +568,7 @@ export default function CheckoutPage() {
             <Button
               onClick={handlePayNow}
               disabled={submitting}
-              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-red-950/20 transition-all cursor-pointer font-sans"
+              className="w-full bg-red-600 hover:bg-red-700 text-foreground font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-red-950/20 transition-all cursor-pointer font-sans"
             >
               {submitting ? (
                 <>
@@ -594,7 +590,7 @@ export default function CheckoutPage() {
             <DialogTitle className="text-lg font-bold flex items-center justify-center gap-2 text-foreground">
               <Sparkles className="h-5 w-5 text-primary" /> Demo Payment Gateway
             </DialogTitle>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-foreground mt-1">
               Select an outcome below to simulate the billing transaction process.
             </p>
           </DialogHeader>
@@ -602,11 +598,11 @@ export default function CheckoutPage() {
           {/* Dialog info details */}
           <div className="py-4 space-y-4 text-center">
             <div className="p-4 rounded-2xl bg-secondary border border-border inline-block w-full">
-              <span className="text-xs text-muted-foreground font-bold block">
+              <span className="text-xs text-foreground font-bold block">
                 Grand Total to Charge
               </span>
               <p className="text-2xl font-extrabold text-primary">₹{grandTotal}</p>
-              <span className="text-[10px] font-bold text-muted-foreground mt-1 block uppercase">
+              <span className="text-[10px] font-bold text-foreground mt-1 block uppercase">
                 Method: {paymentMethod}
               </span>
             </div>
@@ -617,7 +613,7 @@ export default function CheckoutPage() {
                   {/* Successful transaction option */}
                   <Button
                     onClick={() => handleProcessPayment('successful')}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow shadow-emerald-950/10"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-foreground font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow shadow-emerald-950/10"
                   >
                     <Check className="h-4.5 w-4.5" /> Simulation: Payment Successful
                   </Button>
@@ -625,7 +621,7 @@ export default function CheckoutPage() {
                   {/* Failed transaction option */}
                   <Button
                     onClick={() => handleProcessPayment('failed')}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow shadow-red-950/10"
+                    className="w-full bg-red-600 hover:bg-red-700 text-foreground font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow shadow-red-950/10"
                   >
                     <X className="h-4.5 w-4.5" /> Simulation: Payment Failed
                   </Button>

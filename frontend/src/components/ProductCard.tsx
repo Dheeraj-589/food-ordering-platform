@@ -174,11 +174,11 @@ export default function ProductCard({ product }: ProductCardProps) {
       <motion.div
         whileHover={{ y: -8 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="group relative flex flex-col justify-between p-4 rounded-3xl bg-neutral-900/30 border border-neutral-900/60 hover:border-neutral-800 hover:bg-neutral-900/50 shadow-lg select-none"
+        className="group relative flex flex-col justify-between p-4 rounded-3xl bg-card/30 border border-neutral-900/60 hover:border-neutral-800 hover:bg-card/50 shadow-lg select-none"
       >
         <div>
           {/* Card Top Image Block */}
-          <div className="relative aspect-square w-full rounded-2xl bg-neutral-950 overflow-hidden border border-neutral-900 mb-4">
+          <div className="relative aspect-square w-full rounded-2xl bg-background overflow-hidden border border-neutral-900 mb-4">
             <img
               src={getProductImage(product.imageUrl, product.category, product.name)}
               alt={product.name}
@@ -189,11 +189,10 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="absolute inset-0 p-3 flex justify-between items-start pointer-events-none">
               {/* Veg / Non-Veg Badge */}
               <div
-                className={`h-6 w-6 rounded-md bg-white/90 backdrop-blur-md border flex items-center justify-center p-[4px] pointer-events-auto ${
-                  isNonVeg
-                    ? 'border-primary/40 text-primary'
-                    : 'border-emerald-600/40 text-emerald-500'
-                }`}
+                className={`h-6 w-6 rounded-md bg-white/90 backdrop-blur-md border flex items-center justify-center p-[4px] pointer-events-auto ${isNonVeg
+                  ? 'border-primary/40 text-primary'
+                  : 'border-emerald-600/40 text-emerald-500'
+                  }`}
                 title={isNonVeg ? 'Non-Vegetarian' : 'Vegetarian'}
               >
                 <span
@@ -205,7 +204,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               <motion.button
                 whileTap={{ scale: 0.7 }}
                 onClick={toggleFavorite}
-                className="h-8 w-8 rounded-full bg-white/90 backdrop-blur-md border border-border flex items-center justify-center text-muted-foreground hover:text-primary transition-colors pointer-events-auto cursor-pointer"
+                className="h-8 w-8 rounded-full bg-white/90 backdrop-blur-md border border-border flex items-center justify-center text-foreground hover:text-primary transition-colors pointer-events-auto cursor-pointer"
               >
                 <Heart
                   className={`h-4 w-4 transition-colors ${isFavorite ? 'fill-primary text-primary' : ''}`}
@@ -236,11 +235,11 @@ export default function ProductCard({ product }: ProductCardProps) {
               </div>
             </div>
 
-            <h4 className="text-base font-extrabold text-neutral-100 group-hover:text-primary transition-colors">
+            <h4 className="text-base font-extrabold text-foreground group-hover:text-primary transition-colors">
               {product.name}
             </h4>
 
-            <p className="text-xs text-neutral-500 line-clamp-2 leading-relaxed">
+            <p className="text-xs text-foreground line-clamp-2 leading-relaxed">
               {product.description ||
                 'No description provided. Experience our handcrafted artisan dishes.'}
             </p>
@@ -252,9 +251,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div>
             <div className="flex items-center gap-1.5">
               <span className="text-lg font-black text-primary">₹{basePrice}</span>
-              <span className="text-xs text-neutral-500 line-through">₹{oldPrice}</span>
+              <span className="text-xs text-foreground line-through">₹{oldPrice}</span>
             </div>
-            <span className="text-[8px] text-neutral-500 font-bold uppercase tracking-widest">
+            <span className="text-[8px] text-foreground font-bold uppercase tracking-widest">
               Exclude Tax
             </span>
           </div>
@@ -288,14 +287,14 @@ export default function ProductCard({ product }: ProductCardProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent flex items-end p-4">
                   <div>
-                    <h3 className="text-lg font-bold text-white">{product.name}</h3>
-                    <p className="text-xs text-neutral-200 mt-1">{product.description}</p>
+                    <h3 className="text-lg font-bold text-foreground">{product.name}</h3>
+                    <p className="text-xs text-foreground mt-1">{product.description}</p>
                   </div>
                 </div>
               </div>
 
               {/* Price calculations review */}
-              <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-2 text-xs font-semibold text-neutral-600">
+              <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-2 text-xs font-semibold text-foreground">
                 <div className="flex justify-between">
                   <span>Base Price</span>
                   <span>₹{basePrice}</span>
@@ -329,7 +328,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="space-y-5">
               {/* Size option selector */}
               <div className="space-y-2">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest">
                   Select Size
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -337,14 +336,13 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <button
                       key={size.id}
                       onClick={() => setSelectedSize(size.id)}
-                      className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
-                        selectedSize === size.id
-                          ? 'bg-primary/10 border-primary text-primary font-extrabold shadow-sm'
-                          : 'bg-secondary border-border text-muted-foreground hover:bg-secondary/80 hover:text-foreground'
-                      }`}
+                      className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${selectedSize === size.id
+                        ? 'bg-primary/10 border-primary text-primary font-extrabold shadow-sm'
+                        : 'bg-secondary border-border text-foreground hover:bg-secondary/80 hover:text-primary'
+                        }`}
                     >
                       <p className="text-xs">{size.label}</p>
-                      <p className="text-[9px] text-neutral-500 font-semibold mt-0.5">
+                      <p className="text-[9px] text-foreground font-semibold mt-0.5">
                         {size.details}
                       </p>
                     </button>
@@ -354,7 +352,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
               {/* Crust Option Selector */}
               <div className="space-y-2">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest">
                   Select Crust
                 </label>
                 <div className="grid grid-cols-1 gap-2">
@@ -362,14 +360,13 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <button
                       key={crust.id}
                       onClick={() => setSelectedCrust(crust.id)}
-                      className={`px-4 py-2.5 rounded-xl border text-left flex justify-between items-center transition-all cursor-pointer ${
-                        selectedCrust === crust.id
-                          ? 'bg-primary/10 border-primary text-primary font-extrabold shadow-sm'
-                          : 'bg-secondary border-border text-muted-foreground hover:bg-secondary/80 hover:text-foreground'
-                      }`}
+                      className={`px-4 py-2.5 rounded-xl border text-left flex justify-between items-center transition-all cursor-pointer ${selectedCrust === crust.id
+                        ? 'bg-primary/10 border-primary text-primary font-extrabold shadow-sm'
+                        : 'bg-secondary border-border text-foreground hover:bg-secondary/80 hover:text-primary'
+                        }`}
                     >
                       <span className="text-xs">{crust.label}</span>
-                      <span className="text-[9px] text-neutral-500 font-semibold">
+                      <span className="text-[9px] text-foreground font-semibold">
                         {crust.details}
                       </span>
                     </button>
@@ -379,7 +376,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
               {/* Extra Toppings checkboxes */}
               <div className="space-y-2">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest">
                   Add Extra Toppings (+₹39 each)
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -394,11 +391,10 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <button
                       key={topping}
                       onClick={() => handleToppingToggle(topping)}
-                      className={`px-3 py-2 rounded-xl border text-left text-xs font-semibold flex justify-between items-center transition-all cursor-pointer ${
-                        extraToppings.includes(topping)
-                          ? 'bg-primary/10 border-primary text-primary font-extrabold shadow-sm'
-                          : 'bg-secondary border-border text-muted-foreground hover:bg-secondary/80 hover:text-foreground'
-                      }`}
+                      className={`px-3 py-2 rounded-xl border text-left text-xs font-semibold flex justify-between items-center transition-all cursor-pointer ${extraToppings.includes(topping)
+                        ? 'bg-primary/10 border-primary text-primary font-extrabold shadow-sm'
+                        : 'bg-secondary border-border text-foreground hover:bg-secondary/80 hover:text-primary'
+                        }`}
                     >
                       <span>{topping}</span>
                       {extraToppings.includes(topping) && (
@@ -411,7 +407,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
               {/* Special Instructions textbox */}
               <div className="space-y-2">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest">
                   Special Instructions
                 </label>
                 <textarea
@@ -428,7 +424,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <div className="flex items-center gap-3 px-3 py-2 rounded-xl bg-secondary border border-border">
                   <button
                     onClick={() => setQuickViewQuantity((q) => (q > 1 ? q - 1 : 1))}
-                    className="text-muted-foreground hover:text-foreground cursor-pointer"
+                    className="text-foreground hover:text-primary cursor-pointer"
                   >
                     <Minus className="h-4 w-4" />
                   </button>
@@ -437,7 +433,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   </span>
                   <button
                     onClick={() => setQuickViewQuantity((q) => q + 1)}
-                    className="text-muted-foreground hover:text-foreground cursor-pointer"
+                    className="text-foreground hover:text-primary cursor-pointer"
                   >
                     <Plus className="h-4 w-4" />
                   </button>
@@ -445,7 +441,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
                 <button
                   onClick={handleQuickViewAdd}
-                  className="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                  className="flex-1 py-3 bg-red-600 hover:bg-red-700 text-foreground font-bold text-xs rounded-xl shadow-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer"
                 >
                   <ShoppingBag className="h-4 w-4" /> ADD TO CART (₹{totalPrice})
                 </button>

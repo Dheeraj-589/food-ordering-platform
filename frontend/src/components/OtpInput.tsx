@@ -126,12 +126,12 @@ export default function OtpInput({ email, onVerify, onResend, isSubmitting }: Ot
   return (
     <div className="w-full max-w-md mx-auto space-y-6 text-center animate-fade-in">
       <div className="space-y-2">
-        <h2 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+        <h2 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-foreground">
           Enter Verification Code
         </h2>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">
+        <p className="text-sm text-foreground dark:text-foreground">
           We have sent a 6-digit code to{' '}
-          <span className="font-semibold text-neutral-800 dark:text-neutral-200">{email}</span>
+          <span className="font-semibold text-neutral-800 dark:text-foreground">{email}</span>
         </p>
       </div>
 
@@ -150,7 +150,7 @@ export default function OtpInput({ email, onVerify, onResend, isSubmitting }: Ot
               onChange={(e) => handleChange(e.target, idx)}
               onKeyDown={(e) => handleKeyDown(e, idx)}
               onPaste={handlePaste}
-              className="w-12 h-14 text-center text-xl font-bold rounded-lg border-2 border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 focus:border-red-500 focus:ring-2 focus:ring-red-100 dark:focus:ring-red-950 outline-none transition-all duration-200"
+              className="w-12 h-14 text-center text-xl font-bold rounded-lg border-2 border-neutral-200 dark:border-neutral-800 bg-white dark:bg-background focus:border-red-500 focus:ring-2 focus:ring-red-100 dark:focus:ring-red-950 outline-none transition-all duration-200"
               disabled={isSubmitting || expirationTime === 0}
               autoComplete="one-time-code"
             />
@@ -159,7 +159,7 @@ export default function OtpInput({ email, onVerify, onResend, isSubmitting }: Ot
 
         {errorMsg && <p className="text-sm font-semibold text-red-500">{errorMsg}</p>}
 
-        <div className="flex flex-col items-center justify-between text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 space-y-3">
+        <div className="flex flex-col items-center justify-between text-xs sm:text-sm text-foreground dark:text-foreground space-y-3">
           <div>
             {expirationTime > 0 ? (
               <span>
@@ -190,7 +190,7 @@ export default function OtpInput({ email, onVerify, onResend, isSubmitting }: Ot
         <Button
           type="submit"
           disabled={isSubmitting || otp.some((c) => c === '') || expirationTime === 0}
-          className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 shadow-md shadow-red-100 dark:shadow-none"
+          className="w-full bg-red-600 hover:bg-red-700 text-foreground font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 shadow-md shadow-red-100 dark:shadow-none"
         >
           {isSubmitting ? (
             <>

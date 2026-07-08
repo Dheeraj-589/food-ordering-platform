@@ -156,15 +156,15 @@ export default function LoyaltyDashboard() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {/* Level and points progress */}
-      <div className="col-span-1 md:col-span-2 p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-6 flex flex-col justify-between">
+      <div className="col-span-1 md:col-span-2 p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-6 flex flex-col justify-between">
         <div>
-          <h3 className="text-base font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+          <h3 className="text-base font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
             <Award className="h-5 w-5 text-red-500" /> Pizza Points & Tiers
           </h3>
 
           <div className="mt-4 flex justify-between items-center">
             <div>
-              <span className="text-xs text-neutral-500 font-bold uppercase tracking-wider block">
+              <span className="text-xs text-foreground font-bold uppercase tracking-wider block">
                 Membership tier
               </span>
               <span
@@ -175,7 +175,7 @@ export default function LoyaltyDashboard() {
             </div>
 
             <div className="text-right">
-              <span className="text-xs text-neutral-500 font-bold uppercase tracking-wider block">
+              <span className="text-xs text-foreground font-bold uppercase tracking-wider block">
                 Available points
               </span>
               <span className="text-2xl font-black text-red-500 mt-0.5 block">{points} pts</span>
@@ -184,13 +184,13 @@ export default function LoyaltyDashboard() {
 
           {currentTier.next !== 'None' ? (
             <div className="mt-6 space-y-2">
-              <div className="flex justify-between text-[11px] font-bold text-neutral-500 uppercase">
+              <div className="flex justify-between text-[11px] font-bold text-foreground uppercase">
                 <span>Tier progress: {progressPercent}%</span>
                 <span>
                   {currentTier.max - points} pts to {currentTier.next}
                 </span>
               </div>
-              <div className="h-3 w-full bg-neutral-950 border border-neutral-900 rounded-full overflow-hidden">
+              <div className="h-3 w-full bg-background border border-neutral-900 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-red-600 to-amber-500 rounded-full transition-all duration-500"
                   style={{ width: `${progressPercent}%` }}
@@ -198,22 +198,22 @@ export default function LoyaltyDashboard() {
               </div>
             </div>
           ) : (
-            <p className="text-xs text-neutral-500 font-semibold mt-6 uppercase tracking-wider flex items-center gap-1">
+            <p className="text-xs text-foreground font-semibold mt-6 uppercase tracking-wider flex items-center gap-1">
               <Star className="h-4 w-4 text-amber-500 fill-amber-500 animate-spin" /> Maximum
               Loyalty Tier Unlocked!
             </p>
           )}
         </div>
 
-        <p className="text-[10px] text-neutral-500 leading-relaxed font-semibold pt-4 border-t border-neutral-900/60 mt-4">
+        <p className="text-[10px] text-foreground leading-relaxed font-semibold pt-4 border-t border-neutral-900/60 mt-4">
           Order pizza products to collect Pizza Points! Every ₹10 spent earns 1 Pizza Point. Points
           can be spent below to unlock discount coupons.
         </p>
       </div>
 
       {/* Badges and achievements */}
-      <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
-        <h3 className="text-base font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+      <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
+        <h3 className="text-base font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
           <Star className="h-5 w-5 text-amber-500" /> Achievements
         </h3>
 
@@ -221,16 +221,15 @@ export default function LoyaltyDashboard() {
           {achievements.map((badge) => (
             <div
               key={badge.name}
-              className={`flex items-start gap-3 p-2 rounded-xl transition-all ${
-                badge.unlocked
-                  ? 'opacity-100 bg-neutral-950/20 border border-neutral-900/50'
-                  : 'opacity-40'
-              }`}
+              className={`flex items-start gap-3 p-2 rounded-xl transition-all ${badge.unlocked
+                ? 'opacity-100 bg-background/20 border border-neutral-900/50'
+                : 'opacity-40'
+                }`}
             >
               <span className="text-xl">{badge.icon}</span>
               <div>
-                <h4 className="text-xs font-bold text-neutral-200">{badge.name}</h4>
-                <p className="text-[10px] text-neutral-500 mt-0.5 leading-snug">{badge.desc}</p>
+                <h4 className="text-xs font-bold text-foreground">{badge.name}</h4>
+                <p className="text-[10px] text-foreground mt-0.5 leading-snug">{badge.desc}</p>
               </div>
             </div>
           ))}
@@ -238,8 +237,8 @@ export default function LoyaltyDashboard() {
       </div>
 
       {/* Rewards Store */}
-      <div className="col-span-1 md:col-span-3 p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
-        <h3 className="text-base font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+      <div className="col-span-1 md:col-span-3 p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
+        <h3 className="text-base font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
           <Ticket className="h-5 w-5 text-red-500" /> Redeem Points for Coupons
         </h3>
 
@@ -249,31 +248,30 @@ export default function LoyaltyDashboard() {
             return (
               <div
                 key={reward.id}
-                className="p-4 rounded-2xl bg-neutral-950 border border-neutral-900 flex flex-col justify-between gap-4"
+                className="p-4 rounded-2xl bg-background border border-neutral-900 flex flex-col justify-between gap-4"
               >
                 <div>
                   <div className="flex justify-between items-center">
-                    <span className="text-[10px] font-black text-neutral-500 uppercase tracking-widest">
+                    <span className="text-[10px] font-black text-foreground uppercase tracking-widest">
                       Discount
                     </span>
                     <span className="text-xs font-black text-amber-500">
                       {reward.pointsCost} points
                     </span>
                   </div>
-                  <h4 className="text-sm font-extrabold text-neutral-200 mt-2">
+                  <h4 className="text-sm font-extrabold text-foreground mt-2">
                     ₹{reward.discount} Coupon
                   </h4>
-                  <p className="text-[10px] text-neutral-500 mt-1 leading-relaxed">{reward.desc}</p>
+                  <p className="text-[10px] text-foreground mt-1 leading-relaxed">{reward.desc}</p>
                 </div>
 
                 <button
                   onClick={() => handleRedeem(reward)}
                   disabled={!canRedeem || redeemingId === reward.id}
-                  className={`w-full py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
-                    canRedeem
-                      ? 'bg-red-600 hover:bg-red-700 text-white shadow-md'
-                      : 'bg-neutral-900 text-neutral-600 border border-neutral-900 cursor-not-allowed'
-                  }`}
+                  className={`w-full py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 ${canRedeem
+                    ? 'bg-red-600 hover:bg-red-700 text-foreground shadow-md'
+                    : 'bg-card text-foreground border border-neutral-900 cursor-not-allowed'
+                    }`}
                 >
                   {redeemingId === reward.id ? (
                     <Loader2 className="h-3 w-3 animate-spin" />

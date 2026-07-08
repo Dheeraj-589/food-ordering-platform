@@ -83,14 +83,14 @@ export default function Sidebar({
     },
     ...(role === 'admin'
       ? [
-          {
-            group: 'System',
-            items: [
-              { id: 'settings', label: 'Settings', icon: Settings },
-              { id: 'security', label: 'Security & Logs', icon: Shield },
-            ],
-          },
-        ]
+        {
+          group: 'System',
+          items: [
+            { id: 'settings', label: 'Settings', icon: Settings },
+            { id: 'security', label: 'Security & Logs', icon: Shield },
+          ],
+        },
+      ]
       : []),
   ];
 
@@ -98,7 +98,7 @@ export default function Sidebar({
     <motion.aside
       animate={{ width: collapsed ? 72 : 240 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-neutral-900 border-r border-neutral-800 text-neutral-300 flex flex-col h-screen sticky top-0 shrink-0 select-none z-30"
+      className="bg-card border-r border-neutral-800 text-foreground flex flex-col h-screen sticky top-0 shrink-0 select-none z-30"
     >
       {/* Brand Header */}
       <div className="h-16 flex items-center justify-between px-4 border-b border-neutral-800 shrink-0">
@@ -108,7 +108,7 @@ export default function Sidebar({
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="font-extrabold text-neutral-100 text-sm tracking-wider uppercase truncate"
+              className="font-extrabold text-foreground text-sm tracking-wider uppercase truncate"
             >
               FE ADMIN
             </motion.span>
@@ -117,7 +117,7 @@ export default function Sidebar({
 
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-1 rounded-lg hover:bg-neutral-800 text-neutral-400 hover:text-neutral-100 transition-colors"
+          className="p-1 rounded-lg hover:bg-neutral-800 text-foreground hover:text-primary transition-colors"
         >
           {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </button>
@@ -128,7 +128,7 @@ export default function Sidebar({
         {menuGroups.map((group, groupIdx) => (
           <div key={groupIdx} className="space-y-1">
             {!collapsed && (
-              <span className="px-3 text-[10px] font-extrabold text-neutral-600 uppercase tracking-widest block mb-1">
+              <span className="px-3 text-[10px] font-extrabold text-foreground uppercase tracking-widest block mb-1">
                 {group.group}
               </span>
             )}
@@ -139,11 +139,10 @@ export default function Sidebar({
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all relative ${
-                    isActive
-                      ? 'text-white bg-red-600/10 font-bold'
-                      : 'hover:bg-neutral-800/40 text-neutral-400 hover:text-neutral-200'
-                  }`}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all relative ${isActive
+                    ? 'text-foreground bg-red-600/10 font-bold'
+                    : 'hover:bg-neutral-800/40 text-foreground hover:text-primary'
+                    }`}
                 >
                   <Icon className={`h-4.5 w-4.5 shrink-0 ${isActive ? 'text-red-500' : ''}`} />
                   {!collapsed && (
@@ -172,7 +171,7 @@ export default function Sidebar({
       <div className="p-2 border-t border-neutral-800 shrink-0">
         <button
           onClick={onLogout}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-red-950/20 text-neutral-400 hover:text-red-400 transition-colors"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-red-950/20 text-foreground hover:text-red-700 transition-colors"
         >
           <LogOut className="h-4.5 w-4.5 shrink-0" />
           {!collapsed && (

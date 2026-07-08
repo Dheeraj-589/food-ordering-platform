@@ -53,15 +53,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-neutral-950 border-t border-neutral-900 select-none">
+    <footer className="w-full bg-background border-t border-neutral-900 select-none">
       {/* Download App Promo Row */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-neutral-900/60 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="text-center md:text-left space-y-2 max-w-md">
-          <h4 className="text-lg font-black text-neutral-100 flex items-center justify-center md:justify-start gap-2">
+          <h4 className="text-lg font-black text-foreground flex items-center justify-center md:justify-start gap-2">
             <Smartphone className="h-5 w-5 text-red-500" />
             Download Foodies Express App
           </h4>
-          <p className="text-xs text-neutral-500 font-medium leading-relaxed">
+          <p className="text-xs text-foreground font-medium leading-relaxed">
             Get instant order updates, exclusive app-only coupons, and track delivery routes live
             from our app. Available on iOS & Android.
           </p>
@@ -71,7 +71,7 @@ export default function Footer() {
         <div className="flex flex-wrap items-center justify-center gap-4">
           {/* QR Code Placeholder */}
           <div
-            className="h-16 w-16 rounded-xl border border-dashed border-neutral-800 bg-neutral-900/20 p-2 flex items-center justify-center text-neutral-400 group hover:border-neutral-700 transition-colors"
+            className="h-16 w-16 rounded-xl border border-dashed border-neutral-800 bg-card/20 p-2 flex items-center justify-center text-foreground group hover:border-neutral-700 transition-colors"
             title="Scan to download"
           >
             <QrCode className="h-full w-full" />
@@ -81,11 +81,11 @@ export default function Footer() {
             {/* App Store button */}
             <button
               onClick={() => handleDownloadClick('Apple App Store')}
-              className="px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer text-left"
+              className="px-4 py-2.5 rounded-xl bg-card hover:bg-neutral-800 border border-neutral-800 text-foreground hover:text-primary transition-all flex items-center gap-2 cursor-pointer text-left"
             >
-              <Smartphone className="h-5 w-5 text-neutral-400" />
+              <Smartphone className="h-5 w-5 text-foreground" />
               <div>
-                <p className="text-[8px] text-neutral-500 font-bold uppercase leading-none">
+                <p className="text-[8px] text-foreground font-bold uppercase leading-none">
                   Download on the
                 </p>
                 <p className="text-xs font-black mt-0.5 leading-none">App Store</p>
@@ -95,11 +95,11 @@ export default function Footer() {
             {/* Google Play Button */}
             <button
               onClick={() => handleDownloadClick('Google Play Store')}
-              className="px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 hover:text-white transition-all flex items-center gap-2 cursor-pointer text-left"
+              className="px-4 py-2.5 rounded-xl bg-card hover:bg-neutral-800 border border-neutral-800 text-foreground hover:text-primary transition-all flex items-center gap-2 cursor-pointer text-left"
             >
-              <Play className="h-4 w-4 text-neutral-400 fill-current" />
+              <Play className="h-4 w-4 text-foreground fill-current" />
               <div>
-                <p className="text-[8px] text-neutral-500 font-bold uppercase leading-none">
+                <p className="text-[8px] text-foreground font-bold uppercase leading-none">
                   Get it on
                 </p>
                 <p className="text-xs font-black mt-0.5 leading-none">Google Play</p>
@@ -119,7 +119,7 @@ export default function Footer() {
           >
             🍕 FOODIES EXPRESS
           </Link>
-          <p className="text-xs text-neutral-500 font-medium leading-relaxed max-w-sm">
+          <p className="text-xs text-foreground font-medium leading-relaxed max-w-sm">
             Crafting premium pizzas using 100% natural organic sourdough and fresh ingredients.
             Experience fast, secure food ordering designed for foodies.
           </p>
@@ -131,7 +131,7 @@ export default function Footer() {
                   key={idx}
                   href={soc.href}
                   aria-label={soc.name}
-                  className="h-8 w-8 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-neutral-700 flex items-center justify-center text-neutral-400 hover:text-white transition-colors"
+                  className="h-8 w-8 rounded-lg bg-card border border-neutral-800 hover:border-neutral-700 flex items-center justify-center text-foreground hover:text-primary transition-colors"
                 >
                   {soc.icon}
                 </a>
@@ -142,16 +142,16 @@ export default function Footer() {
 
         {/* Column 2: Quick Links */}
         <div className="space-y-3">
-          <h5 className="text-xs font-extrabold text-neutral-400 uppercase tracking-widest">
+          <h5 className="text-xs font-extrabold text-foreground uppercase tracking-widest">
             Menu
           </h5>
-          <ul className="space-y-2 text-xs font-semibold text-neutral-500">
+          <ul className="space-y-2 text-xs font-semibold text-foreground">
             <li>
               <button
                 onClick={() =>
                   document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className="hover:text-white transition-colors cursor-pointer text-left"
+                className="hover:text-primary transition-colors cursor-pointer text-left"
               >
                 Pizzas
               </button>
@@ -161,7 +161,7 @@ export default function Footer() {
                 onClick={() =>
                   document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className="hover:text-white transition-colors cursor-pointer text-left"
+                className="hover:text-primary transition-colors cursor-pointer text-left"
               >
                 Sides & Appetizers
               </button>
@@ -171,7 +171,7 @@ export default function Footer() {
                 onClick={() =>
                   document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className="hover:text-white transition-colors cursor-pointer text-left"
+                className="hover:text-primary transition-colors cursor-pointer text-left"
               >
                 Desserts
               </button>
@@ -181,7 +181,7 @@ export default function Footer() {
                 onClick={() =>
                   document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className="hover:text-white transition-colors cursor-pointer text-left"
+                className="hover:text-primary transition-colors cursor-pointer text-left"
               >
                 Cold Drinks
               </button>
@@ -191,27 +191,27 @@ export default function Footer() {
 
         {/* Column 3: Corporate Info */}
         <div className="space-y-3">
-          <h5 className="text-xs font-extrabold text-neutral-400 uppercase tracking-widest">
+          <h5 className="text-xs font-extrabold text-foreground uppercase tracking-widest">
             Company
           </h5>
-          <ul className="space-y-2 text-xs font-semibold text-neutral-500">
+          <ul className="space-y-2 text-xs font-semibold text-foreground">
             <li>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-primary transition-colors">
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-primary transition-colors">
                 Careers
               </Link>
             </li>
             <li>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-primary transition-colors">
                 Store Locations
               </Link>
             </li>
             <li>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-primary transition-colors">
                 Press & Media
               </Link>
             </li>
@@ -220,27 +220,27 @@ export default function Footer() {
 
         {/* Column 4: Help Desk */}
         <div className="space-y-3">
-          <h5 className="text-xs font-extrabold text-neutral-400 uppercase tracking-widest">
+          <h5 className="text-xs font-extrabold text-foreground uppercase tracking-widest">
             Support
           </h5>
-          <ul className="space-y-2 text-xs font-semibold text-neutral-500">
+          <ul className="space-y-2 text-xs font-semibold text-foreground">
             <li>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-primary transition-colors">
                 Contact Support
               </Link>
             </li>
             <li>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-primary transition-colors">
                 Terms of Service
               </Link>
             </li>
             <li>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-primary transition-colors">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-primary transition-colors">
                 Refund Guidelines
               </Link>
             </li>
@@ -249,19 +249,19 @@ export default function Footer() {
       </div>
 
       {/* Legal Bottom Bar */}
-      <div className="bg-neutral-950/80 border-t border-neutral-900 py-6 text-center select-none text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
+      <div className="bg-background/80 border-t border-neutral-900 py-6 text-center select-none text-[10px] font-bold tracking-wider text-foreground uppercase">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-3">
           <span>
             © {new Date().getFullYear()} Foodies Express Private Ltd. All Rights Reserved.
           </span>
           <div className="flex gap-4">
-            <Link href="/" className="hover:text-neutral-300">
+            <Link href="/" className="hover:text-primary">
               Privacy Policy
             </Link>
-            <Link href="/" className="hover:text-neutral-300">
+            <Link href="/" className="hover:text-primary">
               Terms of Use
             </Link>
-            <Link href="/" className="hover:text-neutral-300">
+            <Link href="/" className="hover:text-primary">
               Cookies Info
             </Link>
           </div>

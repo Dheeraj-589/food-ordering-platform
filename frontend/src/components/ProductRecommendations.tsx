@@ -124,7 +124,7 @@ export default function ProductRecommendations() {
     return (
       <div className="py-8 grid grid-cols-1 md:grid-cols-4 gap-6 animate-pulse">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-44 bg-neutral-900 rounded-3xl" />
+          <div key={i} className="h-44 bg-card rounded-3xl" />
         ))}
       </div>
     );
@@ -135,7 +135,7 @@ export default function ProductRecommendations() {
       {/* Dynamic Recommendations */}
       {recommendations.length > 0 && (
         <div className="space-y-4">
-          <h3 className="text-lg font-black text-neutral-200 flex items-center gap-2">
+          <h3 className="text-lg font-black text-foreground flex items-center gap-2">
             <Flame className="h-5 w-5 text-amber-500 animate-bounce" /> Recommended For You
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -143,10 +143,10 @@ export default function ProductRecommendations() {
               <motion.div
                 key={product.id}
                 whileHover={{ y: -5 }}
-                className="p-4 rounded-3xl bg-neutral-900/20 border border-neutral-900 flex flex-col justify-between h-72 shadow-lg relative group overflow-hidden"
+                className="p-4 rounded-3xl bg-card/20 border border-neutral-900 flex flex-col justify-between h-72 shadow-lg relative group overflow-hidden"
               >
                 <div className="space-y-3">
-                  <div className="h-32 w-full rounded-2xl bg-neutral-950 overflow-hidden flex items-center justify-center relative">
+                  <div className="h-32 w-full rounded-2xl bg-background overflow-hidden flex items-center justify-center relative">
                     {product.imageUrl ? (
                       <img
                         src={product.imageUrl}
@@ -158,16 +158,16 @@ export default function ProductRecommendations() {
                     )}
                     <button
                       onClick={() => handleAddToWishlist(product.id)}
-                      className="absolute right-2.5 top-2.5 p-2 bg-neutral-950/80 backdrop-blur-md rounded-xl text-neutral-400 hover:text-red-500 hover:scale-110 active:scale-95 transition-all cursor-pointer shadow-md"
+                      className="absolute right-2.5 top-2.5 p-2 bg-background/80 backdrop-blur-md rounded-xl text-foreground hover:text-red-500 hover:scale-110 active:scale-95 transition-all cursor-pointer shadow-md"
                     >
                       <Heart className="h-4 w-4" />
                     </button>
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-neutral-200 line-clamp-1">
+                    <h4 className="text-sm font-bold text-foreground line-clamp-1">
                       {product.name}
                     </h4>
-                    <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-widest block mt-0.5">
+                    <span className="text-[10px] font-semibold text-foreground uppercase tracking-widest block mt-0.5">
                       {product.category}
                     </span>
                   </div>
@@ -175,7 +175,7 @@ export default function ProductRecommendations() {
 
                 <div className="flex justify-between items-center border-t border-neutral-950 pt-3.5 mt-2">
                   <div>
-                    <span className="text-[10px] text-neutral-500 font-bold block uppercase">
+                    <span className="text-[10px] text-foreground font-bold block uppercase">
                       Price
                     </span>
                     <span className="text-sm font-extrabold text-red-500 block">
@@ -185,7 +185,7 @@ export default function ProductRecommendations() {
                   <div className="flex gap-1.5">
                     <button
                       onClick={() => router.push(`/product/${product.id}`)}
-                      className="p-2 rounded-xl bg-neutral-950 hover:bg-neutral-900 text-neutral-400 hover:text-white transition-colors cursor-pointer border border-neutral-900"
+                      className="p-2 rounded-xl bg-background hover:bg-card text-foreground hover:text-primary transition-colors cursor-pointer border border-neutral-900"
                     >
                       <Eye className="h-4 w-4" />
                     </button>
@@ -194,7 +194,7 @@ export default function ProductRecommendations() {
                         addItem(product, 1);
                         addToast(`${product.name} added to cart! 🍕`, 'success');
                       }}
-                      className="p-2 rounded-xl bg-red-600 hover:bg-red-700 text-white transition-colors cursor-pointer"
+                      className="p-2 rounded-xl bg-red-600 hover:bg-red-700 text-foreground transition-colors cursor-pointer"
                     >
                       <ShoppingBag className="h-4 w-4" />
                     </button>
@@ -209,7 +209,7 @@ export default function ProductRecommendations() {
       {/* Recently Viewed */}
       {recentlyViewed.length > 0 && (
         <div className="space-y-4 pt-4 border-t border-neutral-900/60">
-          <h3 className="text-lg font-black text-neutral-200 flex items-center gap-2">
+          <h3 className="text-lg font-black text-foreground flex items-center gap-2">
             <Eye className="h-5 w-5 text-red-500" /> Recently Viewed Pizzas & Sides
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -217,10 +217,10 @@ export default function ProductRecommendations() {
               <motion.div
                 key={product.id}
                 whileHover={{ y: -5 }}
-                className="p-4 rounded-3xl bg-neutral-900/20 border border-neutral-900 flex flex-col justify-between h-72 shadow-lg relative group overflow-hidden"
+                className="p-4 rounded-3xl bg-card/20 border border-neutral-900 flex flex-col justify-between h-72 shadow-lg relative group overflow-hidden"
               >
                 <div className="space-y-3">
-                  <div className="h-32 w-full rounded-2xl bg-neutral-950 overflow-hidden flex items-center justify-center relative">
+                  <div className="h-32 w-full rounded-2xl bg-background overflow-hidden flex items-center justify-center relative">
                     {product.imageUrl ? (
                       <img
                         src={product.imageUrl}
@@ -232,16 +232,16 @@ export default function ProductRecommendations() {
                     )}
                     <button
                       onClick={() => handleAddToWishlist(product.id)}
-                      className="absolute right-2.5 top-2.5 p-2 bg-neutral-950/80 backdrop-blur-md rounded-xl text-neutral-400 hover:text-red-500 hover:scale-110 active:scale-95 transition-all cursor-pointer shadow-md"
+                      className="absolute right-2.5 top-2.5 p-2 bg-background/80 backdrop-blur-md rounded-xl text-foreground hover:text-red-500 hover:scale-110 active:scale-95 transition-all cursor-pointer shadow-md"
                     >
                       <Heart className="h-4 w-4" />
                     </button>
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-neutral-200 line-clamp-1">
+                    <h4 className="text-sm font-bold text-foreground line-clamp-1">
                       {product.name}
                     </h4>
-                    <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-widest block mt-0.5">
+                    <span className="text-[10px] font-semibold text-foreground uppercase tracking-widest block mt-0.5">
                       {product.category}
                     </span>
                   </div>
@@ -249,7 +249,7 @@ export default function ProductRecommendations() {
 
                 <div className="flex justify-between items-center border-t border-neutral-950 pt-3.5 mt-2">
                   <div>
-                    <span className="text-[10px] text-neutral-500 font-bold block uppercase">
+                    <span className="text-[10px] text-foreground font-bold block uppercase">
                       Price
                     </span>
                     <span className="text-sm font-extrabold text-red-500 block">
@@ -259,7 +259,7 @@ export default function ProductRecommendations() {
                   <div className="flex gap-1.5">
                     <button
                       onClick={() => router.push(`/product/${product.id}`)}
-                      className="p-2 rounded-xl bg-neutral-950 hover:bg-neutral-900 text-neutral-400 hover:text-white transition-colors cursor-pointer border border-neutral-900"
+                      className="p-2 rounded-xl bg-background hover:bg-card text-foreground hover:text-primary transition-colors cursor-pointer border border-neutral-900"
                     >
                       <Eye className="h-4 w-4" />
                     </button>
@@ -268,7 +268,7 @@ export default function ProductRecommendations() {
                         addItem(product, 1);
                         addToast(`${product.name} added to cart! 🍕`, 'success');
                       }}
-                      className="p-2 rounded-xl bg-red-600 hover:bg-red-700 text-white transition-colors cursor-pointer"
+                      className="p-2 rounded-xl bg-red-600 hover:bg-red-700 text-foreground transition-colors cursor-pointer"
                     >
                       <ShoppingBag className="h-4 w-4" />
                     </button>

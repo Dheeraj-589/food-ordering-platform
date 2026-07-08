@@ -31,7 +31,7 @@ export default function LiveOrdersTab({ searchTerm }: LiveOrdersTabProps) {
   const playAlertSound = () => {
     if (!soundEnabled) return;
     try {
-       
+
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
       const oscillator = audioCtx.createOscillator();
       const gainNode = audioCtx.createGain();
@@ -140,22 +140,21 @@ export default function LiveOrdersTab({ searchTerm }: LiveOrdersTabProps) {
       {/* Tab Header Controls */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold text-neutral-100 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             Live Dispatch Board
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping" />
           </h2>
-          <p className="text-xs text-neutral-500 mt-1">
+          <p className="text-xs text-foreground mt-1">
             Realtime kanban, sounds notification, and status transition pipeline (polls every 5s).
           </p>
         </div>
 
         <button
           onClick={() => setSoundEnabled(!soundEnabled)}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-colors cursor-pointer ${
-            soundEnabled
-              ? 'bg-neutral-900 border-red-500/20 text-red-500 hover:bg-neutral-850'
-              : 'bg-neutral-900 border-neutral-800 text-neutral-500 hover:text-neutral-300'
-          }`}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-colors cursor-pointer ${soundEnabled
+            ? 'bg-card border-red-500/20 text-red-500 hover:bg-neutral-850'
+            : 'bg-card border-neutral-800 text-foreground hover:text-primary'
+            }`}
         >
           {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
           <span>{soundEnabled ? 'Beep Audio Enabled' : 'Beep Audio Muted'}</span>
@@ -167,7 +166,7 @@ export default function LiveOrdersTab({ searchTerm }: LiveOrdersTabProps) {
           {columns.map((col, idx) => (
             <div
               key={idx}
-              className="p-4 rounded-3xl bg-neutral-900/40 border border-neutral-850 animate-pulse space-y-4"
+              className="p-4 rounded-3xl bg-card/40 border border-neutral-300/50 animate-pulse space-y-4"
             >
               <div className="h-4 bg-neutral-850 rounded w-1/3" />
               <div className="h-32 bg-neutral-850 rounded-2xl" />
@@ -181,7 +180,7 @@ export default function LiveOrdersTab({ searchTerm }: LiveOrdersTabProps) {
             return (
               <div
                 key={col.id}
-                className="flex flex-col bg-neutral-900/40 border border-neutral-850 rounded-3xl p-4 min-h-[450px]"
+                className="flex flex-col bg-card/40 border border-neutral-300/50 rounded-3xl p-4 min-h-[450px]"
               >
                 {/* Column Header */}
                 <div
@@ -190,7 +189,7 @@ export default function LiveOrdersTab({ searchTerm }: LiveOrdersTabProps) {
                   <span className="text-xs font-extrabold uppercase tracking-widest">
                     {col.label}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-lg bg-neutral-950/80 text-[10px] font-black border border-neutral-850">
+                  <span className="px-2.5 py-0.5 rounded-lg bg-background/80 text-[10px] font-black border border-neutral-300/50">
                     {laneOrders.length}
                   </span>
                 </div>
@@ -199,7 +198,7 @@ export default function LiveOrdersTab({ searchTerm }: LiveOrdersTabProps) {
                 <div className="flex-1 overflow-y-auto space-y-3 pr-1 max-h-[550px] scrollbar-thin">
                   <AnimatePresence initial={false}>
                     {laneOrders.length === 0 ? (
-                      <div className="h-full flex flex-col items-center justify-center text-center p-8 text-neutral-600 space-y-2 border border-dashed border-neutral-850 rounded-2xl">
+                      <div className="h-full flex flex-col items-center justify-center text-center p-8 text-foreground space-y-2 border border-dashed border-neutral-300/50 rounded-2xl">
                         <Clock className="h-6 w-6 text-neutral-700" />
                         <span className="text-[10px] font-bold uppercase tracking-wider">
                           No active dispatches
@@ -214,23 +213,23 @@ export default function LiveOrdersTab({ searchTerm }: LiveOrdersTabProps) {
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.95 }}
                           transition={{ duration: 0.2 }}
-                          className="p-4 bg-neutral-950 border border-neutral-850/80 rounded-2xl flex flex-col justify-between gap-3 shadow hover:border-neutral-750 transition-colors"
+                          className="p-4 bg-background border border-neutral-300/50/80 rounded-2xl flex flex-col justify-between gap-3 shadow hover:border-neutral-750 transition-colors"
                         >
                           {/* Order Card Info */}
                           <div className="space-y-1">
                             <div className="flex justify-between items-center">
-                              <span className="text-xs font-black text-white">#{order.id}</span>
-                              <span className="text-[9px] font-bold text-neutral-500">
+                              <span className="text-xs font-black text-foreground">#{order.id}</span>
+                              <span className="text-[9px] font-bold text-foreground">
                                 {new Date(order.createdAt).toLocaleTimeString([], {
                                   hour: '2-digit',
                                   minute: '2-digit',
                                 })}
                               </span>
                             </div>
-                            <span className="text-[11px] font-bold text-neutral-300 block">
+                            <span className="text-[11px] font-bold text-foreground block">
                               {order.user?.name}
                             </span>
-                            <span className="text-[9px] font-semibold text-neutral-500 block truncate">
+                            <span className="text-[9px] font-semibold text-foreground block truncate">
                               {order.deliveryAddress}
                             </span>
                           </div>
@@ -240,10 +239,10 @@ export default function LiveOrdersTab({ searchTerm }: LiveOrdersTabProps) {
                             {order.items?.map((item, idx) => (
                               <div
                                 key={idx}
-                                className="flex justify-between text-[10px] font-semibold text-neutral-400"
+                                className="flex justify-between text-[10px] font-semibold text-foreground"
                               >
                                 <span className="truncate max-w-[150px]">{item.product?.name}</span>
-                                <span className="shrink-0 text-neutral-600">x{item.quantity}</span>
+                                <span className="shrink-0 text-foreground">x{item.quantity}</span>
                               </div>
                             ))}
                           </div>
@@ -256,7 +255,7 @@ export default function LiveOrdersTab({ searchTerm }: LiveOrdersTabProps) {
 
                             <button
                               onClick={() => updateOrderStatus(order.id, col.next)}
-                              className="px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] flex items-center gap-1 cursor-pointer transition-all hover:scale-[1.02]"
+                              className="px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-foreground font-bold text-[10px] flex items-center gap-1 cursor-pointer transition-all hover:scale-[1.02]"
                             >
                               <span>
                                 {col.id === 'pending'

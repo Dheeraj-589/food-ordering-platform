@@ -105,28 +105,28 @@ export default function SecurityTab() {
     <div className="space-y-6">
       {/* Header controls */}
       <div>
-        <h2 className="text-xl font-bold text-neutral-100 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
           <ShieldAlert className="h-5 w-5 text-red-500" /> Security & Audit Desk
         </h2>
-        <p className="text-xs text-neutral-500 mt-1">
+        <p className="text-xs text-foreground mt-1">
           Review fail attempts logs, administrator actions tracking, and check custom roles
           permission matrices.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-xs font-semibold text-neutral-400">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-xs font-semibold text-foreground">
         {/* Permission matrix block */}
-        <div className="lg:col-span-2 p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
+        <div className="lg:col-span-2 p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
           <div className="flex items-center gap-2 border-b border-neutral-950 pb-2">
-            <Users className="h-4.5 w-4.5 text-neutral-400 shrink-0" />
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <Users className="h-4.5 w-4.5 text-foreground shrink-0" />
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Role Access Controls Matrix
             </span>
           </div>
 
           <div className="overflow-x-auto rounded-xl border border-neutral-950">
-            <table className="w-full text-left text-xs font-semibold text-neutral-400 select-none">
-              <thead className="bg-neutral-950 text-neutral-500 font-bold uppercase tracking-wider">
+            <table className="w-full text-left text-xs font-semibold text-foreground select-none">
+              <thead className="bg-background text-foreground font-bold uppercase tracking-wider">
                 <tr>
                   <th className="p-3">Permission Node</th>
                   <th className="p-3 text-center">Admin</th>
@@ -138,8 +138,8 @@ export default function SecurityTab() {
               </thead>
               <tbody className="divide-y divide-neutral-950">
                 {permissions.map((perm) => (
-                  <tr key={perm.id} className="hover:bg-neutral-950/20">
-                    <td className="p-3 font-bold text-neutral-200">{perm.label}</td>
+                  <tr key={perm.id} className="hover:bg-background/20">
+                    <td className="p-3 font-bold text-foreground">{perm.label}</td>
                     <td className="p-3 text-center">
                       <input
                         type="checkbox"
@@ -188,10 +188,10 @@ export default function SecurityTab() {
         </div>
 
         {/* Failed Logins Panel */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
           <div className="flex items-center gap-2 border-b border-neutral-950 pb-2">
             <XCircle className="h-4.5 w-4.5 text-red-500 shrink-0" />
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-red-400 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-red-700 block">
               Failed Login Attempts
             </span>
           </div>
@@ -200,13 +200,13 @@ export default function SecurityTab() {
             {failedLogins.map((item) => (
               <div
                 key={item.id}
-                className="p-3 rounded-xl bg-neutral-950 border border-neutral-850/80 space-y-1 text-xs"
+                className="p-3 rounded-xl bg-background border border-neutral-300/50/80 space-y-1 text-xs"
               >
                 <div className="flex justify-between items-center">
-                  <span className="font-bold text-neutral-200">{item.email}</span>
-                  <span className="text-[9px] text-neutral-600">{item.time}</span>
+                  <span className="font-bold text-foreground">{item.email}</span>
+                  <span className="text-[9px] text-foreground">{item.time}</span>
                 </div>
-                <span className="text-[9px] text-neutral-500 font-bold block">
+                <span className="text-[9px] text-foreground font-bold block">
                   Source IP: {item.ip}
                 </span>
                 <p className="text-[10px] text-red-500 font-semibold">{item.reason}</p>
@@ -216,17 +216,17 @@ export default function SecurityTab() {
         </div>
 
         {/* Audit Log list */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4 lg:col-span-3">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4 lg:col-span-3">
           <div className="flex items-center gap-2 border-b border-neutral-950 pb-2">
-            <FileText className="h-4.5 w-4.5 text-neutral-400 shrink-0" />
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <FileText className="h-4.5 w-4.5 text-foreground shrink-0" />
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               System Administrator Action Audits
             </span>
           </div>
 
           <div className="overflow-x-auto rounded-xl border border-neutral-950">
-            <table className="w-full text-left text-xs font-semibold text-neutral-400">
-              <thead className="bg-neutral-950 text-neutral-500 font-bold uppercase tracking-wider">
+            <table className="w-full text-left text-xs font-semibold text-foreground">
+              <thead className="bg-background text-foreground font-bold uppercase tracking-wider">
                 <tr>
                   <th className="p-3">User Action</th>
                   <th className="p-3">IP Address</th>
@@ -238,31 +238,31 @@ export default function SecurityTab() {
               <tbody className="divide-y divide-neutral-950">
                 {loading ? (
                   <tr>
-                    <td colSpan={5} className="p-4 text-center text-neutral-500">
+                    <td colSpan={5} className="p-4 text-center text-foreground">
                       Loading audit records...
                     </td>
                   </tr>
                 ) : logs.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="p-4 text-center text-neutral-500">
+                    <td colSpan={5} className="p-4 text-center text-foreground">
                       No actions logged yet.
                     </td>
                   </tr>
                 ) : (
                   logs.slice(0, 10).map((log) => (
-                    <tr key={log.id} className="hover:bg-neutral-950/20">
+                    <tr key={log.id} className="hover:bg-background/20">
                       <td className="p-3 font-mono font-bold text-red-500">{log.action}</td>
-                      <td className="p-3 text-neutral-400">{log.ipAddress || '127.0.0.1'}</td>
-                      <td className="p-3 text-neutral-300">
+                      <td className="p-3 text-foreground">{log.ipAddress || '127.0.0.1'}</td>
+                      <td className="p-3 text-foreground">
                         {log.userName || 'Admin'}
-                        <span className="text-[10px] text-neutral-500 block font-semibold">
+                        <span className="text-[10px] text-foreground block font-semibold">
                           {log.userEmail || 'admin@foodies.com'}
                         </span>
                       </td>
-                      <td className="p-3 text-neutral-400 font-medium leading-relaxed font-sans">
+                      <td className="p-3 text-foreground font-medium leading-relaxed font-sans">
                         {log.details || 'System operation executed.'}
                       </td>
-                      <td className="p-3 font-semibold text-neutral-500">
+                      <td className="p-3 font-semibold text-foreground">
                         {new Date(log.createdAt).toLocaleString()}
                       </td>
                     </tr>

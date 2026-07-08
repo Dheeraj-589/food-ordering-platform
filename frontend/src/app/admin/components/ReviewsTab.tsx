@@ -87,8 +87,8 @@ export default function ReviewsTab() {
     <div className="space-y-6">
       {/* Header controls */}
       <div>
-        <h2 className="text-xl font-bold text-neutral-100">Review Moderation</h2>
-        <p className="text-xs text-neutral-500 mt-1">
+        <h2 className="text-xl font-bold text-foreground">Review Moderation</h2>
+        <p className="text-xs text-foreground mt-1">
           Audit customer rating comments, reply as business owners, and flag abusive reports.
         </p>
       </div>
@@ -96,28 +96,27 @@ export default function ReviewsTab() {
       {/* Reviews feed */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {loading ? (
-          <div className="md:col-span-2 p-8 text-center text-neutral-500 font-bold">
+          <div className="md:col-span-2 p-8 text-center text-foreground font-bold">
             Loading customer reviews feed...
           </div>
         ) : reviews.length === 0 ? (
-          <div className="md:col-span-2 p-12 text-center border border-dashed border-neutral-800 rounded-3xl text-neutral-500 font-bold">
+          <div className="md:col-span-2 p-12 text-center border border-dashed border-neutral-800 rounded-3xl text-foreground font-bold">
             No feedback comments seeded.
           </div>
         ) : (
           reviews.map((rev) => (
             <div
               key={rev.id}
-              className={`p-5 rounded-3xl border bg-neutral-900/40 relative space-y-4 ${
-                rev.isAbuseReported ? 'border-red-500/25 bg-red-950/5' : 'border-neutral-850'
-              }`}
+              className={`p-5 rounded-3xl border bg-card/40 relative space-y-4 ${rev.isAbuseReported ? 'border-red-500/25 bg-red-950/5' : 'border-neutral-300/50'
+                }`}
             >
               {/* Top rating details */}
               <div className="flex justify-between items-start gap-4">
                 <div className="space-y-0.5">
-                  <span className="text-xs font-black text-neutral-200 block">
+                  <span className="text-xs font-black text-foreground block">
                     {rev.user?.name || 'Anonymous User'}
                   </span>
-                  <span className="text-[9px] font-bold text-neutral-500 block">
+                  <span className="text-[9px] font-bold text-foreground block">
                     {rev.user?.email || 'N/A'}
                   </span>
                 </div>
@@ -127,9 +126,8 @@ export default function ReviewsTab() {
                   {Array.from({ length: 5 }).map((_, starIdx) => (
                     <Star
                       key={starIdx}
-                      className={`h-3 w-3 shrink-0 ${
-                        starIdx < rev.rating ? 'text-amber-400 fill-amber-400' : 'text-neutral-700'
-                      }`}
+                      className={`h-3 w-3 shrink-0 ${starIdx < rev.rating ? 'text-amber-400 fill-amber-400' : 'text-neutral-700'
+                        }`}
                     />
                   ))}
                 </div>
@@ -137,21 +135,21 @@ export default function ReviewsTab() {
 
               {/* Product Reference name */}
               {rev.product && (
-                <div className="px-2.5 py-1 rounded bg-neutral-950/80 border border-neutral-850 text-[10px] font-bold text-neutral-400 inline-block">
+                <div className="px-2.5 py-1 rounded bg-background/80 border border-neutral-300/50 text-[10px] font-bold text-foreground inline-block">
                   🍕 Item: {rev.product.name}
                 </div>
               )}
 
               {/* Comment text */}
-              <p className="text-xs text-neutral-300 font-semibold leading-relaxed font-sans">
+              <p className="text-xs text-foreground font-semibold leading-relaxed font-sans">
                 {rev.comment}
               </p>
 
               {/* Administrator response reply */}
               {rev.reply && (
-                <div className="p-3 bg-neutral-950/60 border border-neutral-850 rounded-2xl flex items-start gap-2.5">
+                <div className="p-3 bg-background/60 border border-neutral-300/50 rounded-2xl flex items-start gap-2.5">
                   <CornerDownRight className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
-                  <div className="text-[11px] font-semibold text-neutral-400 leading-relaxed font-sans">
+                  <div className="text-[11px] font-semibold text-foreground leading-relaxed font-sans">
                     <span className="text-[9px] font-extrabold uppercase text-red-500 tracking-wider block mb-0.5">
                       Store Response
                     </span>
@@ -165,21 +163,19 @@ export default function ReviewsTab() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleUpdateStatus(rev.id, 'approved')}
-                    className={`px-3 py-1 rounded bg-neutral-950 hover:bg-neutral-850 border transition-all cursor-pointer flex items-center gap-1 ${
-                      rev.status === 'approved'
-                        ? 'text-emerald-500 border-emerald-500/20 bg-emerald-500/5'
-                        : 'text-neutral-400 border-neutral-850'
-                    }`}
+                    className={`px-3 py-1 rounded bg-background hover:bg-neutral-850 border transition-all cursor-pointer flex items-center gap-1 ${rev.status === 'approved'
+                      ? 'text-emerald-500 border-emerald-500/20 bg-emerald-500/5'
+                      : 'text-foreground border-neutral-300/50'
+                      }`}
                   >
                     <Check className="h-3 w-3" /> Approve
                   </button>
                   <button
                     onClick={() => handleUpdateStatus(rev.id, 'rejected')}
-                    className={`px-3 py-1 rounded bg-neutral-950 hover:bg-neutral-850 border transition-all cursor-pointer flex items-center gap-1 ${
-                      rev.status === 'rejected'
-                        ? 'text-red-500 border-red-500/20 bg-red-500/5'
-                        : 'text-neutral-400 border-neutral-850'
-                    }`}
+                    className={`px-3 py-1 rounded bg-background hover:bg-neutral-850 border transition-all cursor-pointer flex items-center gap-1 ${rev.status === 'rejected'
+                      ? 'text-red-500 border-red-500/20 bg-red-500/5'
+                      : 'text-foreground border-neutral-300/50'
+                      }`}
                   >
                     <X className="h-3 w-3" /> Reject
                   </button>
@@ -188,17 +184,16 @@ export default function ReviewsTab() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleOpenReply(rev)}
-                    className="p-1.5 rounded bg-neutral-950 border border-neutral-850 hover:text-white cursor-pointer"
+                    className="p-1.5 rounded bg-background border border-neutral-300/50 hover:text-primary cursor-pointer"
                   >
                     <MessageSquare className="h-3.5 w-3.5" />
                   </button>
                   <button
                     onClick={() => handleToggleAbuse(rev.id)}
-                    className={`p-1.5 rounded bg-neutral-950 border cursor-pointer ${
-                      rev.isAbuseReported
-                        ? 'text-red-500 border-red-500/20 bg-red-500/5'
-                        : 'border-neutral-850 text-neutral-500 hover:text-neutral-300'
-                    }`}
+                    className={`p-1.5 rounded bg-background border cursor-pointer ${rev.isAbuseReported
+                      ? 'text-red-500 border-red-500/20 bg-red-500/5'
+                      : 'border-neutral-300/50 text-foreground hover:text-primary'
+                      }`}
                   >
                     <AlertCircle className="h-3.5 w-3.5" />
                   </button>
@@ -222,7 +217,7 @@ export default function ReviewsTab() {
           {selectedReview && (
             <form
               onSubmit={handlePostReply}
-              className="py-4 space-y-4 text-xs font-semibold text-muted-foreground"
+              className="py-4 space-y-4 text-xs font-semibold text-foreground"
             >
               <div className="p-3 bg-secondary rounded-2xl border border-border space-y-1 text-xs">
                 <span className="font-bold text-foreground block">
@@ -234,7 +229,7 @@ export default function ReviewsTab() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   Business Response Message
                 </label>
                 <textarea
@@ -251,14 +246,14 @@ export default function ReviewsTab() {
                 <button
                   type="button"
                   onClick={() => setReplyOpen(false)}
-                  className="bg-transparent border border-border text-muted-foreground hover:bg-secondary rounded-xl py-2 px-4 cursor-pointer text-xs font-bold font-sans"
+                  className="bg-transparent border border-border text-foreground hover:bg-secondary rounded-xl py-2 px-4 cursor-pointer text-xs font-bold font-sans"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={actionLoading}
-                  className="bg-primary hover:bg-primary/95 text-white font-bold rounded-xl py-2 px-6 shadow cursor-pointer text-xs flex items-center gap-1 font-sans"
+                  className="bg-primary hover:bg-primary/95 text-foreground font-bold rounded-xl py-2 px-6 shadow cursor-pointer text-xs flex items-center gap-1 font-sans"
                 >
                   {actionLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'POST REPLY'}
                 </button>

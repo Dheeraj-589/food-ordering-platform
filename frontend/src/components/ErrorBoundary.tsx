@@ -36,7 +36,7 @@ export default class ErrorBoundary extends Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans">
+        <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
           <Navbar />
           <section className="flex-1 flex flex-col items-center justify-center px-6 py-20 text-center space-y-6">
             <div className="p-6 rounded-full bg-red-500/10 border border-red-500/20 text-red-500">
@@ -45,7 +45,7 @@ export default class ErrorBoundary extends Component<Props, State> {
 
             <div className="space-y-2 max-w-md">
               <h1 className="text-3xl font-extrabold tracking-tight">Something Went Wrong</h1>
-              <p className="text-sm text-neutral-400 font-medium leading-relaxed">
+              <p className="text-sm text-foreground font-medium leading-relaxed">
                 An unexpected error occurred while loading this page. Our engineers have been
                 notified. Please try reloading below.
               </p>

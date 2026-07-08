@@ -376,14 +376,14 @@ function DashboardContent() {
       updatedList = updatedList.map((a) =>
         a.id === editingAddress.id
           ? {
-              ...a,
-              name: addrName,
-              street: addrStreet,
-              city: addrCity,
-              state: addrState,
-              zipCode: addrZip,
-              isDefault: addrDefault,
-            }
+            ...a,
+            name: addrName,
+            street: addrStreet,
+            city: addrCity,
+            state: addrState,
+            zipCode: addrZip,
+            isDefault: addrDefault,
+          }
           : a,
       );
       addToast('Address updated!', 'success');
@@ -608,9 +608,8 @@ function DashboardContent() {
               <span>Subtotal:</span>
               <span>₹${subtotal}</span>
             </div>
-            ${
-              discount > 0
-                ? `
+            ${discount > 0
+        ? `
             <div class="total-row" style="color: #dc2626;">
               <span>Coupon Discount (${order.couponCode || 'Promo'}):</span>
               <span>-₹${discount}</span>
@@ -620,8 +619,8 @@ function DashboardContent() {
               <span>₹${discount}</span>
             </div>
             `
-                : ''
-            }
+        : ''
+      }
             <div class="total-row">
               <span>Delivery Fee:</span>
               <span>₹${delivery}</span>
@@ -658,7 +657,7 @@ function DashboardContent() {
 
   return (
     <ProtectedRoute>
-      <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans select-none overflow-x-hidden">
+      <main className="min-h-screen bg-background text-foreground flex flex-col font-sans select-none overflow-x-hidden">
         <Navbar />
 
         {/* Banner Section */}
@@ -669,19 +668,19 @@ function DashboardContent() {
                 className="relative group cursor-pointer"
                 onClick={() => fileInputRef.current?.click()}
               >
-                <div className="h-20 w-20 rounded-3xl bg-neutral-900 border-2 border-neutral-800 hover:border-red-500 overflow-hidden flex items-center justify-center text-red-500 text-3xl font-extrabold transition-all duration-300">
+                <div className="h-20 w-20 rounded-3xl bg-card border-2 border-neutral-800 hover:border-red-500 overflow-hidden flex items-center justify-center text-red-500 text-3xl font-extrabold transition-all duration-300">
                   {user?.avatarUrl ? (
                     <img src={user.avatarUrl} alt="Avatar" className="h-full w-full object-cover" />
                   ) : (
                     user?.name.substring(0, 2).toUpperCase()
                   )}
                   {uploadingAvatar && (
-                    <div className="absolute inset-0 bg-neutral-950/70 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-background/70 flex items-center justify-center">
                       <Loader2 className="h-5 w-5 text-red-500 animate-spin" />
                     </div>
                   )}
                 </div>
-                <div className="absolute -bottom-1.5 -right-1.5 p-1.5 bg-red-600 hover:bg-red-700 text-white rounded-xl shadow-lg transition-transform group-hover:scale-110">
+                <div className="absolute -bottom-1.5 -right-1.5 p-1.5 bg-red-600 hover:bg-red-700 text-foreground rounded-xl shadow-lg transition-transform group-hover:scale-110">
                   <Camera className="h-3.5 w-3.5" />
                 </div>
                 <input
@@ -693,10 +692,10 @@ function DashboardContent() {
                 />
               </div>
               <div>
-                <h1 className="text-2xl font-extrabold text-neutral-100 tracking-tight flex items-center gap-2">
+                <h1 className="text-2xl font-extrabold text-foreground tracking-tight flex items-center gap-2">
                   Hello, {user?.name.split(' ')[0]} <Sparkles className="h-5 w-5 text-amber-500" />
                 </h1>
-                <p className="text-xs text-neutral-500 font-semibold mt-0.5 uppercase tracking-widest flex items-center gap-1">
+                <p className="text-xs text-foreground font-semibold mt-0.5 uppercase tracking-widest flex items-center gap-1">
                   <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" /> Verified Customer Account
                 </p>
               </div>
@@ -704,16 +703,16 @@ function DashboardContent() {
 
             {/* Quick loyalty stats in banner */}
             <div className="flex gap-4">
-              <div className="px-5 py-3 rounded-2xl bg-neutral-900/30 border border-neutral-900 text-center min-w-[120px]">
-                <span className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider block">
+              <div className="px-5 py-3 rounded-2xl bg-card/30 border border-neutral-900 text-center min-w-[120px]">
+                <span className="text-[10px] text-foreground font-bold uppercase tracking-wider block">
                   Pizza Points
                 </span>
                 <span className="text-xl font-extrabold text-red-500 mt-1 block">
                   {user?.loyaltyPoints || 0}
                 </span>
               </div>
-              <div className="px-5 py-3 rounded-2xl bg-neutral-900/30 border border-neutral-900 text-center min-w-[120px]">
-                <span className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider block">
+              <div className="px-5 py-3 rounded-2xl bg-card/30 border border-neutral-900 text-center min-w-[120px]">
+                <span className="text-[10px] text-foreground font-bold uppercase tracking-wider block">
                   Membership
                 </span>
                 <span className="text-sm font-extrabold text-amber-500 mt-1.5 block flex items-center justify-center gap-1 uppercase">
@@ -749,11 +748,10 @@ function DashboardContent() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as TabType)}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? 'bg-red-600 text-white shadow-md shadow-red-950/20'
-                      : 'text-neutral-400 hover:text-white hover:bg-neutral-900/40'
-                  }`}
+                  className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-semibold transition-all duration-200 cursor-pointer ${isActive
+                    ? 'bg-red-600 text-foreground shadow-md shadow-red-950/20'
+                    : 'text-foreground hover:text-primary hover:bg-card/40'
+                    }`}
                 >
                   <div className="flex items-center gap-3">
                     <Icon className="h-4.5 w-4.5" />
@@ -785,56 +783,56 @@ function DashboardContent() {
                 {/* 1. PROFILE TAB */}
                 {activeTab === 'profile' && (
                   <div className="space-y-6">
-                    <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-6">
-                      <h3 className="text-base font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+                    <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-6">
+                      <h3 className="text-base font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
                         <UserIcon className="h-5 w-5 text-red-500" /> Edit Profile Details
                       </h3>
 
                       <form onSubmit={handleUpdateProfile} className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                               Full Name
                             </label>
                             <input
                               type="text"
                               value={name}
                               onChange={(e) => setName(e.target.value)}
-                              className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                              className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                               required
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                               Email Address
                             </label>
                             <input
                               type="email"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
-                              className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                              className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                               required
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                               Phone Number
                             </label>
                             <input
                               type="text"
                               value={phoneNumber}
                               onChange={(e) => setPhoneNumber(e.target.value)}
-                              className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                              className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                               Language
                             </label>
                             <select
                               value={language}
                               onChange={(e) => setLanguage(e.target.value)}
-                              className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                              className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                             >
                               <option value="en">English (US)</option>
                               <option value="it">Italiano</option>
@@ -852,7 +850,7 @@ function DashboardContent() {
                             onChange={(e) => setDarkMode(e.target.checked)}
                             className="h-4.5 w-4.5 rounded accent-red-500"
                           />
-                          <label htmlFor="darkModeCheck" className="text-sm font-semibold text-neutral-300 flex items-center gap-1.5 cursor-pointer">
+                          <label htmlFor="darkModeCheck" className="text-sm font-semibold text-foreground flex items-center gap-1.5 cursor-pointer">
                             {darkMode ? <Moon className="h-4 w-4 text-amber-500" /> : <Sun className="h-4 w-4 text-amber-500" />}
                             Enable Dark Mode Styling Preference
                           </label>
@@ -861,7 +859,7 @@ function DashboardContent() {
                         <button
                           type="submit"
                           disabled={updatingProfile}
-                          className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold tracking-wider uppercase cursor-pointer flex items-center justify-center gap-2"
+                          className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-foreground text-xs font-bold tracking-wider uppercase cursor-pointer flex items-center justify-center gap-2"
                         >
                           {updatingProfile ? (
                             <Loader2 className="h-4 w-4 animate-spin" />
@@ -872,34 +870,34 @@ function DashboardContent() {
                       </form>
                     </div>
 
-                    <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-6">
-                      <h3 className="text-base font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+                    <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-6">
+                      <h3 className="text-base font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
                         <ShieldCheck className="h-5 w-5 text-red-500" /> Change Account Password
                       </h3>
 
                       <form onSubmit={handleChangePassword} className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                               Current Password
                             </label>
                             <input
                               type="password"
                               value={currentPassword}
                               onChange={(e) => setCurrentPassword(e.target.value)}
-                              className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                              className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                               required
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                               New Password
                             </label>
                             <input
                               type="password"
                               value={newPassword}
                               onChange={(e) => setNewPassword(e.target.value)}
-                              className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                              className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                               required
                             />
                           </div>
@@ -908,7 +906,7 @@ function DashboardContent() {
                         <button
                           type="submit"
                           disabled={updatingPassword}
-                          className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold tracking-wider uppercase cursor-pointer flex items-center justify-center gap-2"
+                          className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-foreground text-xs font-bold tracking-wider uppercase cursor-pointer flex items-center justify-center gap-2"
                         >
                           {updatingPassword ? (
                             <Loader2 className="h-4 w-4 animate-spin" />
@@ -928,7 +926,7 @@ function DashboardContent() {
                 {activeTab === 'orders' && (
                   <div className="space-y-6">
                     <div className="flex flex-wrap justify-between items-center gap-4 border-b border-neutral-900 pb-3">
-                      <h3 className="text-base font-bold text-neutral-300 flex items-center gap-2">
+                      <h3 className="text-base font-bold text-foreground flex items-center gap-2">
                         <ShoppingBag className="h-5 w-5 text-red-500" /> Order History
                       </h3>
 
@@ -947,11 +945,10 @@ function DashboardContent() {
                           <button
                             key={filter}
                             onClick={() => setOrderFilter(filter)}
-                            className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all duration-150 cursor-pointer ${
-                              orderFilter === filter
-                                ? 'bg-red-600 text-white'
-                                : 'bg-neutral-900/40 text-neutral-400 hover:text-white border border-neutral-900'
-                            }`}
+                            className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all duration-150 cursor-pointer ${orderFilter === filter
+                              ? 'bg-red-600 text-foreground'
+                              : 'bg-card/40 text-foreground hover:text-primary border border-neutral-900'
+                              }`}
                           >
                             {filter.replace('-', ' ')}
                           </button>
@@ -962,7 +959,7 @@ function DashboardContent() {
                     {loadingOrders ? (
                       <div className="flex flex-col items-center justify-center py-20 gap-2">
                         <Loader2 className="h-8 w-8 text-red-500 animate-spin" />
-                        <span className="text-sm text-neutral-400 font-medium">
+                        <span className="text-sm text-foreground font-medium">
                           Loading your orders...
                         </span>
                       </div>
@@ -975,12 +972,12 @@ function DashboardContent() {
 
                         if (filteredOrders.length === 0) {
                           return (
-                            <div className="text-center py-16 bg-neutral-900/10 border border-neutral-900 border-dashed rounded-3xl">
-                              <ShoppingBag className="h-12 w-12 text-neutral-600 mx-auto mb-2" />
-                              <p className="text-sm font-semibold text-neutral-300">
+                            <div className="text-center py-16 bg-card/10 border border-neutral-900 border-dashed rounded-3xl">
+                              <ShoppingBag className="h-12 w-12 text-foreground mx-auto mb-2" />
+                              <p className="text-sm font-semibold text-foreground">
                                 No matching orders found
                               </p>
-                              <p className="text-xs text-neutral-500 mt-1">
+                              <p className="text-xs text-foreground mt-1">
                                 Place a fresh hot order from the menu!
                               </p>
                             </div>
@@ -992,27 +989,26 @@ function DashboardContent() {
                             {filteredOrders.map((order) => (
                               <div
                                 key={order.id}
-                                className="p-5 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg flex flex-col md:flex-row justify-between gap-4"
+                                className="p-5 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg flex flex-col md:flex-row justify-between gap-4"
                               >
                                 <div className="space-y-3 flex-1">
                                   <div className="flex justify-between items-start">
                                     <div>
-                                      <p className="text-xs text-neutral-500 font-bold uppercase">
+                                      <p className="text-xs text-foreground font-bold uppercase">
                                         ORDER ID
                                       </p>
-                                      <h4 className="text-sm font-black text-neutral-200 mt-0.5">
+                                      <h4 className="text-sm font-black text-foreground mt-0.5">
                                         #FEX-{order.id}
                                       </h4>
                                     </div>
                                     <div className="md:hidden">
                                       <span
-                                        className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase ${
-                                          order.status === 'delivered'
-                                            ? 'bg-emerald-950/40 text-emerald-500 border border-emerald-950'
-                                            : order.status === 'cancelled'
-                                              ? 'bg-red-950/40 text-red-500 border border-red-950'
-                                              : 'bg-amber-950/40 text-amber-500 border border-amber-950'
-                                        }`}
+                                        className={`px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase ${order.status === 'delivered'
+                                          ? 'bg-emerald-950/40 text-emerald-500 border border-emerald-950'
+                                          : order.status === 'cancelled'
+                                            ? 'bg-red-950/40 text-red-500 border border-red-950'
+                                            : 'bg-amber-950/40 text-amber-500 border border-amber-950'
+                                          }`}
                                       >
                                         {order.status.replace('-', ' ')}
                                       </span>
@@ -1023,24 +1019,24 @@ function DashboardContent() {
                                     {order.items.map((item) => (
                                       <p
                                         key={item.id}
-                                        className="text-xs text-neutral-400 font-medium"
+                                        className="text-xs text-foreground font-medium"
                                       >
                                         {item.quantity}x {item.product.name}
                                       </p>
                                     ))}
                                   </div>
 
-                                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-neutral-500 font-bold">
+                                  <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-foreground font-bold">
                                     <span className="flex items-center gap-1">
-                                      <Clock className="h-3.5 w-3.5 text-neutral-600" /> Placed:{' '}
+                                      <Clock className="h-3.5 w-3.5 text-foreground" /> Placed:{' '}
                                       {new Date(order.createdAt).toLocaleDateString()}
                                     </span>
                                     <span className="flex items-center gap-1">
-                                      <DollarSign className="h-3.5 w-3.5 text-neutral-600" /> Mode:
+                                      <DollarSign className="h-3.5 w-3.5 text-foreground" /> Mode:
                                       Online Gateway
                                     </span>
                                     <span className="flex items-center gap-1">
-                                      <MapPin className="h-3.5 w-3.5 text-neutral-600 animate-pulse text-red-500" />{' '}
+                                      <MapPin className="h-3.5 w-3.5 text-foreground animate-pulse text-red-500" />{' '}
                                       Ship To: {order.deliveryAddress.split(',')[0]}
                                     </span>
                                   </div>
@@ -1049,17 +1045,16 @@ function DashboardContent() {
                                 <div className="flex flex-row md:flex-col justify-between items-end gap-3 border-t md:border-t-0 border-neutral-900 pt-3 md:pt-0">
                                   <div className="text-left md:text-right hidden md:block">
                                     <span
-                                      className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                                        order.status === 'delivered'
-                                          ? 'bg-emerald-950/30 text-emerald-400 border border-emerald-900/60'
-                                          : order.status === 'cancelled'
-                                            ? 'bg-red-950/30 text-red-400 border border-red-900/60'
-                                            : 'bg-amber-950/30 text-amber-400 border border-amber-900/60'
-                                      }`}
+                                      className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${order.status === 'delivered'
+                                        ? 'bg-emerald-950/30 text-emerald-700 border border-emerald-900/60'
+                                        : order.status === 'cancelled'
+                                          ? 'bg-red-950/30 text-red-700 border border-red-900/60'
+                                          : 'bg-amber-950/30 text-amber-400 border border-amber-900/60'
+                                        }`}
                                     >
                                       {order.status.replace('-', ' ')}
                                     </span>
-                                    <p className="text-xs text-neutral-500 font-bold uppercase mt-2">
+                                    <p className="text-xs text-foreground font-bold uppercase mt-2">
                                       Total Paid
                                     </p>
                                     <p className="text-base font-black text-red-500 mt-0.5">
@@ -1068,7 +1063,7 @@ function DashboardContent() {
                                   </div>
 
                                   <div className="md:hidden">
-                                    <p className="text-xs text-neutral-500 font-bold">
+                                    <p className="text-xs text-foreground font-bold">
                                       Total Amount
                                     </p>
                                     <p className="text-sm font-black text-red-500 mt-0.5">
@@ -1079,21 +1074,21 @@ function DashboardContent() {
                                   <div className="flex gap-2">
                                     <button
                                       onClick={() => router.push(`/order/${order.id}`)}
-                                      className="p-2 rounded-xl bg-neutral-950 hover:bg-neutral-900 border border-neutral-900 text-neutral-300 hover:text-white text-xs font-bold transition-colors cursor-pointer"
+                                      className="p-2 rounded-xl bg-background hover:bg-card border border-neutral-900 text-foreground hover:text-primary text-xs font-bold transition-colors cursor-pointer"
                                       title="Track order status & timeline"
                                     >
                                       <Eye className="h-4 w-4" />
                                     </button>
                                     <button
                                       onClick={() => handlePrintInvoice(order)}
-                                      className="p-2 rounded-xl bg-neutral-950 hover:bg-neutral-900 border border-neutral-900 text-neutral-300 hover:text-white text-xs font-bold transition-colors cursor-pointer"
+                                      className="p-2 rounded-xl bg-background hover:bg-card border border-neutral-900 text-foreground hover:text-primary text-xs font-bold transition-colors cursor-pointer"
                                       title="Download invoice as PDF"
                                     >
                                       <Printer className="h-4 w-4" />
                                     </button>
                                     <button
                                       onClick={() => handleRepeatOrder(order)}
-                                      className="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                                      className="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-foreground text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
                                       title="Repeat Order items"
                                     >
                                       <TrendingUp className="h-4 w-4" />
@@ -1114,24 +1109,24 @@ function DashboardContent() {
                 {activeTab === 'addresses' && (
                   <div className="space-y-6">
                     <div className="flex justify-between items-center border-b border-neutral-900 pb-3">
-                      <h3 className="text-base font-bold text-neutral-300 flex items-center gap-2">
+                      <h3 className="text-base font-bold text-foreground flex items-center gap-2">
                         <MapPin className="h-5 w-5 text-red-500" /> Saved Addresses
                       </h3>
                       <button
                         onClick={() => handleOpenAddressModal()}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold tracking-wider uppercase cursor-pointer transition-all"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-foreground text-xs font-bold tracking-wider uppercase cursor-pointer transition-all"
                       >
                         <Plus className="h-3.5 w-3.5" /> Add Address
                       </button>
                     </div>
 
                     {addresses.length === 0 ? (
-                      <div className="text-center py-16 bg-neutral-900/10 border border-neutral-900 border-dashed rounded-3xl">
-                        <MapPin className="h-12 w-12 text-neutral-600 mx-auto mb-2" />
-                        <p className="text-sm font-semibold text-neutral-300">
+                      <div className="text-center py-16 bg-card/10 border border-neutral-900 border-dashed rounded-3xl">
+                        <MapPin className="h-12 w-12 text-foreground mx-auto mb-2" />
+                        <p className="text-sm font-semibold text-foreground">
                           No addresses saved yet
                         </p>
-                        <p className="text-xs text-neutral-500 mt-1">
+                        <p className="text-xs text-foreground mt-1">
                           Add a delivery destination for fast checkout!
                         </p>
                       </div>
@@ -1140,18 +1135,16 @@ function DashboardContent() {
                         {addresses.map((address) => (
                           <div
                             key={address.id}
-                            className={`p-5 rounded-3xl bg-neutral-900/20 border shadow-lg flex flex-col justify-between gap-4 transition-all duration-200 ${
-                              address.isDefault ? 'border-red-500/30' : 'border-neutral-900'
-                            }`}
+                            className={`p-5 rounded-3xl bg-card/20 border shadow-lg flex flex-col justify-between gap-4 transition-all duration-200 ${address.isDefault ? 'border-red-500/30' : 'border-neutral-900'
+                              }`}
                           >
                             <div>
                               <div className="flex justify-between items-center">
                                 <span
-                                  className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md ${
-                                    address.isDefault
-                                      ? 'bg-red-600/10 text-red-500'
-                                      : 'bg-neutral-950 text-neutral-500'
-                                  }`}
+                                  className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md ${address.isDefault
+                                    ? 'bg-red-600/10 text-red-500'
+                                    : 'bg-background text-foreground'
+                                    }`}
                                 >
                                   {address.name}
                                 </span>
@@ -1162,10 +1155,10 @@ function DashboardContent() {
                                   </span>
                                 )}
                               </div>
-                              <p className="text-sm font-bold text-neutral-200 mt-3">
+                              <p className="text-sm font-bold text-foreground mt-3">
                                 {address.street}
                               </p>
-                              <p className="text-xs text-neutral-400 mt-1">
+                              <p className="text-xs text-foreground mt-1">
                                 {address.city}, {address.state} - {address.zipCode}
                               </p>
                             </div>
@@ -1174,7 +1167,7 @@ function DashboardContent() {
                               {!address.isDefault ? (
                                 <button
                                   onClick={() => handleSetDefaultAddress(address.id)}
-                                  className="text-[10px] font-extrabold uppercase text-neutral-500 hover:text-red-500 cursor-pointer transition-colors"
+                                  className="text-[10px] font-extrabold uppercase text-foreground hover:text-red-500 cursor-pointer transition-colors"
                                 >
                                   Set As Default
                                 </button>
@@ -1187,13 +1180,13 @@ function DashboardContent() {
                               <div className="flex gap-2">
                                 <button
                                   onClick={() => handleOpenAddressModal(address)}
-                                  className="p-2 rounded-lg bg-neutral-950 hover:bg-neutral-900 border border-neutral-900 text-neutral-400 hover:text-white transition-colors cursor-pointer"
+                                  className="p-2 rounded-lg bg-background hover:bg-card border border-neutral-900 text-foreground hover:text-primary transition-colors cursor-pointer"
                                 >
                                   <Edit className="h-3.5 w-3.5" />
                                 </button>
                                 <button
                                   onClick={() => handleDeleteAddress(address.id)}
-                                  className="p-2 rounded-lg bg-neutral-950 hover:bg-red-950/30 border border-neutral-900 hover:border-red-900 text-neutral-400 hover:text-red-500 transition-colors cursor-pointer"
+                                  className="p-2 rounded-lg bg-background hover:bg-red-950/30 border border-neutral-900 hover:border-red-900 text-foreground hover:text-red-500 transition-colors cursor-pointer"
                                 >
                                   <Trash2 className="h-3.5 w-3.5" />
                                 </button>
@@ -1209,24 +1202,24 @@ function DashboardContent() {
                 {/* 4. WISHLIST TAB */}
                 {activeTab === 'wishlist' && (
                   <div className="space-y-6">
-                    <h3 className="text-base font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+                    <h3 className="text-base font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
                       <Heart className="h-5 w-5 text-red-500" /> My Saved Wishlist
                     </h3>
 
                     {loadingWishlist ? (
                       <div className="flex flex-col items-center justify-center py-20 gap-2">
                         <Loader2 className="h-8 w-8 text-red-500 animate-spin" />
-                        <span className="text-sm text-neutral-400 font-medium">
+                        <span className="text-sm text-foreground font-medium">
                           Retrieving saved items...
                         </span>
                       </div>
                     ) : wishlistProducts.length === 0 ? (
-                      <div className="text-center py-16 bg-neutral-900/10 border border-neutral-900 border-dashed rounded-3xl">
-                        <Heart className="h-12 w-12 text-neutral-600 mx-auto mb-2" />
-                        <p className="text-sm font-semibold text-neutral-300">
+                      <div className="text-center py-16 bg-card/10 border border-neutral-900 border-dashed rounded-3xl">
+                        <Heart className="h-12 w-12 text-foreground mx-auto mb-2" />
+                        <p className="text-sm font-semibold text-foreground">
                           Your wishlist is empty
                         </p>
-                        <p className="text-xs text-neutral-500 mt-1">
+                        <p className="text-xs text-foreground mt-1">
                           Tap the heart icons on pizzas to save them here!
                         </p>
                       </div>
@@ -1235,10 +1228,10 @@ function DashboardContent() {
                         {wishlistProducts.map((product) => (
                           <div
                             key={product.id}
-                            className="p-4 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg flex gap-4 items-center justify-between"
+                            className="p-4 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg flex gap-4 items-center justify-between"
                           >
                             <div className="flex items-center gap-3">
-                              <div className="h-16 w-16 rounded-2xl bg-neutral-900/40 border border-neutral-900/60 overflow-hidden flex items-center justify-center shrink-0">
+                              <div className="h-16 w-16 rounded-2xl bg-card/40 border border-neutral-900/60 overflow-hidden flex items-center justify-center shrink-0">
                                 <img
                                   src={getProductImage(
                                     product.imageUrl,
@@ -1250,13 +1243,13 @@ function DashboardContent() {
                                 />
                               </div>
                               <div>
-                                <h4 className="text-sm font-bold text-neutral-200 line-clamp-1">
+                                <h4 className="text-sm font-bold text-foreground line-clamp-1">
                                   {product.name}
                                 </h4>
                                 <span className="text-xs font-bold text-red-500 mt-0.5 block">
                                   ₹{product.price}
                                 </span>
-                                <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block mt-0.5">
+                                <span className="text-[10px] font-bold text-foreground uppercase tracking-wider block mt-0.5">
                                   {product.category}
                                 </span>
                               </div>
@@ -1265,14 +1258,14 @@ function DashboardContent() {
                             <div className="flex gap-2">
                               <button
                                 onClick={() => handleRemoveFromWishlist(product.id)}
-                                className="p-2 rounded-xl bg-neutral-950 hover:bg-red-950/20 border border-neutral-900 text-neutral-400 hover:text-red-500 cursor-pointer transition-all"
+                                className="p-2 rounded-xl bg-background hover:bg-red-950/20 border border-neutral-900 text-foreground hover:text-red-500 cursor-pointer transition-all"
                                 title="Remove from wishlist"
                               >
                                 <Trash2 className="h-4 w-4" />
                               </button>
                               <button
                                 onClick={() => handleMoveToCart(product)}
-                                className="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-all"
+                                className="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-foreground text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-all"
                                 title="Move item to shopping cart"
                               >
                                 <ShoppingBag className="h-3.5 w-3.5" /> Move to Cart
@@ -1289,7 +1282,7 @@ function DashboardContent() {
                 {activeTab === 'notifications' && (
                   <div className="space-y-6">
                     <div className="flex justify-between items-center border-b border-neutral-900 pb-3">
-                      <h3 className="text-base font-bold text-neutral-300 flex items-center gap-2">
+                      <h3 className="text-base font-bold text-foreground flex items-center gap-2">
                         <Bell className="h-5 w-5 text-red-500" /> Notification Center
                       </h3>
                       {notifications.length > 0 && (
@@ -1303,10 +1296,10 @@ function DashboardContent() {
                     </div>
 
                     {notifications.length === 0 ? (
-                      <div className="text-center py-16 bg-neutral-900/10 border border-neutral-900 border-dashed rounded-3xl">
-                        <Bell className="h-12 w-12 text-neutral-600 mx-auto mb-2" />
-                        <p className="text-sm font-semibold text-neutral-300">All caught up!</p>
-                        <p className="text-xs text-neutral-500 mt-1">
+                      <div className="text-center py-16 bg-card/10 border border-neutral-900 border-dashed rounded-3xl">
+                        <Bell className="h-12 w-12 text-foreground mx-auto mb-2" />
+                        <p className="text-sm font-semibold text-foreground">All caught up!</p>
+                        <p className="text-xs text-foreground mt-1">
                           We will notify you about offers and deliveries here.
                         </p>
                       </div>
@@ -1315,21 +1308,19 @@ function DashboardContent() {
                         {notifications.map((notif) => (
                           <div
                             key={notif.id}
-                            className={`p-4 rounded-2xl bg-neutral-900/20 border flex justify-between items-start gap-4 shadow-sm transition-colors duration-150 ${
-                              notif.read
-                                ? 'border-neutral-900/50 opacity-70'
-                                : 'border-red-500/10 bg-red-500/[0.01]'
-                            }`}
+                            className={`p-4 rounded-2xl bg-card/20 border flex justify-between items-start gap-4 shadow-sm transition-colors duration-150 ${notif.read
+                              ? 'border-neutral-900/50 opacity-70'
+                              : 'border-red-500/10 bg-red-500/[0.01]'
+                              }`}
                           >
                             <div className="flex gap-3">
                               <span
-                                className={`p-2 rounded-xl mt-0.5 flex items-center justify-center shrink-0 ${
-                                  notif.type === 'order'
-                                    ? 'bg-amber-950/20 text-amber-500'
-                                    : notif.type === 'coupon'
-                                      ? 'bg-red-950/20 text-red-500'
-                                      : 'bg-emerald-950/20 text-emerald-500'
-                                }`}
+                                className={`p-2 rounded-xl mt-0.5 flex items-center justify-center shrink-0 ${notif.type === 'order'
+                                  ? 'bg-amber-950/20 text-amber-500'
+                                  : notif.type === 'coupon'
+                                    ? 'bg-red-950/20 text-red-500'
+                                    : 'bg-emerald-950/20 text-emerald-500'
+                                  }`}
                               >
                                 {notif.type === 'order' ? (
                                   <ShoppingBag className="h-4.5 w-4.5" />
@@ -1338,16 +1329,16 @@ function DashboardContent() {
                                 )}
                               </span>
                               <div>
-                                <h4 className="text-sm font-bold text-neutral-200 flex items-center gap-2">
+                                <h4 className="text-sm font-bold text-foreground flex items-center gap-2">
                                   {notif.title}
                                   {!notif.read && (
                                     <span className="h-1.5 w-1.5 rounded-full bg-red-500 block shrink-0" />
                                   )}
                                 </h4>
-                                <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
+                                <p className="text-xs text-foreground mt-1 leading-relaxed">
                                   {notif.content}
                                 </p>
-                                <span className="text-[10px] text-neutral-500 font-bold block mt-1.5">
+                                <span className="text-[10px] text-foreground font-bold block mt-1.5">
                                   {new Date(notif.createdAt).toLocaleDateString()} at{' '}
                                   {new Date(notif.createdAt).toLocaleTimeString([], {
                                     hour: '2-digit',
@@ -1361,7 +1352,7 @@ function DashboardContent() {
                               {!notif.read && (
                                 <button
                                   onClick={() => handleMarkAsRead(notif.id)}
-                                  className="p-1 text-neutral-500 hover:text-emerald-500 cursor-pointer"
+                                  className="p-1 text-foreground hover:text-emerald-500 cursor-pointer"
                                   title="Mark as read"
                                 >
                                   <Check className="h-4 w-4" />
@@ -1369,7 +1360,7 @@ function DashboardContent() {
                               )}
                               <button
                                 onClick={() => handleDeleteNotification(notif.id)}
-                                className="p-1 text-neutral-500 hover:text-red-500 cursor-pointer"
+                                className="p-1 text-foreground hover:text-red-500 cursor-pointer"
                                 title="Remove notification"
                               >
                                 <Trash2 className="h-4 w-4" />
@@ -1385,7 +1376,7 @@ function DashboardContent() {
                 {/* 6. COUPONS TAB */}
                 {activeTab === 'coupons' && (
                   <div className="space-y-6">
-                    <h3 className="text-base font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+                    <h3 className="text-base font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
                       <Ticket className="h-5 w-5 text-red-500" /> Active Promo Coupons
                     </h3>
 
@@ -1393,7 +1384,7 @@ function DashboardContent() {
                       {coupons.map((coupon) => (
                         <div
                           key={coupon.code}
-                          className="relative p-5 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg overflow-hidden flex flex-col justify-between gap-4"
+                          className="relative p-5 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg overflow-hidden flex flex-col justify-between gap-4"
                         >
                           {/* Radial glowing design for coupons */}
                           <div className="absolute right-[-40px] top-[-40px] h-24 w-24 rounded-full bg-red-600/5 blur-xl pointer-events-none" />
@@ -1403,22 +1394,22 @@ function DashboardContent() {
                               <span className="text-sm font-extrabold text-red-500 bg-red-600/10 border border-red-500/20 px-3 py-1 rounded-xl">
                                 {coupon.code}
                               </span>
-                              <span className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider">
+                              <span className="text-[10px] text-foreground font-bold uppercase tracking-wider">
                                 Min Spend: ₹{coupon.minAmount}
                               </span>
                             </div>
-                            <h4 className="text-sm font-bold text-neutral-200 mt-4">
+                            <h4 className="text-sm font-bold text-foreground mt-4">
                               {coupon.discount > 0
                                 ? `Get ₹${coupon.discount} Discount`
                                 : 'Special Promo Offer'}
                             </h4>
-                            <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
+                            <p className="text-xs text-foreground mt-1 leading-relaxed">
                               {coupon.desc}
                             </p>
                           </div>
 
                           <div className="border-t border-neutral-900/60 pt-3 flex justify-between items-center mt-1">
-                            <span className="text-[10px] text-neutral-500 font-bold uppercase">
+                            <span className="text-[10px] text-foreground font-bold uppercase">
                               Expires: 31 Dec 2026
                             </span>
                             <button
@@ -1440,32 +1431,32 @@ function DashboardContent() {
                 {/* 7. PAYMENT HISTORY TAB */}
                 {activeTab === 'payment-history' && (
                   <div className="space-y-6">
-                    <h3 className="text-base font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+                    <h3 className="text-base font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
                       <DollarSign className="h-5 w-5 text-red-500" /> Transaction Payment History
                     </h3>
 
                     {loadingOrders ? (
                       <div className="flex flex-col items-center justify-center py-20 gap-2">
                         <Loader2 className="h-8 w-8 text-red-500 animate-spin" />
-                        <span className="text-sm text-neutral-400 font-medium">
+                        <span className="text-sm text-foreground font-medium">
                           Retrieving transaction logs...
                         </span>
                       </div>
                     ) : orders.length === 0 ? (
-                      <div className="text-center py-16 bg-neutral-900/10 border border-neutral-900 border-dashed rounded-3xl">
-                        <DollarSign className="h-12 w-12 text-neutral-600 mx-auto mb-2" />
-                        <p className="text-sm font-semibold text-neutral-300">
+                      <div className="text-center py-16 bg-card/10 border border-neutral-900 border-dashed rounded-3xl">
+                        <DollarSign className="h-12 w-12 text-foreground mx-auto mb-2" />
+                        <p className="text-sm font-semibold text-foreground">
                           No transactions recorded
                         </p>
-                        <p className="text-xs text-neutral-500 mt-1">
+                        <p className="text-xs text-foreground mt-1">
                           Purchase items from the shop to activate ledger.
                         </p>
                       </div>
                     ) : (
-                      <div className="p-4 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg overflow-x-auto">
+                      <div className="p-4 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                           <thead>
-                            <tr className="border-b border-neutral-900/60 text-[10px] text-neutral-500 font-bold uppercase tracking-wider">
+                            <tr className="border-b border-neutral-900/60 text-[10px] text-foreground font-bold uppercase tracking-wider">
                               <th className="py-3 px-2">Transaction ID</th>
                               <th className="py-3 px-2">Date</th>
                               <th className="py-3 px-2">Payment Channel</th>
@@ -1477,27 +1468,26 @@ function DashboardContent() {
                             {orders.map((order) => (
                               <tr
                                 key={order.id}
-                                className="hover:bg-neutral-900/10 transition-colors"
+                                className="hover:bg-card/10 transition-colors"
                               >
-                                <td className="py-3.5 px-2 font-bold text-neutral-200">
+                                <td className="py-3.5 px-2 font-bold text-foreground">
                                   #FEX-TXN-{order.id}93
                                 </td>
-                                <td className="py-3.5 px-2 text-neutral-400">
+                                <td className="py-3.5 px-2 text-foreground">
                                   {new Date(order.createdAt).toLocaleDateString()}
                                 </td>
-                                <td className="py-3.5 px-2 text-neutral-400">Razorpay Sandbox</td>
-                                <td className="py-3.5 px-2 font-bold text-neutral-200">
+                                <td className="py-3.5 px-2 text-foreground">Razorpay Sandbox</td>
+                                <td className="py-3.5 px-2 font-bold text-foreground">
                                   ₹{order.totalAmount}
                                 </td>
                                 <td className="py-3.5 px-2 text-right">
                                   <span
-                                    className={`px-2 py-0.5 rounded-md text-[9px] font-bold uppercase ${
-                                      order.paymentStatus === 'paid'
-                                        ? 'bg-emerald-950/30 text-emerald-500 border border-emerald-950/40'
-                                        : order.paymentStatus === 'failed'
-                                          ? 'bg-red-950/30 text-red-500 border border-red-950/40'
-                                          : 'bg-amber-950/30 text-amber-500 border border-amber-950/40'
-                                    }`}
+                                    className={`px-2 py-0.5 rounded-md text-[9px] font-bold uppercase ${order.paymentStatus === 'paid'
+                                      ? 'bg-emerald-950/30 text-emerald-500 border border-emerald-950/40'
+                                      : order.paymentStatus === 'failed'
+                                        ? 'bg-red-950/30 text-red-500 border border-red-950/40'
+                                        : 'bg-amber-950/30 text-amber-500 border border-amber-950/40'
+                                      }`}
                                   >
                                     {order.paymentStatus}
                                   </span>
@@ -1514,18 +1504,18 @@ function DashboardContent() {
                 {/* 8. SETTINGS TAB */}
                 {activeTab === 'settings' && (
                   <div className="space-y-6">
-                    <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-6">
-                      <h3 className="text-base font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+                    <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-6">
+                      <h3 className="text-base font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
                         <SettingsIcon className="h-5 w-5 text-red-500" /> System Preferences
                       </h3>
 
-                      <div className="space-y-4 text-xs font-semibold text-neutral-300">
+                      <div className="space-y-4 text-xs font-semibold text-foreground">
                         <div className="flex justify-between items-center py-2 border-b border-neutral-900/40">
                           <div>
-                            <h4 className="text-sm font-bold text-neutral-200">
+                            <h4 className="text-sm font-bold text-foreground">
                               Order Updates email notifications
                             </h4>
-                            <p className="text-[10px] text-neutral-500 mt-0.5">
+                            <p className="text-[10px] text-foreground mt-0.5">
                               Receive confirmations for deliveries and cancellations
                             </p>
                           </div>
@@ -1537,10 +1527,10 @@ function DashboardContent() {
                         </div>
                         <div className="flex justify-between items-center py-2 border-b border-neutral-900/40">
                           <div>
-                            <h4 className="text-sm font-bold text-neutral-200">
+                            <h4 className="text-sm font-bold text-foreground">
                               Special offers & coupons alerts
                             </h4>
-                            <p className="text-[10px] text-neutral-500 mt-0.5">
+                            <p className="text-[10px] text-foreground mt-0.5">
                               Get notified when pizza promos are launched
                             </p>
                           </div>
@@ -1552,10 +1542,10 @@ function DashboardContent() {
                         </div>
                         <div className="flex justify-between items-center py-2">
                           <div>
-                            <h4 className="text-sm font-bold text-neutral-200">
+                            <h4 className="text-sm font-bold text-foreground">
                               Analytical Cookie Tracking
                             </h4>
-                            <p className="text-[10px] text-neutral-500 mt-0.5">
+                            <p className="text-[10px] text-foreground mt-0.5">
                               Allow cookies to save your recently viewed product items list
                             </p>
                           </div>
@@ -1569,10 +1559,10 @@ function DashboardContent() {
                     </div>
 
                     <div className="p-6 rounded-3xl bg-red-950/10 border border-red-900/20 shadow-lg space-y-4">
-                      <h4 className="text-sm font-black text-red-400 flex items-center gap-2">
+                      <h4 className="text-sm font-black text-red-700 flex items-center gap-2">
                         <AlertTriangle className="h-5 w-5 text-red-500" /> Danger Zone
                       </h4>
-                      <p className="text-xs text-neutral-400 leading-relaxed max-w-xl">
+                      <p className="text-xs text-foreground leading-relaxed max-w-xl">
                         Deleting your account will erase your entire pizza points ledger, order
                         histories, saved addresses list, and details permanently.
                       </p>
@@ -1580,7 +1570,7 @@ function DashboardContent() {
                         onClick={() =>
                           addToast('Account deletion disabled in sandbox mode.', 'error')
                         }
-                        className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl cursor-pointer"
+                        className="px-4 py-2 bg-red-600 hover:bg-red-700 text-foreground text-xs font-bold uppercase tracking-wider rounded-xl cursor-pointer"
                       >
                         Request Deactivation
                       </button>
@@ -1593,7 +1583,7 @@ function DashboardContent() {
         </section>
 
         {/* Recently Viewed and Recommendations Carousels */}
-        <section className="bg-neutral-950 border-t border-neutral-900 py-12">
+        <section className="bg-background border-t border-neutral-900 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ProductRecommendations />
           </div>
@@ -1602,34 +1592,34 @@ function DashboardContent() {
         {/* Saved Address creation/editing Dialog modal overlay */}
         <AnimatePresence>
           {isAddressModalOpen && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-md">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
-                className="bg-neutral-950 border border-neutral-900 text-neutral-100 max-w-md w-full rounded-3xl p-6 shadow-2xl relative"
+                className="bg-background border border-neutral-900 text-foreground max-w-md w-full rounded-3xl p-6 shadow-2xl relative"
               >
                 <button
                   onClick={() => setIsAddressModalOpen(false)}
-                  className="absolute right-4 top-4 p-1.5 rounded-xl hover:bg-neutral-900 transition-colors text-neutral-400 hover:text-white cursor-pointer"
+                  className="absolute right-4 top-4 p-1.5 rounded-xl hover:bg-card transition-colors text-foreground hover:text-primary cursor-pointer"
                 >
                   <X className="h-4 w-4" />
                 </button>
 
-                <h3 className="text-base font-black text-neutral-200 flex items-center gap-2 border-b border-neutral-900 pb-3.5 mb-4">
+                <h3 className="text-base font-black text-foreground flex items-center gap-2 border-b border-neutral-900 pb-3.5 mb-4">
                   <MapPin className="h-5 w-5 text-red-500" />
                   {editingAddress ? 'Modify Address' : 'New Address'}
                 </h3>
 
                 <form onSubmit={handleSaveAddress} className="space-y-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                    <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                       Address Nickname
                     </label>
                     <select
                       value={addrName}
                       onChange={(e) => setAddrName(e.target.value)}
-                      className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                      className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                     >
                       <option value="Home">Home</option>
                       <option value="Office">Office</option>
@@ -1639,7 +1629,7 @@ function DashboardContent() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                    <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                       Street / Locality
                     </label>
                     <input
@@ -1647,14 +1637,14 @@ function DashboardContent() {
                       value={addrStreet}
                       onChange={(e) => setAddrStreet(e.target.value)}
                       placeholder="e.g. Block C, stripe towers, Sector 62"
-                      className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                      className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                       required
                     />
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                      <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                         City
                       </label>
                       <input
@@ -1662,12 +1652,12 @@ function DashboardContent() {
                         value={addrCity}
                         onChange={(e) => setAddrCity(e.target.value)}
                         placeholder="e.g. Vizianagaram"
-                        className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                        className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                         required
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                      <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                         State
                       </label>
                       <input
@@ -1675,7 +1665,7 @@ function DashboardContent() {
                         value={addrState}
                         onChange={(e) => setAddrState(e.target.value)}
                         placeholder="e.g. Uttar Pradesh"
-                        className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                        className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                         required
                       />
                     </div>
@@ -1683,7 +1673,7 @@ function DashboardContent() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+                      <label className="text-xs font-bold text-foreground uppercase tracking-wider">
                         ZIP Postal Code (India)
                       </label>
                       <input
@@ -1692,7 +1682,7 @@ function DashboardContent() {
                         onChange={(e) => setAddrZip(e.target.value)}
                         placeholder="e.g. 201301"
                         maxLength={6}
-                        className="w-full bg-neutral-950 border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-neutral-200 outline-none"
+                        className="w-full bg-background border border-neutral-900 focus:border-red-500 rounded-xl px-4 py-2.5 text-sm text-foreground outline-none"
                         required
                       />
                     </div>
@@ -1706,7 +1696,7 @@ function DashboardContent() {
                       />
                       <label
                         htmlFor="setDefaultAddressCheck"
-                        className="text-xs font-bold text-neutral-400 cursor-pointer"
+                        className="text-xs font-bold text-foreground cursor-pointer"
                       >
                         Set as Default Destination
                       </label>
@@ -1715,7 +1705,7 @@ function DashboardContent() {
 
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider mt-4 cursor-pointer"
+                    className="w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 text-foreground text-xs font-bold uppercase tracking-wider mt-4 cursor-pointer"
                   >
                     Save Address
                   </button>
@@ -1735,7 +1725,7 @@ export default function DashboardPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center select-none text-neutral-500">
+        <div className="min-h-screen bg-background flex flex-col items-center justify-center select-none text-foreground">
           <div className="h-8 w-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin mb-3"></div>
           <span className="text-xs font-bold uppercase tracking-wider">Loading Dashboard...</span>
         </div>

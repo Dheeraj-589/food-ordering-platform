@@ -21,9 +21,9 @@ export default function PublicRoute({ children }: PublicRouteProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4">
         <Loader2 className="h-8 w-8 text-red-500 animate-spin" />
-        <span className="text-sm font-medium text-neutral-400">Verifying session...</span>
+        <span className="text-sm font-medium text-foreground">Verifying session...</span>
       </div>
     );
   }
@@ -31,9 +31,9 @@ export default function PublicRoute({ children }: PublicRouteProps) {
   // If authenticated, prevent flash by returning a simple loading view until router redirects
   if (isAuthenticated) {
     return (
-      <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4">
         <Loader2 className="h-8 w-8 text-red-500 animate-spin" />
-        <span className="text-sm font-medium text-neutral-400">Redirecting to home...</span>
+        <span className="text-sm font-medium text-foreground">Redirecting to home...</span>
       </div>
     );
   }

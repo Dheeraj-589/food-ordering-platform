@@ -89,7 +89,7 @@ export default function OrderTrackingPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans select-none">
+      <main className="min-h-screen bg-background text-foreground flex flex-col font-sans select-none">
         <Navbar />
         <div className="flex-1 flex items-center justify-center">
           <div className="h-10 w-10 border-4 border-red-500 border-t-transparent rounded-full animate-spin" />
@@ -101,19 +101,19 @@ export default function OrderTrackingPage() {
 
   if (!order) {
     return (
-      <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans select-none">
+      <main className="min-h-screen bg-background text-foreground flex flex-col font-sans select-none">
         <Navbar />
         <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center">
           <AlertTriangle className="h-12 w-12 text-red-500" />
           <div>
-            <h3 className="text-base font-bold text-neutral-300">Order not found</h3>
-            <p className="text-xs text-neutral-600 mt-1">
+            <h3 className="text-base font-bold text-foreground">Order not found</h3>
+            <p className="text-xs text-foreground mt-1">
               This order ID may not exist or belongs to another user.
             </p>
           </div>
           <Button
             onClick={() => router.push('/menu')}
-            className="bg-neutral-900 border border-neutral-800 text-neutral-300 text-xs py-2 px-4 rounded-xl"
+            className="bg-card border border-neutral-800 text-foreground text-xs py-2 px-4 rounded-xl"
           >
             Return to Menu
           </Button>
@@ -249,9 +249,8 @@ export default function OrderTrackingPage() {
               <span>Subtotal:</span>
               <span>₹${subtotal}</span>
             </div>
-            ${
-              discount > 0
-                ? `
+            ${discount > 0
+        ? `
             <div class="total-row" style="color: #dc2626;">
               <span>Coupon Discount (${order.couponCode || 'Promo'}):</span>
               <span>-₹${discount}</span>
@@ -261,8 +260,8 @@ export default function OrderTrackingPage() {
               <span>₹${discount}</span>
             </div>
             `
-                : ''
-            }
+        : ''
+      }
             <div class="total-row">
               <span>Delivery Fee:</span>
               <span>₹${delivery}</span>
@@ -325,7 +324,7 @@ export default function OrderTrackingPage() {
   const minutesRemaining = Math.max(2, totalETAMinutes - elapsedMinutes);
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans select-none overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground flex flex-col font-sans select-none overflow-x-hidden">
       <Navbar />
 
       {/* Page Header */}
@@ -334,14 +333,14 @@ export default function OrderTrackingPage() {
           <div>
             <button
               onClick={() => router.push('/dashboard?tab=orders')}
-              className="flex items-center gap-1.5 text-[10px] font-bold text-neutral-500 hover:text-white transition-colors cursor-pointer mb-2"
+              className="flex items-center gap-1.5 text-[10px] font-bold text-foreground hover:text-primary transition-colors cursor-pointer mb-2"
             >
               <ChevronLeft className="h-3.5 w-3.5" /> BACK TO DASHBOARD
             </button>
-            <h1 className="text-2xl font-extrabold text-neutral-100 tracking-tight flex items-center gap-2.5">
+            <h1 className="text-2xl font-extrabold text-foreground tracking-tight flex items-center gap-2.5">
               Live Order Tracker: #FEX-{order.id}
             </h1>
-            <p className="text-xs text-neutral-500 font-semibold mt-1 uppercase tracking-wider">
+            <p className="text-xs text-foreground font-semibold mt-1 uppercase tracking-wider">
               Real-time progression status using Sandbox Simulation Fallback
             </p>
           </div>
@@ -349,14 +348,14 @@ export default function OrderTrackingPage() {
           <div className="flex gap-2">
             <Button
               onClick={handlePrintInvoice}
-              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 cursor-pointer shadow"
+              className="bg-card hover:bg-neutral-800 border border-neutral-800 text-foreground text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 cursor-pointer shadow"
             >
               <Printer className="h-3.5 w-3.5" /> Print Invoice
             </Button>
             <Button
               onClick={() => fetchOrder(true)}
               disabled={refreshing}
-              className="bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 cursor-pointer shadow"
+              className="bg-card hover:bg-neutral-800 border border-neutral-800 text-foreground text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 cursor-pointer shadow"
             >
               <RefreshCw className={`h-3.5 w-3.5 ${refreshing ? 'animate-spin' : ''}`} />
               Refresh
@@ -376,7 +375,7 @@ export default function OrderTrackingPage() {
                 <AlertTriangle className="h-6 w-6 text-red-500 shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-sm font-bold">Transaction Failed</h4>
-                  <p className="text-xs text-neutral-400 mt-1 max-w-md leading-relaxed">
+                  <p className="text-xs text-foreground mt-1 max-w-md leading-relaxed">
                     This order was saved, but payment failed. Simulating retry will update the
                     payment flag.
                   </p>
@@ -386,7 +385,7 @@ export default function OrderTrackingPage() {
               <Button
                 onClick={() => setPaymentDialogOpen(true)}
                 disabled={paying}
-                className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2 px-5 rounded-xl cursor-pointer"
+                className="bg-red-600 hover:bg-red-700 text-foreground font-bold text-xs py-2 px-5 rounded-xl cursor-pointer"
               >
                 RETRY PAYMENT
               </Button>
@@ -394,9 +393,9 @@ export default function OrderTrackingPage() {
           )}
 
           {/* Stepper tracking design */}
-          <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-6">
+          <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-6">
             <div className="flex justify-between items-center border-b border-neutral-900 pb-3">
-              <h3 className="text-sm font-bold text-neutral-300">Delivery Status Timeline</h3>
+              <h3 className="text-sm font-bold text-foreground">Delivery Status Timeline</h3>
               {currentStage !== 'delivered' && currentStage !== 'cancelled' && (
                 <span className="text-[10px] font-bold text-red-500 bg-red-500/10 border border-red-500/20 px-2.5 py-0.5 rounded-md flex items-center gap-1 animate-pulse">
                   <Clock className="h-3 w-3" /> ETA: {minutesRemaining} Mins
@@ -405,7 +404,7 @@ export default function OrderTrackingPage() {
             </div>
 
             {currentStage === 'cancelled' ? (
-              <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-900 text-center text-xs font-bold text-red-500">
+              <div className="p-4 rounded-2xl bg-background border border-neutral-900 text-center text-xs font-bold text-red-500">
                 This order has been CANCELLED.
               </div>
             ) : (
@@ -422,12 +421,12 @@ export default function OrderTrackingPage() {
                       <span className="text-xs font-black text-red-500">{progressPercent}%</span>
                     </div>
                   </div>
-                  <div className="overflow-hidden h-2.5 text-xs flex rounded-full bg-neutral-950 border border-neutral-900">
+                  <div className="overflow-hidden h-2.5 text-xs flex rounded-full bg-background border border-neutral-900">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${progressPercent}%` }}
                       transition={{ duration: 0.8, ease: 'easeOut' }}
-                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-red-600 to-amber-500"
+                      className="shadow-none flex flex-col text-center whitespace-nowrap text-foreground justify-center bg-gradient-to-r from-red-600 to-amber-500"
                     />
                   </div>
                 </div>
@@ -446,13 +445,12 @@ export default function OrderTrackingPage() {
                       <div key={step.id} className="relative">
                         {/* Bullet indicators */}
                         <span
-                          className={`absolute left-[-31px] top-1.5 flex h-4.5 w-4.5 items-center justify-center rounded-full border transition-all ${
-                            isCompleted
-                              ? 'bg-emerald-600 border-emerald-600 text-white shadow shadow-emerald-950/20'
-                              : isActive
-                                ? 'bg-red-600 border-red-600 text-white animate-pulse'
-                                : 'bg-neutral-950 border-neutral-900 text-neutral-600'
-                          }`}
+                          className={`absolute left-[-31px] top-1.5 flex h-4.5 w-4.5 items-center justify-center rounded-full border transition-all ${isCompleted
+                            ? 'bg-emerald-600 border-emerald-600 text-foreground shadow shadow-emerald-950/20'
+                            : isActive
+                              ? 'bg-red-600 border-red-600 text-foreground animate-pulse'
+                              : 'bg-background border-neutral-900 text-foreground'
+                            }`}
                         >
                           {isCompleted ? (
                             <Check className="h-3 w-3 stroke-[3px]" />
@@ -464,13 +462,12 @@ export default function OrderTrackingPage() {
                         <div className="flex justify-between items-start">
                           <div className="space-y-1">
                             <h4
-                              className={`text-xs font-extrabold flex items-center gap-2 ${
-                                isCompleted
-                                  ? 'text-neutral-400'
-                                  : isActive
-                                    ? 'text-red-500'
-                                    : 'text-neutral-600'
-                              }`}
+                              className={`text-xs font-extrabold flex items-center gap-2 ${isCompleted
+                                ? 'text-foreground'
+                                : isActive
+                                  ? 'text-red-500'
+                                  : 'text-foreground'
+                                }`}
                             >
                               {step.label}
                               {isActive && (
@@ -480,16 +477,15 @@ export default function OrderTrackingPage() {
                               )}
                             </h4>
                             <p
-                              className={`text-[10px] leading-relaxed ${
-                                isFuture ? 'text-neutral-700' : 'text-neutral-500'
-                              }`}
+                              className={`text-[10px] leading-relaxed ${isFuture ? 'text-neutral-700' : 'text-foreground'
+                                }`}
                             >
                               {step.desc}
                             </p>
                           </div>
 
                           {!isFuture && (
-                            <span className="text-[9px] font-bold text-neutral-500">
+                            <span className="text-[9px] font-bold text-foreground">
                               {timestamp.toLocaleTimeString([], {
                                 hour: '2-digit',
                                 minute: '2-digit',
@@ -507,10 +503,10 @@ export default function OrderTrackingPage() {
 
           {/* Premium Vector Delivery Map Placeholder */}
           {currentStage !== 'cancelled' && (
-            <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
-              <h3 className="text-sm font-bold text-neutral-300">Live Delivery Route Map</h3>
+            <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
+              <h3 className="text-sm font-bold text-foreground">Live Delivery Route Map</h3>
 
-              <div className="relative h-64 w-full bg-neutral-950 border border-neutral-900 rounded-2xl overflow-hidden flex items-center justify-center select-none">
+              <div className="relative h-64 w-full bg-background border border-neutral-900 rounded-2xl overflow-hidden flex items-center justify-center select-none">
                 {/* SVG Route map path */}
                 <svg
                   className="absolute inset-0 h-full w-full pointer-events-none"
@@ -558,7 +554,7 @@ export default function OrderTrackingPage() {
                   <div className="h-6 w-6 rounded-full bg-red-600 border border-red-500 flex items-center justify-center shadow-lg shadow-red-950/20">
                     <span className="text-[10px]">🍕</span>
                   </div>
-                  <span className="text-[8px] font-bold text-neutral-500 mt-1 uppercase tracking-wider">
+                  <span className="text-[8px] font-bold text-foreground mt-1 uppercase tracking-wider">
                     Kitchen
                   </span>
                 </div>
@@ -566,7 +562,7 @@ export default function OrderTrackingPage() {
                 {/* Delivery Bike (moving relative to the index) */}
                 {currentStageIndex >= 1 && currentStageIndex <= 4 && (
                   <motion.div
-                    className="absolute flex items-center justify-center p-2 bg-neutral-900 border border-neutral-800 rounded-full shadow-xl z-10"
+                    className="absolute flex items-center justify-center p-2 bg-card border border-neutral-800 rounded-full shadow-xl z-10"
                     // Animate the offset of the bike along the path
                     animate={{
                       left:
@@ -595,7 +591,7 @@ export default function OrderTrackingPage() {
                 {/* Destination Home Pin Marker */}
                 <div className="absolute right-[45px] top-[95px] flex flex-col items-center">
                   <div className="h-7 w-7 rounded-full bg-emerald-600 border border-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-950/20 animate-bounce">
-                    <MapPin className="h-4 w-4 text-white" />
+                    <MapPin className="h-4 w-4 text-foreground" />
                   </div>
                   <span className="text-[8px] font-bold text-emerald-500 mt-1 uppercase tracking-wider">
                     Home
@@ -603,13 +599,13 @@ export default function OrderTrackingPage() {
                 </div>
 
                 {/* Current overlay status indicator */}
-                <div className="absolute bottom-4 left-4 right-4 py-2 px-4 bg-neutral-900/90 border border-neutral-800/80 backdrop-blur-md rounded-xl flex items-center gap-3">
+                <div className="absolute bottom-4 left-4 right-4 py-2 px-4 bg-card/90 border border-neutral-800/80 backdrop-blur-md rounded-xl flex items-center gap-3">
                   <Bike className="h-4.5 w-4.5 text-red-500" />
                   <div>
-                    <p className="text-[10px] text-neutral-500 font-bold uppercase">
+                    <p className="text-[10px] text-foreground font-bold uppercase">
                       Current Delivery Stage
                     </p>
-                    <p className="text-xs font-bold text-neutral-200 mt-0.5">
+                    <p className="text-xs font-bold text-foreground mt-0.5">
                       {currentStage === 'delivered'
                         ? 'Rider completed delivery at destination'
                         : currentStage === 'out_for_delivery'
@@ -625,8 +621,8 @@ export default function OrderTrackingPage() {
 
         {/* Right Section: Purchased Order items list and Calculations */}
         <div className="w-full lg:col-span-1 space-y-6">
-          <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
-            <h3 className="text-sm font-bold text-neutral-300 border-b border-neutral-900 pb-3">
+          <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
+            <h3 className="text-sm font-bold text-foreground border-b border-neutral-900 pb-3">
               Order Items
             </h3>
             <div className="space-y-3">
@@ -636,33 +632,33 @@ export default function OrderTrackingPage() {
                   className="flex justify-between items-start py-2 border-b border-neutral-950 text-xs"
                 >
                   <div>
-                    <h4 className="font-bold text-neutral-300">{item.product.name}</h4>
-                    <span className="text-[10px] text-neutral-500">Qty: {item.quantity}</span>
+                    <h4 className="font-bold text-foreground">{item.product.name}</h4>
+                    <span className="text-[10px] text-foreground">Qty: {item.quantity}</span>
                     {item.specialInstructions && item.specialInstructions.startsWith('{')
                       ? (() => {
-                          try {
-                            const options = JSON.parse(item.specialInstructions);
-                            return (
-                              <p className="text-[9px] text-neutral-500 font-semibold mt-0.5">
-                                {options.size && `Size: ${options.size}`}
-                                {options.crust && ` | Crust: ${options.crust}`}
-                                {options.extraCheese && ` | Extra Cheese`}
-                                {options.extraToppings &&
-                                  options.extraToppings.length > 0 &&
-                                  ` | Toppings: ${options.extraToppings.join(', ')}`}
-                              </p>
-                            );
-                          } catch (e) {
-                            return null;
-                          }
-                        })()
+                        try {
+                          const options = JSON.parse(item.specialInstructions);
+                          return (
+                            <p className="text-[9px] text-foreground font-semibold mt-0.5">
+                              {options.size && `Size: ${options.size}`}
+                              {options.crust && ` | Crust: ${options.crust}`}
+                              {options.extraCheese && ` | Extra Cheese`}
+                              {options.extraToppings &&
+                                options.extraToppings.length > 0 &&
+                                ` | Toppings: ${options.extraToppings.join(', ')}`}
+                            </p>
+                          );
+                        } catch (e) {
+                          return null;
+                        }
+                      })()
                       : item.specialInstructions && (
-                          <p className="text-[9px] text-neutral-500 font-semibold mt-0.5">
-                            {item.specialInstructions}
-                          </p>
-                        )}
+                        <p className="text-[9px] text-foreground font-semibold mt-0.5">
+                          {item.specialInstructions}
+                        </p>
+                      )}
                   </div>
-                  <span className="font-extrabold text-neutral-400 shrink-0">
+                  <span className="font-extrabold text-foreground shrink-0">
                     ₹{getOrderItemPrice(item)}
                   </span>
                 </div>
@@ -671,8 +667,8 @@ export default function OrderTrackingPage() {
           </div>
 
           {/* Price Calculations */}
-          <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4 text-xs font-semibold text-neutral-400">
-            <h3 className="text-sm font-bold text-neutral-300 border-b border-neutral-900 pb-3">
+          <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4 text-xs font-semibold text-foreground">
+            <h3 className="text-sm font-bold text-foreground border-b border-neutral-900 pb-3">
               Summary
             </h3>
 
@@ -691,7 +687,7 @@ export default function OrderTrackingPage() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center text-sm font-extrabold text-neutral-100 pt-1">
+            <div className="flex justify-between items-center text-sm font-extrabold text-foreground pt-1">
               <span>Grand Total</span>
               <span className="text-red-500 text-base">
                 ₹
@@ -703,24 +699,23 @@ export default function OrderTrackingPage() {
           </div>
 
           {/* Delivery Destination */}
-          <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4 text-xs">
-            <h3 className="text-sm font-bold text-neutral-300 border-b border-neutral-900 pb-3 flex items-center gap-2">
+          <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4 text-xs">
+            <h3 className="text-sm font-bold text-foreground border-b border-neutral-900 pb-3 flex items-center gap-2">
               <MapPin className="h-4.5 w-4.5 text-red-500" /> Shipping Destination
             </h3>
-            <p className="text-neutral-400 leading-relaxed font-semibold">
+            <p className="text-foreground leading-relaxed font-semibold">
               {order.deliveryAddress}
             </p>
 
             <div className="pt-3 border-t border-neutral-900 flex justify-between items-center">
-              <span className="text-neutral-500 font-bold uppercase">Payment Status</span>
+              <span className="text-foreground font-bold uppercase">Payment Status</span>
               <span
-                className={`px-2.5 py-0.5 rounded-lg text-[9px] font-extrabold uppercase ${
-                  order.paymentStatus === 'paid'
-                    ? 'bg-emerald-600/10 text-emerald-500 border border-emerald-500/20'
-                    : order.paymentStatus === 'failed'
-                      ? 'bg-red-600/10 text-red-500 border border-red-500/20'
-                      : 'bg-primary/10 text-primary border border-primary/20'
-                }`}
+                className={`px-2.5 py-0.5 rounded-lg text-[9px] font-extrabold uppercase ${order.paymentStatus === 'paid'
+                  ? 'bg-emerald-600/10 text-emerald-500 border border-emerald-500/20'
+                  : order.paymentStatus === 'failed'
+                    ? 'bg-red-600/10 text-red-500 border border-red-500/20'
+                    : 'bg-primary/10 text-primary border border-primary/20'
+                  }`}
               >
                 {order.paymentStatus}
               </span>
@@ -736,7 +731,7 @@ export default function OrderTrackingPage() {
             <DialogTitle className="text-lg font-bold flex items-center justify-center gap-2 text-foreground">
               <ShieldCheck className="h-5 w-5 text-primary" /> Retry Transaction
             </DialogTitle>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-foreground mt-1">
               Select simulation response outcome for retrying this order transaction.
             </p>
           </DialogHeader>
@@ -745,13 +740,13 @@ export default function OrderTrackingPage() {
             <div className="flex flex-col gap-2.5">
               <Button
                 onClick={() => handleRetryPayment('paid')}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-foreground font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Check className="h-4.5 w-4.5" /> Simulation: Success (PAID)
               </Button>
               <Button
                 onClick={() => handleRetryPayment('failed')}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full bg-red-600 hover:bg-red-700 text-foreground font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
               >
                 <X className="h-4.5 w-4.5" /> Simulation: Failed (FAILED)
               </Button>

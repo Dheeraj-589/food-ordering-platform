@@ -39,17 +39,17 @@ export default function BestSellerSection() {
     : products;
 
   return (
-    <section id="menu" className="w-full py-16 md:py-24 bg-neutral-950/20 select-none">
+    <section id="menu" className="w-full py-16 md:py-24 bg-background/20 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Heading */}
         <div className="text-center space-y-3">
           <span className="inline-flex items-center gap-1 text-[10px] font-extrabold tracking-widest text-red-500 bg-red-500/10 px-3 py-1 rounded-full uppercase">
             <Sparkles className="h-3.5 w-3.5" /> Explore Our Menu
           </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-100 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground tracking-tight">
             Our Freshly Baked Bestsellers
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-500 font-medium max-w-md mx-auto">
+          <p className="text-xs sm:text-sm text-foreground font-medium max-w-md mx-auto">
             Order top premium freshly prepared delicacies curated by our chefs and delivered within
             30 minutes.
           </p>
@@ -66,11 +66,11 @@ export default function BestSellerSection() {
             ))}
           </div>
         ) : filteredProducts.length === 0 ? (
-          <div className="text-center py-16 bg-neutral-900/10 border border-dashed border-neutral-900 rounded-3xl">
-            <p className="text-sm font-semibold text-neutral-400">
+          <div className="text-center py-16 bg-card/10 border border-dashed border-neutral-900 rounded-3xl">
+            <p className="text-sm font-semibold text-foreground">
               No items available in this category
             </p>
-            <p className="text-xs text-neutral-600 mt-1">
+            <p className="text-xs text-foreground mt-1">
               Please select another category to view dishes.
             </p>
           </div>

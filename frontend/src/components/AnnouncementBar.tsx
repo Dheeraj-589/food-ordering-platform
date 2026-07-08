@@ -44,7 +44,7 @@ export default function AnnouncementBar() {
   const color = colors[cycleIndex];
 
   return (
-    <div className="relative w-full h-10 bg-neutral-950 border-b border-neutral-900 overflow-hidden flex items-center justify-center z-50">
+    <div className="relative w-full h-10 bg-background border-b border-neutral-900 overflow-hidden flex items-center justify-center z-50">
       <AnimatePresence mode="wait">
         <motion.div
           key={cycleIndex}
@@ -52,9 +52,9 @@ export default function AnnouncementBar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -20, opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-2 px-4 text-xs font-semibold text-neutral-300 tracking-wide select-none"
+          className="flex items-center gap-2 px-4 text-xs font-semibold text-foreground tracking-wide select-none"
         >
-          <div className={`p-1 rounded-md bg-gradient-to-r ${color} text-white`}>
+          <div className={`p-1 rounded-md bg-gradient-to-r ${color} text-foreground`}>
             <Icon className="h-3 w-3" />
           </div>
           <span>{announcement}</span>

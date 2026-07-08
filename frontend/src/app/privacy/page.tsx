@@ -14,21 +14,21 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground flex flex-col font-sans overflow-x-hidden">
       <Navbar />
 
       <section className="max-w-3xl mx-auto px-6 py-16 md:py-24 space-y-8 flex-1">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Privacy Policy</h1>
-        <p className="text-xs text-neutral-500 font-bold">Last Updated: July 7, 2026</p>
+        <p className="text-xs text-foreground font-bold">Last Updated: July 7, 2026</p>
 
-        <div className="space-y-6 text-xs sm:text-sm text-neutral-400 font-medium leading-relaxed border-t border-neutral-900 pt-6">
+        <div className="space-y-6 text-xs sm:text-sm text-foreground font-medium leading-relaxed border-t border-neutral-900 pt-6">
           <p>
             At Foodies Express, accessible from foodies-express.com, one of our main priorities is
             the privacy of our visitors. This Privacy Policy document contains types of information
             that is collected and recorded by Foodies Express and how we use it.
           </p>
 
-          <h2 className="text-lg font-bold text-neutral-200 mt-6">1. Information We Collect</h2>
+          <h2 className="text-lg font-bold text-foreground mt-6">1. Information We Collect</h2>
           <p>
             We collect personal information that you provide to us when you register on our
             platform, place orders, update address configurations, or communicate with customer
@@ -36,7 +36,7 @@ export default function PrivacyPage() {
             and encrypted authentication details.
           </p>
 
-          <h2 className="text-lg font-bold text-neutral-200 mt-6">
+          <h2 className="text-lg font-bold text-foreground mt-6">
             2. How We Use Your Information
           </h2>
           <ul className="list-disc pl-5 space-y-2">
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
             <li>Detect and prevent transaction fraud or safety breaches.</li>
           </ul>
 
-          <h2 className="text-lg font-bold text-neutral-200 mt-6">3. Cookies and Caching</h2>
+          <h2 className="text-lg font-bold text-foreground mt-6">3. Cookies and Caching</h2>
           <p>
             Foodies Express uses standard browser cookies, local storage items, and service worker
             caches. These files enable shopping cart persistence across tabs, maintain active JWT

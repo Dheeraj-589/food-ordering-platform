@@ -241,25 +241,25 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
       {/* Header controls */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold text-neutral-100">Product Management</h2>
-          <p className="text-xs text-neutral-500 mt-1">
+          <h2 className="text-xl font-bold text-foreground">Product Management</h2>
+          <p className="text-xs text-foreground mt-1">
             Configure pricing parameters, size-price variations, ingredients lists, and media files.
           </p>
         </div>
 
         <button
           onClick={handleOpenCreate}
-          className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2.5 px-6 rounded-xl flex items-center gap-1.5 cursor-pointer shadow transition-all hover:scale-[1.02]"
+          className="bg-red-600 hover:bg-red-700 text-foreground font-bold text-xs py-2.5 px-6 rounded-xl flex items-center gap-1.5 cursor-pointer shadow transition-all hover:scale-[1.02]"
         >
           <Plus className="h-4.5 w-4.5" /> ADD NEW ITEM
         </button>
       </div>
 
       {/* Grid Table list */}
-      <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
+      <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
         <div className="overflow-x-auto rounded-2xl border border-neutral-900 max-h-[550px] overflow-y-auto scrollbar-thin">
-          <table className="w-full text-left text-xs font-semibold text-neutral-400">
-            <thead className="bg-neutral-950 text-neutral-500 font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
+          <table className="w-full text-left text-xs font-semibold text-foreground">
+            <thead className="bg-background text-foreground font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
               <tr>
                 <th className="p-4">Item Details</th>
                 <th className="p-4">Category</th>
@@ -271,24 +271,24 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
             </thead>
             <tbody className="divide-y divide-neutral-900">
               {filteredProducts.map((product) => (
-                <tr key={product.id} className="hover:bg-neutral-900/20">
+                <tr key={product.id} className="hover:bg-card/20">
                   <td className="p-4 flex items-center gap-3">
-                    <div className="h-10 w-10 bg-neutral-950 border border-neutral-800 rounded-lg overflow-hidden shrink-0">
+                    <div className="h-10 w-10 bg-background border border-neutral-800 rounded-lg overflow-hidden shrink-0">
                       <img
                         src={getProductImage(product.imageUrl, product.category, product.name)}
                         alt={product.name}
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    <span className="text-neutral-200 font-bold truncate max-w-xs">
+                    <span className="text-foreground font-bold truncate max-w-xs">
                       {product.name}
                     </span>
                   </td>
-                  <td className="p-4 uppercase text-[10px] text-neutral-500 font-bold">
+                  <td className="p-4 uppercase text-[10px] text-foreground font-bold">
                     {product.category}
                   </td>
-                  <td className="p-4 font-bold text-neutral-300">₹{product.price}</td>
-                  <td className="p-4 font-semibold text-neutral-500">
+                  <td className="p-4 font-bold text-foreground">₹{product.price}</td>
+                  <td className="p-4 font-semibold text-foreground">
                     {product.variants ? product.variants.map((v) => v.size).join(', ') : 'Standard'}
                   </td>
                   <td className="p-4">
@@ -310,13 +310,13 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
                   <td className="p-4 text-right space-x-2">
                     <button
                       onClick={() => handleOpenEdit(product)}
-                      className="p-2 rounded-lg bg-neutral-900 border border-neutral-850 hover:text-white transition-colors cursor-pointer inline-flex"
+                      className="p-2 rounded-lg bg-card border border-neutral-300/50 hover:text-primary transition-colors cursor-pointer inline-flex"
                     >
                       <Pencil className="h-3.5 w-3.5" />
                     </button>
                     <button
                       onClick={() => handleDeleteProduct(product.id)}
-                      className="p-2 rounded-lg bg-neutral-900 border border-neutral-850 hover:text-red-500 transition-colors cursor-pointer inline-flex"
+                      className="p-2 rounded-lg bg-card border border-neutral-300/50 hover:text-red-500 transition-colors cursor-pointer inline-flex"
                     >
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>
@@ -344,11 +344,11 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
 
           <form
             onSubmit={handleSubmit}
-            className="py-4 space-y-4 text-xs font-semibold text-muted-foreground"
+            className="py-4 space-y-4 text-xs font-semibold text-foreground"
           >
             {/* Title */}
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                 Item Title
               </label>
               <input
@@ -368,7 +368,7 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
 
             {/* Description */}
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                 Description
               </label>
               <textarea
@@ -383,7 +383,7 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
             <div className="grid grid-cols-2 gap-4">
               {/* Category */}
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                   Category
                 </label>
                 <select
@@ -401,7 +401,7 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
 
               {/* Price */}
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                   Base Price (INR)
                 </label>
                 <input
@@ -422,7 +422,7 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
 
             {/* Image Path and Loader */}
             <div className="space-y-2">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Menu Card Image
               </label>
               <div className="flex gap-3 items-center">
@@ -444,7 +444,7 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
                   />
                   <label
                     htmlFor="product-image-upload"
-                    className="cursor-pointer bg-primary text-white font-bold px-4 py-2.5 rounded-xl border border-primary/20 flex items-center gap-1.5 hover:bg-primary/95 text-xs shadow"
+                    className="cursor-pointer bg-primary text-foreground font-bold px-4 py-2.5 rounded-xl border border-primary/20 flex items-center gap-1.5 hover:bg-primary/95 text-xs shadow"
                   >
                     {uploadingImage ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
@@ -462,7 +462,7 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
               <div className="p-4 rounded-2xl bg-secondary border border-border space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-neutral-500 uppercase tracking-wider block">
+                    <label className="text-[9px] font-bold text-foreground uppercase tracking-wider block">
                       Sizes (Comma separated)
                     </label>
                     <input
@@ -473,7 +473,7 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-bold text-neutral-500 uppercase tracking-wider block">
+                    <label className="text-[9px] font-bold text-foreground uppercase tracking-wider block">
                       Crusts (Comma separated)
                     </label>
                     <input
@@ -486,7 +486,7 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-bold text-neutral-500 uppercase tracking-wider block">
+                  <label className="text-[9px] font-bold text-foreground uppercase tracking-wider block">
                     Extra Toppings & Price (Format: Name:Price, Comma separated)
                   </label>
                   <input
@@ -501,18 +501,18 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
 
             {/* Toggle Availability */}
             <div className="flex justify-between items-center pt-2">
-              <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
+              <span className="text-[10px] font-bold text-foreground uppercase tracking-widest">
                 Available in Catalog
               </span>
               <button
                 type="button"
                 onClick={() => setFormAvailable(!formAvailable)}
-                className="text-neutral-300 hover:text-white"
+                className="text-foreground hover:text-primary"
               >
                 {formAvailable ? (
                   <ToggleRight className="h-8 w-8 text-emerald-500" />
                 ) : (
-                  <ToggleLeft className="h-8 w-8 text-neutral-400" />
+                  <ToggleLeft className="h-8 w-8 text-foreground" />
                 )}
               </button>
             </div>
@@ -523,7 +523,7 @@ export default function ProductsTab({ products, fetchProducts, searchTerm }: Pro
                 type="button"
                 variant="outline"
                 onClick={() => setProductModalOpen(false)}
-                className="bg-transparent border-border text-muted-foreground hover:bg-secondary rounded-xl py-2 px-4 cursor-pointer"
+                className="bg-transparent border-border text-foreground hover:bg-secondary rounded-xl py-2 px-4 cursor-pointer"
               >
                 Cancel
               </Button>

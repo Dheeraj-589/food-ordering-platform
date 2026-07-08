@@ -90,10 +90,10 @@ export default function MediaTab() {
       {/* Header controls */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold text-neutral-100 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
             <ImageIcon className="h-5 w-5 text-red-500" /> Media Library
           </h2>
-          <p className="text-xs text-neutral-500 mt-1">
+          <p className="text-xs text-foreground mt-1">
             Review static assets, organize banner campaigns, and upload mock product images.
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function MediaTab() {
           />
           <label
             htmlFor="media-uploader"
-            className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow transition-transform active:scale-95"
+            className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-foreground text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow transition-transform active:scale-95"
           >
             {uploading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -121,10 +121,10 @@ export default function MediaTab() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 text-xs font-semibold text-neutral-400">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 text-xs font-semibold text-foreground">
         {/* Folders List */}
         <div className="lg:col-span-1 space-y-2">
-          <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-extrabold block mb-1">
+          <span className="text-[10px] uppercase tracking-widest text-foreground font-extrabold block mb-1">
             Library Folders
           </span>
           {foldersList.map((folder) => {
@@ -133,13 +133,12 @@ export default function MediaTab() {
               <button
                 key={folder}
                 onClick={() => setActiveFolder(folder)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all capitalize cursor-pointer text-left ${
-                  isSelected
-                    ? 'bg-neutral-900 text-red-500 border border-red-500/25 font-bold shadow'
-                    : 'bg-neutral-900/40 border border-neutral-850 hover:bg-neutral-900 text-neutral-400 hover:text-neutral-200'
-                }`}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all capitalize cursor-pointer text-left ${isSelected
+                  ? 'bg-card text-red-500 border border-red-500/25 font-bold shadow'
+                  : 'bg-card/40 border border-neutral-300/50 hover:bg-card text-foreground hover:text-primary'
+                  }`}
               >
-                <Folder className="h-4 w-4 text-neutral-500" />
+                <Folder className="h-4 w-4 text-foreground" />
                 <span>{folder}</span>
               </button>
             );
@@ -147,18 +146,18 @@ export default function MediaTab() {
         </div>
 
         {/* Files Grid preview */}
-        <div className="lg:col-span-3 bg-neutral-900/30 border border-neutral-900/60 p-6 rounded-3xl min-h-[400px]">
+        <div className="lg:col-span-3 bg-card/30 border border-neutral-900/60 p-6 rounded-3xl min-h-[400px]">
           {loading ? (
-            <div className="flex justify-center items-center h-64 text-neutral-500">
+            <div className="flex justify-center items-center h-64 text-foreground">
               Loading folder contents...
             </div>
           ) : files.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-64 text-center text-neutral-500 space-y-2 border border-dashed border-neutral-850 rounded-2xl">
+            <div className="flex flex-col items-center justify-center h-64 text-center text-foreground space-y-2 border border-dashed border-neutral-300/50 rounded-2xl">
               <ImageIcon className="h-8 w-8 text-neutral-700" />
               <span className="text-xs font-bold uppercase tracking-wider">
                 No files in directory
               </span>
-              <span className="text-[10px] text-neutral-600">
+              <span className="text-[10px] text-foreground">
                 Select another folder or upload files.
               </span>
             </div>
@@ -167,19 +166,19 @@ export default function MediaTab() {
               {files.map((file, idx) => (
                 <div
                   key={idx}
-                  className="p-3 bg-neutral-950 border border-neutral-850 rounded-2xl flex flex-col items-center gap-3 group relative hover:border-neutral-750 transition-colors"
+                  className="p-3 bg-background border border-neutral-300/50 rounded-2xl flex flex-col items-center gap-3 group relative hover:border-neutral-750 transition-colors"
                 >
                   {/* Visual Preview */}
-                  <div className="h-28 w-full bg-neutral-900 border border-neutral-850 rounded-xl overflow-hidden shrink-0 flex items-center justify-center relative">
+                  <div className="h-28 w-full bg-card border border-neutral-300/50 rounded-xl overflow-hidden shrink-0 flex items-center justify-center relative">
                     <img src={file.url} alt={file.name} className="h-full w-full object-cover" />
                   </div>
 
                   {/* Info details */}
                   <div className="w-full text-center space-y-1">
-                    <span className="text-[10px] font-bold text-neutral-300 block truncate">
+                    <span className="text-[10px] font-bold text-foreground block truncate">
                       {file.name}
                     </span>
-                    <span className="text-[8px] font-semibold text-neutral-500 block">
+                    <span className="text-[8px] font-semibold text-foreground block">
                       {(file.size / 1024).toFixed(1)} KB
                     </span>
                   </div>
@@ -188,7 +187,7 @@ export default function MediaTab() {
                   <div className="flex gap-2 w-full pt-1.5 border-t border-neutral-900 justify-center">
                     <button
                       onClick={() => handleCopyUrl(file.url, idx)}
-                      className="p-1.5 rounded-lg bg-neutral-900 border border-neutral-850 text-neutral-400 hover:text-white cursor-pointer inline-flex"
+                      className="p-1.5 rounded-lg bg-card border border-neutral-300/50 text-foreground hover:text-primary cursor-pointer inline-flex"
                       title="Copy URL"
                     >
                       {copiedIndex === idx ? (
@@ -199,7 +198,7 @@ export default function MediaTab() {
                     </button>
                     <button
                       onClick={() => handleDelete(file.name)}
-                      className="p-1.5 rounded-lg bg-neutral-900 border border-neutral-850 text-neutral-400 hover:text-red-500 cursor-pointer inline-flex"
+                      className="p-1.5 rounded-lg bg-card border border-neutral-300/50 text-foreground hover:text-red-500 cursor-pointer inline-flex"
                       title="Delete Image"
                     >
                       <Trash2 className="h-3.5 w-3.5" />

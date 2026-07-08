@@ -94,10 +94,10 @@ export default function Topbar({ user, onLogout, searchTerm, setSearchTerm }: To
   };
 
   return (
-    <header className="h-16 bg-neutral-900 border-b border-neutral-800 flex items-center justify-between px-6 sticky top-0 z-20 shrink-0 select-none">
+    <header className="h-16 bg-card border-b border-neutral-800 flex items-center justify-between px-6 sticky top-0 z-20 shrink-0 select-none">
       {/* Global Search */}
       <div className="flex-1 max-w-md relative">
-        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-neutral-500">
+        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-foreground">
           <Search className="h-4 w-4" />
         </div>
         <input
@@ -105,7 +105,7 @@ export default function Topbar({ user, onLogout, searchTerm, setSearchTerm }: To
           placeholder="Global search orders, users, catalog..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl pl-10 pr-4 py-2 text-xs text-neutral-200 placeholder-neutral-600 focus:border-red-500 focus:outline-none transition-colors"
+          className="w-full bg-background border border-neutral-800 rounded-xl pl-10 pr-4 py-2 text-xs text-foreground placeholder-neutral-600 focus:border-red-500 focus:outline-none transition-colors"
         />
       </div>
 
@@ -114,7 +114,7 @@ export default function Topbar({ user, onLogout, searchTerm, setSearchTerm }: To
         {/* Theme Toggle (keeps current palette but toggles styling indicator) */}
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className="p-2 rounded-xl bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-neutral-200 transition-colors"
+          className="p-2 rounded-xl bg-background border border-neutral-800 text-foreground hover:text-primary transition-colors"
         >
           {darkMode ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
         </button>
@@ -123,11 +123,11 @@ export default function Topbar({ user, onLogout, searchTerm, setSearchTerm }: To
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="p-2 rounded-xl bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-neutral-200 transition-colors relative"
+            className="p-2 rounded-xl bg-background border border-neutral-800 text-foreground hover:text-primary transition-colors relative"
           >
             <Bell className="h-4 w-4" />
             {unreadCount > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 h-5 w-5 bg-red-600 text-[10px] text-white font-extrabold flex items-center justify-center rounded-full border border-neutral-900 animate-bounce">
+              <span className="absolute -top-1.5 -right-1.5 h-5 w-5 bg-red-600 text-[10px] text-foreground font-extrabold flex items-center justify-center rounded-full border border-neutral-900 animate-bounce">
                 {unreadCount}
               </span>
             )}
@@ -141,14 +141,14 @@ export default function Topbar({ user, onLogout, searchTerm, setSearchTerm }: To
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute right-0 mt-2 w-80 bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl z-20 py-2"
+                  className="absolute right-0 mt-2 w-80 bg-card border border-neutral-800 rounded-2xl shadow-2xl z-20 py-2"
                 >
                   <div className="px-4 py-2 border-b border-neutral-800 flex items-center justify-between">
-                    <span className="text-xs font-bold text-neutral-200">System Notifications</span>
+                    <span className="text-xs font-bold text-foreground">System Notifications</span>
                     {unreadCount > 0 && (
                       <button
                         onClick={markAllAsRead}
-                        className="text-[10px] text-red-500 hover:text-red-400 font-bold flex items-center gap-1 cursor-pointer"
+                        className="text-[10px] text-red-500 hover:text-red-700 font-bold flex items-center gap-1 cursor-pointer"
                       >
                         <Check className="h-3 w-3" /> Mark all read
                       </button>
@@ -158,19 +158,18 @@ export default function Topbar({ user, onLogout, searchTerm, setSearchTerm }: To
                     {notifications.map((notif) => (
                       <div
                         key={notif.id}
-                        className={`p-3 text-xs transition-colors hover:bg-neutral-800/20 ${
-                          !notif.read ? 'bg-neutral-800/10' : ''
-                        }`}
+                        className={`p-3 text-xs transition-colors hover:bg-neutral-800/20 ${!notif.read ? 'bg-neutral-800/10' : ''
+                          }`}
                       >
                         <div className="flex justify-between items-start gap-2">
                           <span
-                            className={`font-bold ${!notif.read ? 'text-white' : 'text-neutral-400'}`}
+                            className={`font-bold ${!notif.read ? 'text-foreground' : 'text-foreground'}`}
                           >
                             {notif.title}
                           </span>
-                          <span className="text-[9px] text-neutral-600 shrink-0">{notif.time}</span>
+                          <span className="text-[9px] text-foreground shrink-0">{notif.time}</span>
                         </div>
-                        <p className="text-neutral-500 mt-1 leading-relaxed">{notif.message}</p>
+                        <p className="text-foreground mt-1 leading-relaxed">{notif.message}</p>
                       </div>
                     ))}
                   </div>
@@ -184,9 +183,9 @@ export default function Topbar({ user, onLogout, searchTerm, setSearchTerm }: To
         <div className="relative">
           <button
             onClick={() => setShowProfileMenu(!showProfileMenu)}
-            className="flex items-center gap-3 bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-1.5 text-left hover:border-neutral-700 transition-colors"
+            className="flex items-center gap-3 bg-background border border-neutral-800 rounded-xl px-3 py-1.5 text-left hover:border-neutral-700 transition-colors"
           >
-            <div className="h-7 w-7 bg-red-600 text-white font-extrabold flex items-center justify-center rounded-lg border border-red-500 overflow-hidden">
+            <div className="h-7 w-7 bg-red-600 text-foreground font-extrabold flex items-center justify-center rounded-lg border border-red-500 overflow-hidden">
               {user?.avatarUrl ? (
                 <img src={user.avatarUrl} alt="Avatar" className="h-full w-full object-cover" />
               ) : user?.name ? (
@@ -196,14 +195,14 @@ export default function Topbar({ user, onLogout, searchTerm, setSearchTerm }: To
               )}
             </div>
             <div className="hidden md:block shrink-0">
-              <span className="text-xs font-bold text-neutral-200 block max-w-[120px] truncate">
+              <span className="text-xs font-bold text-foreground block max-w-[120px] truncate">
                 {user?.name || 'Admin'}
               </span>
-              <span className="text-[9px] text-neutral-500 font-bold block tracking-wider uppercase">
+              <span className="text-[9px] text-foreground font-bold block tracking-wider uppercase">
                 {user?.role || 'Administrator'}
               </span>
             </div>
-            <ChevronDown className="h-3.5 w-3.5 text-neutral-500 shrink-0" />
+            <ChevronDown className="h-3.5 w-3.5 text-foreground shrink-0" />
           </button>
 
           <AnimatePresence>
@@ -214,22 +213,22 @@ export default function Topbar({ user, onLogout, searchTerm, setSearchTerm }: To
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute right-0 mt-2 w-48 bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl z-20 py-1.5 text-xs text-neutral-400"
+                  className="absolute right-0 mt-2 w-48 bg-card border border-neutral-800 rounded-2xl shadow-2xl z-20 py-1.5 text-xs text-foreground"
                 >
-                  <div className="px-4 py-2 border-b border-neutral-800 text-neutral-500 block md:hidden">
-                    <span className="font-bold text-neutral-300 block">{user?.name}</span>
+                  <div className="px-4 py-2 border-b border-neutral-800 text-foreground block md:hidden">
+                    <span className="font-bold text-foreground block">{user?.name}</span>
                     <span className="text-[10px] uppercase font-bold tracking-wider">
                       {user?.role}
                     </span>
                   </div>
                   <div className="p-1 space-y-0.5">
-                    <div className="flex items-center gap-2 px-3 py-2 rounded-xl text-neutral-500">
+                    <div className="flex items-center gap-2 px-3 py-2 rounded-xl text-foreground">
                       <Shield className="h-3.5 w-3.5" />
                       <span>Permissions Verified</span>
                     </div>
                     <button
                       onClick={onLogout}
-                      className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-red-950/20 text-neutral-400 hover:text-red-400 transition-colors text-left font-bold cursor-pointer"
+                      className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-red-950/20 text-foreground hover:text-red-700 transition-colors text-left font-bold cursor-pointer"
                     >
                       <LogOut className="h-3.5 w-3.5" />
                       <span>Log Out</span>

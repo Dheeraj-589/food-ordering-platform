@@ -234,7 +234,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
   };
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans select-none overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground flex flex-col font-sans select-none overflow-x-hidden">
       <Navbar />
 
       {/* Hero Banner Section */}
@@ -249,13 +249,13 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
             <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 w-max mx-auto border border-primary/20 mb-4">
               <Sparkles className="h-3 w-3" /> Freshly Baked & Delivered Hot
             </span>
-            <h1 className="text-4xl md:text-6xl font-extrabold text-neutral-100 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tight">
               Explore Our{' '}
               <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 Gourmet Menu
               </span>
             </h1>
-            <p className="text-sm md:text-base text-neutral-400 mt-3 max-w-2xl mx-auto font-medium leading-relaxed">
+            <p className="text-sm md:text-base text-foreground mt-3 max-w-2xl mx-auto font-medium leading-relaxed">
               From signature double-cheese sourdough pizzas to tasty pastas and sweet molten
               desserts. Customize it your way.
             </p>
@@ -267,18 +267,17 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
       <section className="max-w-7xl mx-auto px-4 py-8 md:py-12 w-full flex-1 flex flex-col lg:flex-row gap-8">
         {/* Left Side: Categories sidebar */}
         <aside className="w-full lg:w-64 shrink-0 flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible gap-2 pb-4 lg:pb-0 scrollbar-none">
-          <div className="hidden lg:block mb-4 text-xs font-bold text-neutral-500 uppercase tracking-widest px-3">
+          <div className="hidden lg:block mb-4 text-xs font-bold text-foreground uppercase tracking-widest px-3">
             Menu Categories
           </div>
           {categoriesList.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-3 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap text-left flex items-center justify-between ${
-                selectedCategory === cat.id
-                  ? 'bg-red-600 text-white shadow-lg shadow-red-950/20 scale-[1.02]'
-                  : 'bg-neutral-900/40 text-neutral-400 hover:text-white hover:bg-neutral-900/80 border border-neutral-900/60'
-              }`}
+              className={`px-4 py-3 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer whitespace-nowrap text-left flex items-center justify-between ${selectedCategory === cat.id
+                ? 'bg-red-600 text-foreground shadow-lg shadow-red-950/20 scale-[1.02]'
+                : 'bg-card/40 text-foreground hover:text-primary hover:bg-card/80 border border-neutral-900/60'
+                }`}
             >
               <span>{cat.name}</span>
               {selectedCategory === cat.id && (
@@ -294,22 +293,22 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
         {/* Right Side: Products Grid & Filters */}
         <div className="flex-1 flex flex-col gap-6">
           {/* Controls Bar */}
-          <div className="p-4 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 flex flex-col gap-4 shadow-lg">
+          <div className="p-4 rounded-3xl bg-card/20 border border-neutral-900/60 flex flex-col gap-4 shadow-lg">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               {/* Search Input */}
               <div className="relative w-full md:w-72">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-500" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search food, toppings, sides..."
-                  className="w-full bg-neutral-950/60 border border-neutral-900 rounded-2xl pl-10 pr-4 py-2 text-xs font-medium text-neutral-200 placeholder-neutral-700 focus:border-red-500/50 outline-none transition-colors"
+                  className="w-full bg-background/60 border border-neutral-900 rounded-2xl pl-10 pr-4 py-2 text-xs font-medium text-foreground placeholder:text-foreground focus:border-red-500/50 outline-none transition-colors"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground hover:text-primary"
                   >
                     <X className="h-3 w-3" />
                   </button>
@@ -319,7 +318,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
               {/* Filter Pills */}
               <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
                 {/* Veg / Non-Veg Select */}
-                <div className="flex rounded-xl bg-neutral-950 border border-neutral-900 p-1 text-[10px] font-bold">
+                <div className="flex rounded-xl bg-background border border-neutral-900 p-1 text-[10px] font-bold">
                   {[
                     { id: 'all', label: 'All' },
                     { id: 'veg', label: 'Veg' },
@@ -328,11 +327,10 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                     <button
                       key={option.id}
                       onClick={() => setVegFilter(option.id as 'all' | 'veg' | 'non-veg')}
-                      className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
-                        vegFilter === option.id
-                          ? 'bg-neutral-900 text-white'
-                          : 'text-neutral-500 hover:text-neutral-300'
-                      }`}
+                      className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${vegFilter === option.id
+                        ? 'bg-card text-foreground'
+                        : 'text-foreground hover:text-primary'
+                        }`}
                     >
                       {option.label}
                     </button>
@@ -345,7 +343,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                   onChange={(e) =>
                     setSortBy(e.target.value as 'popular' | 'newest' | 'price-low' | 'price-high')
                   }
-                  className="bg-neutral-950 border border-neutral-900 rounded-xl px-3 py-2 text-[10px] font-bold text-neutral-400 focus:border-red-500 outline-none cursor-pointer"
+                  className="bg-background border border-neutral-900 rounded-xl px-3 py-2 text-[10px] font-bold text-foreground focus:border-red-500 outline-none cursor-pointer"
                 >
                   <option value="popular">Popularity</option>
                   <option value="newest">Newest Arrived</option>
@@ -354,7 +352,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                 </select>
 
                 {/* Price Slider */}
-                <div className="flex items-center gap-2 bg-neutral-950 border border-neutral-900 px-3 py-1.5 rounded-xl text-[10px] font-bold text-neutral-400 w-full sm:w-auto justify-between">
+                <div className="flex items-center gap-2 bg-background border border-neutral-900 px-3 py-1.5 rounded-xl text-[10px] font-bold text-foreground w-full sm:w-auto justify-between">
                   <span>Max Price: ₹{maxPrice}</span>
                   <input
                     type="range"
@@ -372,12 +370,12 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
             {/* Advanced Filters Row */}
             <div className="flex flex-wrap gap-3 items-center pt-2 border-t border-neutral-900/60">
               {/* Rating Filter */}
-              <div className="flex items-center gap-1 bg-neutral-950 border border-neutral-900 px-3 py-1.5 rounded-xl text-[10px] font-bold text-neutral-400">
+              <div className="flex items-center gap-1 bg-background border border-neutral-900 px-3 py-1.5 rounded-xl text-[10px] font-bold text-foreground">
                 <span>Min Rating:</span>
                 <select
                   value={ratingFilter}
                   onChange={(e) => setRatingFilter(Number(e.target.value))}
-                  className="bg-transparent border-0 text-white outline-none cursor-pointer"
+                  className="bg-transparent border-0 text-foreground outline-none cursor-pointer"
                 >
                   <option value="0">All Ratings</option>
                   <option value="4">4.0+ Stars</option>
@@ -389,11 +387,10 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
               {/* Available Toggle */}
               <button
                 onClick={() => setAvailabilityFilter(!availabilityFilter)}
-                className={`px-3 py-1.5 rounded-xl border text-[10px] font-bold transition-all cursor-pointer ${
-                  availabilityFilter
-                    ? 'border-red-500 bg-red-500/10 text-red-500'
-                    : 'border-neutral-900 bg-neutral-950 text-neutral-400 hover:text-white'
-                }`}
+                className={`px-3 py-1.5 rounded-xl border text-[10px] font-bold transition-all cursor-pointer ${availabilityFilter
+                  ? 'border-red-500 bg-red-500/10 text-red-500'
+                  : 'border-neutral-900 bg-background text-foreground hover:text-primary'
+                  }`}
               >
                 In Stock Only
               </button>
@@ -401,11 +398,10 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
               {/* Combo Platter Toggle */}
               <button
                 onClick={() => setOffersFilter(!offersFilter)}
-                className={`px-3 py-1.5 rounded-xl border text-[10px] font-bold transition-all cursor-pointer ${
-                  offersFilter
-                    ? 'border-red-500 bg-red-500/10 text-red-500'
-                    : 'border-neutral-900 bg-neutral-950 text-neutral-400 hover:text-white'
-                }`}
+                className={`px-3 py-1.5 rounded-xl border text-[10px] font-bold transition-all cursor-pointer ${offersFilter
+                  ? 'border-red-500 bg-red-500/10 text-red-500'
+                  : 'border-neutral-900 bg-background text-foreground hover:text-primary'
+                  }`}
               >
                 Offers & Combos
               </button>
@@ -418,9 +414,9 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div
                   key={i}
-                  className="p-4 rounded-3xl bg-neutral-900/30 border border-neutral-900/60 animate-pulse space-y-4"
+                  className="p-4 rounded-3xl bg-card/30 border border-neutral-900/60 animate-pulse space-y-4"
                 >
-                  <div className="h-44 w-full bg-neutral-950 rounded-2xl" />
+                  <div className="h-44 w-full bg-background rounded-2xl" />
                   <div className="h-4 w-2/3 bg-neutral-800 rounded" />
                   <div className="h-3 w-full bg-neutral-800 rounded" />
                   <div className="h-8 w-full bg-neutral-800 rounded-xl mt-2" />
@@ -428,10 +424,10 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
               ))}
             </div>
           ) : filteredProducts.length === 0 ? (
-            <div className="text-center py-20 bg-neutral-900/10 border border-dashed border-neutral-900 rounded-3xl">
+            <div className="text-center py-20 bg-card/10 border border-dashed border-neutral-900 rounded-3xl">
               <ShoppingBag className="h-12 w-12 text-neutral-700 mx-auto mb-3" />
-              <h3 className="text-base font-bold text-neutral-300">No items match your filters</h3>
-              <p className="text-xs text-neutral-600 mt-1">
+              <h3 className="text-base font-bold text-foreground">No items match your filters</h3>
+              <p className="text-xs text-foreground mt-1">
                 Try resetting search query, veg status, or maximum price.
               </p>
               <Button
@@ -444,7 +440,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                   setAvailabilityFilter(false);
                   setOffersFilter(false);
                 }}
-                className="mt-4 bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 text-neutral-300 text-xs py-2 px-4 rounded-xl"
+                className="mt-4 bg-card border border-neutral-800 hover:bg-neutral-800 text-foreground text-xs py-2 px-4 rounded-xl"
               >
                 Reset All Filters
               </Button>
@@ -462,14 +458,14 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.3 }}
-                      className="group p-4 rounded-3xl bg-neutral-900/30 border border-neutral-900/60 hover:border-neutral-800 hover:bg-neutral-900/50 flex flex-col justify-between shadow-lg relative overflow-hidden transition-all duration-300"
+                      className="group p-4 rounded-3xl bg-card/30 border border-neutral-900/60 hover:border-neutral-800 hover:bg-card/50 flex flex-col justify-between shadow-lg relative overflow-hidden transition-all duration-300"
                     >
                       <div>
                         {/* Food Badges */}
                         <div className="absolute top-6 left-6 z-10 flex gap-1.5 items-center">
                           {product.category === 'pizza' && (
                             <span
-                              className={`px-2 py-0.5 rounded-lg text-[9px] font-extrabold text-white flex items-center gap-0.5 shadow-md ${isVeg ? 'bg-emerald-600' : 'bg-red-600'}`}
+                              className={`px-2 py-0.5 rounded-lg text-[9px] font-extrabold text-foreground flex items-center gap-0.5 shadow-md ${isVeg ? 'bg-emerald-600' : 'bg-red-600'}`}
                             >
                               {isVeg ? (
                                 <Leaf className="h-2.5 w-2.5" />
@@ -493,7 +489,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                               ? router.push(`/product/${product.id}`)
                               : handleAddToCart(product)
                           }
-                          className="h-44 w-full bg-neutral-950 border border-neutral-900/60 rounded-2xl overflow-hidden mb-4 relative cursor-pointer"
+                          className="h-44 w-full bg-background border border-neutral-900/60 rounded-2xl overflow-hidden mb-4 relative cursor-pointer"
                         >
                           <img
                             src={getProductImage(product.imageUrl, product.category, product.name)}
@@ -501,7 +497,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-3">
-                            <span className="text-[10px] font-bold bg-neutral-950/80 backdrop-blur border border-neutral-800 px-3 py-1.5 rounded-full text-white">
+                            <span className="text-[10px] font-bold bg-background/80 backdrop-blur border border-neutral-800 px-3 py-1.5 rounded-full text-foreground">
                               {product.category === 'combos'
                                 ? 'CONFIGURE COMBO'
                                 : product.category === 'pizza'
@@ -514,14 +510,14 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                         {/* Text */}
                         <div className="px-1">
                           <div className="flex items-start justify-between gap-2">
-                            <h4 className="text-sm font-bold text-neutral-200 group-hover:text-white transition-colors truncate">
+                            <h4 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors truncate">
                               {product.name}
                             </h4>
                             <span className="text-xs font-extrabold text-primary">
                               ₹{product.price}
                             </span>
                           </div>
-                          <p className="text-[11px] text-neutral-500 font-medium leading-relaxed mt-1.5 line-clamp-2">
+                          <p className="text-[11px] text-foreground font-medium leading-relaxed mt-1.5 line-clamp-2">
                             {product.description ||
                               'No description available for this delicious menu item.'}
                           </p>
@@ -532,7 +528,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                       <div className="mt-4 px-1">
                         <Button
                           onClick={() => handleAddToCart(product)}
-                          className="w-full bg-neutral-900 border border-neutral-800/80 hover:bg-red-600 hover:text-white hover:border-red-600 text-neutral-300 text-xs font-bold py-2.5 rounded-2xl transition-all flex items-center justify-center gap-1.5 group-hover:shadow-[0_4px_15px_rgba(227,24,55,0.15)] cursor-pointer"
+                          className="w-full bg-card border border-neutral-800/80 hover:bg-red-600 hover:text-primary hover:border-red-600 text-foreground text-xs font-bold py-2.5 rounded-2xl transition-all flex items-center justify-center gap-1.5 group-hover:shadow-[0_4px_15px_rgba(227,24,55,0.15)] cursor-pointer"
                         >
                           <Plus className="h-3.5 w-3.5" /> Add to Order
                         </Button>
@@ -554,7 +550,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
               <Sparkles className="h-5 w-5 text-primary" />
               Customize Combo: {selectedCombo?.name}
             </DialogTitle>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-foreground mt-1">
               {selectedCombo?.description ||
                 'Select your items below to build your customized combo platter.'}
             </p>
@@ -573,7 +569,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
 
               return (
                 <div key={slot.slotId} className="space-y-2.5">
-                  <label className="text-xs font-bold text-neutral-400 uppercase tracking-widest block">
+                  <label className="text-xs font-bold text-foreground uppercase tracking-widest block">
                     {slot.name} {slot.size ? `(${slot.size} size)` : ''}
                   </label>
 
@@ -584,11 +580,10 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                         <div
                           key={p.id}
                           onClick={() => handleSelectComboItem(slot.slotId, p)}
-                          className={`p-2.5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between items-center text-center relative overflow-hidden ${
-                            isSelected
-                              ? 'border-primary bg-primary/10 text-primary font-bold shadow-sm'
-                              : 'border-border bg-secondary text-muted-foreground hover:border-neutral-350 hover:text-foreground'
-                          }`}
+                          className={`p-2.5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between items-center text-center relative overflow-hidden ${isSelected
+                            ? 'border-primary bg-primary/10 text-primary font-bold shadow-sm'
+                            : 'border-border bg-secondary text-foreground hover:border-neutral-350 hover:text-primary'
+                            }`}
                         >
                           {isSelected && (
                             <span className="absolute top-1.5 right-1.5 p-0.5 rounded-full bg-primary text-primary-foreground">
@@ -617,7 +612,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
           {/* Foot Action */}
           <div className="border-t border-border pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 mt-4">
             <div className="text-center sm:text-left">
-              <span className="text-xs text-muted-foreground font-bold">Combo Platter Total</span>
+              <span className="text-xs text-foreground font-bold">Combo Platter Total</span>
               <p className="text-lg font-extrabold text-primary">₹{selectedCombo?.price}</p>
             </div>
 
@@ -625,7 +620,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
               <Button
                 variant="outline"
                 onClick={() => setComboModalOpen(false)}
-                className="flex-1 sm:flex-initial bg-transparent border-border text-muted-foreground hover:bg-secondary rounded-xl py-2 px-4 text-xs font-semibold cursor-pointer"
+                className="flex-1 sm:flex-initial bg-transparent border-border text-foreground hover:bg-secondary rounded-xl py-2 px-4 text-xs font-semibold cursor-pointer"
               >
                 Cancel
               </Button>
@@ -643,7 +638,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
       {/* Recently Viewed Products */}
       {recentlyViewed.length > 0 && (
         <section className="border-t border-neutral-900 pt-12 mt-12 w-full max-w-7xl mx-auto px-4 mb-8">
-          <h3 className="text-lg font-bold text-neutral-200 mb-6 flex items-center gap-2">
+          <h3 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
             <Clock className="h-5 w-5 text-red-500" /> Recently Viewed Items
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -653,9 +648,9 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                 onClick={() =>
                   p.category === 'pizza' ? router.push(`/product/${p.id}`) : handleAddToCart(p)
                 }
-                className="group p-3 rounded-2xl bg-neutral-900/20 border border-neutral-900 hover:border-neutral-800 cursor-pointer flex gap-3 shadow-md transition-all duration-300 items-center"
+                className="group p-3 rounded-2xl bg-card/20 border border-neutral-900 hover:border-neutral-800 cursor-pointer flex gap-3 shadow-md transition-all duration-300 items-center"
               >
-                <div className="h-12 w-12 bg-neutral-950 border border-neutral-900 rounded-xl overflow-hidden shrink-0">
+                <div className="h-12 w-12 bg-background border border-neutral-900 rounded-xl overflow-hidden shrink-0">
                   <img
                     src={getProductImage(p.imageUrl, p.category, p.name)}
                     alt={p.name}
@@ -663,7 +658,7 @@ export default function MenuClient({ preselectedCategory = 'all' }: MenuClientPr
                   />
                 </div>
                 <div className="min-w-0">
-                  <h4 className="text-xs font-bold text-neutral-200 truncate group-hover:text-white transition-colors">
+                  <h4 className="text-xs font-bold text-foreground truncate group-hover:text-primary transition-colors">
                     {p.name}
                   </h4>
                   <p className="text-[10px] font-bold text-amber-500 mt-0.5">₹{p.price}</p>

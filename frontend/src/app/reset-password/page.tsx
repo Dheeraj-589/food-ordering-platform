@@ -114,12 +114,12 @@ function ResetPasswordContent() {
   };
 
   return (
-    <div className="bg-neutral-900/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
+    <div className="bg-card/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-neutral-100">Reset Password</h2>
-        <p className="text-sm text-neutral-400 mt-1">
+        <h2 className="text-xl font-bold text-foreground">Reset Password</h2>
+        <p className="text-sm text-foreground mt-1">
           Provide the 6-digit OTP code sent to{' '}
-          <span className="text-neutral-300 font-semibold">{email}</span> and configure a new
+          <span className="text-foreground font-semibold">{email}</span> and configure a new
           password.
         </p>
       </div>
@@ -128,13 +128,13 @@ function ResetPasswordContent() {
         {/* OTP Code */}
         <div className="space-y-1.5">
           <div className="flex justify-between items-center">
-            <Label htmlFor="otp" className="text-xs font-semibold text-neutral-400">
+            <Label htmlFor="otp" className="text-xs font-semibold text-foreground">
               6-Digit OTP Code
             </Label>
             <button
               type="button"
               onClick={handleResendOtp}
-              className="text-xs text-red-500 hover:text-red-400 font-medium transition-all"
+              className="text-xs text-red-500 hover:text-red-700 font-medium transition-all"
             >
               Resend Code?
             </button>
@@ -144,7 +144,7 @@ function ResetPasswordContent() {
             type="text"
             maxLength={6}
             placeholder="123456"
-            className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40 text-center tracking-widest text-lg font-bold"
+            className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40 text-center tracking-widest text-lg font-bold"
             disabled={isLoading}
             {...register('otp')}
           />
@@ -155,7 +155,7 @@ function ResetPasswordContent() {
 
         {/* New Password */}
         <div className="space-y-1.5">
-          <Label htmlFor="password" className="text-xs font-semibold text-neutral-400">
+          <Label htmlFor="password" className="text-xs font-semibold text-foreground">
             New Password
           </Label>
           <div className="relative">
@@ -163,14 +163,14 @@ function ResetPasswordContent() {
               id="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="••••••••"
-              className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40 pr-10"
+              className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40 pr-10"
               disabled={isLoading}
               {...register('password')}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 focus:outline-none"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground hover:text-primary focus:outline-none"
             >
               {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             </button>
@@ -182,14 +182,14 @@ function ResetPasswordContent() {
 
         {/* Confirm Password */}
         <div className="space-y-1.5">
-          <Label htmlFor="confirmPassword" className="text-xs font-semibold text-neutral-400">
+          <Label htmlFor="confirmPassword" className="text-xs font-semibold text-foreground">
             Confirm Password
           </Label>
           <Input
             id="confirmPassword"
             type={showPassword ? 'text' : 'password'}
             placeholder="••••••••"
-            className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
+            className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
             disabled={isLoading}
             {...register('confirmPassword')}
           />
@@ -202,8 +202,8 @@ function ResetPasswordContent() {
 
         {/* Real-time Checklist for strong password */}
         {password.length > 0 && (
-          <div className="bg-neutral-950/80 p-3 rounded-lg border border-neutral-900/60 space-y-2 mt-2 text-xs">
-            <p className="font-semibold text-neutral-400 mb-1">Password must include:</p>
+          <div className="bg-background/80 p-3 rounded-lg border border-neutral-900/60 space-y-2 mt-2 text-xs">
+            <p className="font-semibold text-foreground mb-1">Password must include:</p>
             <div className="grid grid-cols-2 gap-x-2 gap-y-1">
               <div className="flex items-center gap-1.5">
                 {hasMinLength ? (
@@ -211,7 +211,7 @@ function ResetPasswordContent() {
                 ) : (
                   <X className="h-3 w-3 text-red-500 shrink-0" />
                 )}
-                <span className={hasMinLength ? 'text-emerald-500' : 'text-neutral-500'}>
+                <span className={hasMinLength ? 'text-emerald-500' : 'text-foreground'}>
                   8+ Characters
                 </span>
               </div>
@@ -221,7 +221,7 @@ function ResetPasswordContent() {
                 ) : (
                   <X className="h-3 w-3 text-red-500 shrink-0" />
                 )}
-                <span className={hasUppercase ? 'text-emerald-500' : 'text-neutral-500'}>
+                <span className={hasUppercase ? 'text-emerald-500' : 'text-foreground'}>
                   Uppercase Letter
                 </span>
               </div>
@@ -231,7 +231,7 @@ function ResetPasswordContent() {
                 ) : (
                   <X className="h-3 w-3 text-red-500 shrink-0" />
                 )}
-                <span className={hasLowercase ? 'text-emerald-500' : 'text-neutral-500'}>
+                <span className={hasLowercase ? 'text-emerald-500' : 'text-foreground'}>
                   Lowercase Letter
                 </span>
               </div>
@@ -241,7 +241,7 @@ function ResetPasswordContent() {
                 ) : (
                   <X className="h-3 w-3 text-red-500 shrink-0" />
                 )}
-                <span className={hasNumber ? 'text-emerald-500' : 'text-neutral-500'}>
+                <span className={hasNumber ? 'text-emerald-500' : 'text-foreground'}>
                   One Digit
                 </span>
               </div>
@@ -251,7 +251,7 @@ function ResetPasswordContent() {
                 ) : (
                   <X className="h-3 w-3 text-red-500 shrink-0" />
                 )}
-                <span className={hasSpecial ? 'text-emerald-500' : 'text-neutral-500'}>
+                <span className={hasSpecial ? 'text-emerald-500' : 'text-foreground'}>
                   Special Character
                 </span>
               </div>
@@ -261,7 +261,7 @@ function ResetPasswordContent() {
                 ) : (
                   <X className="h-3 w-3 text-red-500 shrink-0" />
                 )}
-                <span className={passwordsMatch ? 'text-emerald-500' : 'text-neutral-500'}>
+                <span className={passwordsMatch ? 'text-emerald-500' : 'text-foreground'}>
                   Passwords Match
                 </span>
               </div>
@@ -272,7 +272,7 @@ function ResetPasswordContent() {
         <Button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 mt-4 shadow-lg shadow-red-950/20"
+          className="w-full bg-red-600 hover:bg-red-700 text-foreground font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 mt-4 shadow-lg shadow-red-950/20"
         >
           {isLoading ? (
             <>
@@ -289,7 +289,7 @@ function ResetPasswordContent() {
           type="button"
           variant="ghost"
           onClick={() => router.push('/login')}
-          className="text-neutral-400 hover:text-neutral-200"
+          className="text-foreground hover:text-primary"
         >
           &larr; Back to Login
         </Button>
@@ -301,7 +301,7 @@ function ResetPasswordContent() {
 export default function ResetPasswordPage() {
   return (
     <PublicRoute>
-      <main className="min-h-screen bg-neutral-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
+      <main className="min-h-screen bg-background flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
         {/* Glow circles */}
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-red-500/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-neutral-800/10 rounded-full blur-[120px] pointer-events-none" />
@@ -323,7 +323,7 @@ export default function ResetPasswordPage() {
 
             <Suspense
               fallback={
-                <div className="bg-neutral-900/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl flex flex-col items-center justify-center min-h-[300px]">
+                <div className="bg-card/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl flex flex-col items-center justify-center min-h-[300px]">
                   <div className="h-8 w-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>
               }

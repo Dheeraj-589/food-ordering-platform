@@ -123,25 +123,25 @@ export default function CategoriesTab() {
       {/* Header controls */}
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-xl font-bold text-neutral-100">Category Management</h2>
-          <p className="text-xs text-neutral-500 mt-1">
+          <h2 className="text-xl font-bold text-foreground">Category Management</h2>
+          <p className="text-xs text-foreground mt-1">
             Configure layout categories sorting, image banners, and toggle statuses.
           </p>
         </div>
 
         <button
           onClick={handleOpenCreate}
-          className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2.5 px-6 rounded-xl flex items-center gap-1.5 cursor-pointer shadow"
+          className="bg-red-600 hover:bg-red-700 text-foreground font-bold text-xs py-2.5 px-6 rounded-xl flex items-center gap-1.5 cursor-pointer shadow"
         >
           <Plus className="h-4.5 w-4.5" /> ADD CATEGORY
         </button>
       </div>
 
       {/* List Categories */}
-      <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
+      <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
         <div className="overflow-x-auto rounded-2xl border border-neutral-900 max-h-[500px] overflow-y-auto scrollbar-thin">
-          <table className="w-full text-left text-xs font-semibold text-neutral-400">
-            <thead className="bg-neutral-950 text-neutral-500 font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
+          <table className="w-full text-left text-xs font-semibold text-foreground">
+            <thead className="bg-background text-foreground font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
               <tr>
                 <th className="p-4">Sort Order</th>
                 <th className="p-4">Category Key</th>
@@ -153,30 +153,30 @@ export default function CategoriesTab() {
             <tbody className="divide-y divide-neutral-900">
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="p-8 text-center text-neutral-500 font-bold">
+                  <td colSpan={5} className="p-8 text-center text-foreground font-bold">
                     Loading categories registry...
                   </td>
                 </tr>
               ) : categories.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-8 text-center text-neutral-500 font-bold">
+                  <td colSpan={5} className="p-8 text-center text-foreground font-bold">
                     No categories seeded.
                   </td>
                 </tr>
               ) : (
                 categories.map((cat) => (
-                  <tr key={cat.id} className="hover:bg-neutral-900/20">
-                    <td className="p-4 font-bold text-neutral-300">#{cat.sortOrder}</td>
-                    <td className="p-4 text-neutral-400 font-mono font-bold">{cat.name}</td>
+                  <tr key={cat.id} className="hover:bg-card/20">
+                    <td className="p-4 font-bold text-foreground">#{cat.sortOrder}</td>
+                    <td className="p-4 text-foreground font-mono font-bold">{cat.name}</td>
                     <td className="p-4 flex items-center gap-3">
-                      <div className="h-8 w-8 bg-neutral-950 border border-neutral-800 rounded-lg overflow-hidden shrink-0">
+                      <div className="h-8 w-8 bg-background border border-neutral-800 rounded-lg overflow-hidden shrink-0">
                         <img
                           src={getProductImage(cat.imageUrl, cat.name, cat.displayName)}
                           alt={cat.displayName}
                           className="h-full w-full object-cover"
                         />
                       </div>
-                      <span className="text-neutral-200 font-bold">{cat.displayName}</span>
+                      <span className="text-foreground font-bold">{cat.displayName}</span>
                     </td>
                     <td className="p-4">
                       <button onClick={() => handleToggleActive(cat)} className="cursor-pointer">
@@ -194,13 +194,13 @@ export default function CategoriesTab() {
                     <td className="p-4 text-right space-x-2">
                       <button
                         onClick={() => handleOpenEdit(cat)}
-                        className="p-2 rounded-lg bg-neutral-900 border border-neutral-850 hover:text-white transition-colors cursor-pointer inline-flex"
+                        className="p-2 rounded-lg bg-card border border-neutral-300/50 hover:text-primary transition-colors cursor-pointer inline-flex"
                       >
                         <Pencil className="h-3.5 w-3.5" />
                       </button>
                       <button
                         onClick={() => handleDelete(cat.id)}
-                        className="p-2 rounded-lg bg-neutral-900 border border-neutral-850 hover:text-red-500 transition-colors cursor-pointer inline-flex"
+                        className="p-2 rounded-lg bg-card border border-neutral-300/50 hover:text-red-500 transition-colors cursor-pointer inline-flex"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>
@@ -229,10 +229,10 @@ export default function CategoriesTab() {
 
           <form
             onSubmit={handleSubmit}
-            className="py-4 space-y-4 text-xs font-semibold text-muted-foreground"
+            className="py-4 space-y-4 text-xs font-semibold text-foreground"
           >
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                 Category Key (URL identifier)
               </label>
               <input
@@ -246,7 +246,7 @@ export default function CategoriesTab() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                 Display Name
               </label>
               <input
@@ -260,7 +260,7 @@ export default function CategoriesTab() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                   Sort Order
                 </label>
                 <input
@@ -273,18 +273,18 @@ export default function CategoriesTab() {
 
               <div className="space-y-1.5 flex flex-col justify-end pb-1.5">
                 <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                  <span className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                     Is Active
                   </span>
                   <button
                     type="button"
                     onClick={() => setFormActive(!formActive)}
-                    className="text-neutral-300 hover:text-white"
+                    className="text-foreground hover:text-primary"
                   >
                     {formActive ? (
                       <ToggleRight className="h-8 w-8 text-emerald-500" />
                     ) : (
-                      <ToggleLeft className="h-8 w-8 text-neutral-400" />
+                      <ToggleLeft className="h-8 w-8 text-foreground" />
                     )}
                   </button>
                 </div>
@@ -292,7 +292,7 @@ export default function CategoriesTab() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                 Image Banner Path
               </label>
               <input
@@ -309,14 +309,14 @@ export default function CategoriesTab() {
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
-                className="bg-transparent border border-border text-muted-foreground hover:bg-secondary rounded-xl py-2 px-4 cursor-pointer text-xs font-bold"
+                className="bg-transparent border border-border text-foreground hover:bg-secondary rounded-xl py-2 px-4 cursor-pointer text-xs font-bold"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={actionLoading}
-                className="bg-primary hover:bg-primary/95 text-white font-bold rounded-xl py-2 px-6 shadow cursor-pointer text-xs flex items-center gap-1"
+                className="bg-primary hover:bg-primary/95 text-foreground font-bold rounded-xl py-2 px-6 shadow cursor-pointer text-xs flex items-center gap-1"
               >
                 {actionLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'SAVE CHANGES'}
               </button>

@@ -60,7 +60,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
   };
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans select-none overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground flex flex-col font-sans select-none overflow-x-hidden">
       <Navbar />
 
       {/* Main Container */}
@@ -68,7 +68,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
         {/* Back Link */}
         <button
           onClick={() => router.push('/menu')}
-          className="flex items-center gap-1.5 text-xs font-bold text-neutral-500 hover:text-white transition-colors cursor-pointer w-max"
+          className="flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-primary transition-colors cursor-pointer w-max"
         >
           <ChevronLeft className="h-4 w-4" /> BACK TO MENU
         </button>
@@ -80,7 +80,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="h-96 w-full bg-neutral-900 border border-neutral-900 rounded-3xl overflow-hidden shadow-2xl relative"
+              className="h-96 w-full bg-card border border-neutral-900 rounded-3xl overflow-hidden shadow-2xl relative"
             >
               <img
                 src={getProductImage(product.imageUrl, product.category, product.name)}
@@ -94,7 +94,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className="h-20 w-20 rounded-2xl bg-neutral-900/40 border border-neutral-900/60 hover:border-red-500/50 cursor-pointer overflow-hidden shrink-0 transition-colors"
+                  className="h-20 w-20 rounded-2xl bg-card/40 border border-neutral-900/60 hover:border-red-500/50 cursor-pointer overflow-hidden shrink-0 transition-colors"
                 >
                   <img
                     src={getProductImage(product.imageUrl, product.category, product.name)}
@@ -114,11 +114,11 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                 {product.category}
               </span>
 
-              <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-100 tracking-tight leading-none">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-foreground tracking-tight leading-none">
                 {product.name}
               </h2>
 
-              <p className="text-xs sm:text-sm text-neutral-400 font-medium leading-relaxed">
+              <p className="text-xs sm:text-sm text-foreground font-medium leading-relaxed">
                 {product.description || 'No description available for this premium selection.'}
               </p>
 
@@ -127,7 +127,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                 <div className="space-y-5 pt-4 border-t border-neutral-900">
                   {/* Size selector */}
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                    <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                       Select Size
                     </label>
                     <div className="flex gap-2">
@@ -135,11 +135,10 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                         <button
                           key={v.size}
                           onClick={() => setSelectedSize(v.size)}
-                          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
-                            selectedSize === v.size
-                              ? 'bg-primary border-primary text-primary-foreground shadow-md'
-                              : 'bg-secondary border-border text-muted-foreground hover:bg-secondary/80 hover:text-foreground'
-                          }`}
+                          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${selectedSize === v.size
+                            ? 'bg-primary border-primary text-primary-foreground shadow-md'
+                            : 'bg-secondary border-border text-foreground hover:bg-secondary/80 hover:text-primary'
+                            }`}
                         >
                           {v.size} (+₹
                           {Number(v.price) - Number(product.price) > 0
@@ -153,7 +152,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
 
                   {/* Crust Selection */}
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                    <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                       Choose Crust
                     </label>
                     <div className="flex flex-wrap gap-2">
@@ -163,11 +162,10 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                         <button
                           key={crust}
                           onClick={() => setSelectedCrust(crust)}
-                          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
-                            selectedCrust === crust
-                              ? 'bg-primary border-primary text-primary-foreground shadow-md'
-                              : 'bg-secondary border-border text-muted-foreground hover:bg-secondary/80 hover:text-foreground'
-                          }`}
+                          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${selectedCrust === crust
+                            ? 'bg-primary border-primary text-primary-foreground shadow-md'
+                            : 'bg-secondary border-border text-foreground hover:bg-secondary/80 hover:text-primary'
+                            }`}
                         >
                           {crust}
                         </button>
@@ -179,16 +177,15 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Extra Cheese Checkbox */}
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                      <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                         Extra Cheese
                       </label>
                       <button
                         onClick={() => setExtraCheese(!extraCheese)}
-                        className={`w-full p-3 rounded-xl border text-xs font-bold text-left transition-all flex items-center justify-between cursor-pointer ${
-                          extraCheese
-                            ? 'border-primary bg-primary/10 text-primary'
-                            : 'border-border bg-secondary text-muted-foreground hover:border-neutral-300'
-                        }`}
+                        className={`w-full p-3 rounded-xl border text-xs font-bold text-left transition-all flex items-center justify-between cursor-pointer ${extraCheese
+                          ? 'border-primary bg-primary/10 text-primary'
+                          : 'border-border bg-secondary text-foreground hover:border-neutral-300'
+                          }`}
                       >
                         <span>Add Extra Mozzarella</span>
                         <span>+₹75</span>
@@ -197,7 +194,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
 
                     {/* Extra Toppings Checklist */}
                     <div className="space-y-2 col-span-1 sm:col-span-2">
-                      <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                      <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                         Customize Toppings
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -207,14 +204,13 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                             <button
                               key={topping.name}
                               onClick={() => handleToggleTopping(topping.name)}
-                              className={`p-2.5 rounded-xl border text-xs font-semibold transition-all cursor-pointer flex justify-between items-center ${
-                                isSelected
-                                  ? 'border-primary bg-primary/10 text-primary'
-                                  : 'border-border bg-secondary text-muted-foreground hover:border-neutral-350 hover:text-foreground'
-                              }`}
+                              className={`p-2.5 rounded-xl border text-xs font-semibold transition-all cursor-pointer flex justify-between items-center ${isSelected
+                                ? 'border-primary bg-primary/10 text-primary'
+                                : 'border-border bg-secondary text-foreground hover:border-neutral-350 hover:text-primary'
+                                }`}
                             >
                               <span>{topping.name}</span>
-                              <span className="text-[10px] font-extrabold text-muted-foreground">
+                              <span className="text-[10px] font-extrabold text-foreground">
                                 +₹{topping.price}
                               </span>
                             </button>
@@ -228,29 +224,29 @@ export default function ProductClient({ product, related }: ProductClientProps) 
             </div>
 
             {/* Price Calculations and Quantity controls */}
-            <div className="p-5 rounded-3xl bg-neutral-900/30 border border-neutral-900/80 shadow-lg space-y-4 mt-6">
+            <div className="p-5 rounded-3xl bg-card/30 border border-neutral-900/80 shadow-lg space-y-4 mt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                  <span className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                     Live Calculated Price
                   </span>
                   <p className="text-2xl font-extrabold text-amber-500">₹{totalPrice}</p>
                 </div>
 
                 {/* Quantity adjuster */}
-                <div className="flex items-center gap-3 px-3 py-1.5 rounded-xl bg-neutral-950 border border-neutral-900">
+                <div className="flex items-center gap-3 px-3 py-1.5 rounded-xl bg-background border border-neutral-900">
                   <button
                     onClick={() => setQuantity((q) => (q > 1 ? q - 1 : 1))}
-                    className="text-neutral-500 hover:text-white"
+                    className="text-foreground hover:text-primary"
                   >
                     <Minus className="h-4 w-4" />
                   </button>
-                  <span className="text-sm font-bold text-neutral-200 w-4 text-center">
+                  <span className="text-sm font-bold text-foreground w-4 text-center">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity((q) => q + 1)}
-                    className="text-neutral-500 hover:text-white"
+                    className="text-foreground hover:text-primary"
                   >
                     <Plus className="h-4 w-4" />
                   </button>
@@ -260,7 +256,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
               {/* Action Button */}
               <Button
                 onClick={handleAddToCart}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-red-950/20 transition-all cursor-pointer"
+                className="w-full bg-red-600 hover:bg-red-700 text-foreground font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-red-950/20 transition-all cursor-pointer"
               >
                 <ShoppingBag className="h-4 w-4" /> ADD TO BASKET (₹{totalPrice})
               </Button>
@@ -279,9 +275,8 @@ export default function ProductClient({ product, related }: ProductClientProps) 
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as 'details' | 'ingredients' | 'reviews')}
-                className={`pb-2 relative cursor-pointer ${
-                  activeTab === tab.id ? 'text-white' : 'text-neutral-500'
-                }`}
+                className={`pb-2 relative cursor-pointer ${activeTab === tab.id ? 'text-foreground' : 'text-foreground'
+                  }`}
               >
                 {tab.label}
                 {activeTab === tab.id && (
@@ -296,30 +291,30 @@ export default function ProductClient({ product, related }: ProductClientProps) 
 
           <div className="py-6">
             {activeTab === 'details' && (
-              <div className="max-w-md bg-neutral-900/20 border border-neutral-900 p-5 rounded-2xl flex gap-6 items-center shadow-lg">
+              <div className="max-w-md bg-card/20 border border-neutral-900 p-5 rounded-2xl flex gap-6 items-center shadow-lg">
                 <Info className="h-8 w-8 text-amber-500 shrink-0" />
-                <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-xs font-semibold text-neutral-400">
+                <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-xs font-semibold text-foreground">
                   <div>
                     Calories:{' '}
-                    <span className="text-neutral-200 font-bold">
+                    <span className="text-foreground font-bold">
                       {product.nutrition?.calories || 250} kcal
                     </span>
                   </div>
                   <div>
                     Protein:{' '}
-                    <span className="text-neutral-200 font-bold">
+                    <span className="text-foreground font-bold">
                       {product.nutrition?.protein || '12g'}
                     </span>
                   </div>
                   <div>
                     Fat:{' '}
-                    <span className="text-neutral-200 font-bold">
+                    <span className="text-foreground font-bold">
                       {product.nutrition?.fat || '9g'}
                     </span>
                   </div>
                   <div>
                     Carbohydrates:{' '}
-                    <span className="text-neutral-200 font-bold">
+                    <span className="text-foreground font-bold">
                       {product.nutrition?.carbs || '30g'}
                     </span>
                   </div>
@@ -339,7 +334,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                 ).map((ing) => (
                   <span
                     key={ing}
-                    className="px-3.5 py-2 rounded-xl bg-neutral-900/60 border border-neutral-900 text-xs font-bold text-neutral-300"
+                    className="px-3.5 py-2 rounded-xl bg-card/60 border border-neutral-900 text-xs font-bold text-foreground"
                   >
                     {ing}
                   </span>
@@ -350,7 +345,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
             {activeTab === 'reviews' && (
               <div className="space-y-4 max-w-2xl">
                 {!product.reviews || product.reviews.length === 0 ? (
-                  <p className="text-xs text-neutral-600 font-medium">
+                  <p className="text-xs text-foreground font-medium">
                     No reviews written for this product yet.
                   </p>
                 ) : (
@@ -358,21 +353,21 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                     (r: { user: string; rating: number; comment: string }, idx: number) => (
                       <div
                         key={idx}
-                        className="p-4 rounded-2xl bg-neutral-900/20 border border-neutral-900 flex gap-4 items-start shadow-md"
+                        className="p-4 rounded-2xl bg-card/20 border border-neutral-900 flex gap-4 items-start shadow-md"
                       >
-                        <div className="h-10 w-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-xs font-bold text-neutral-400 font-mono uppercase">
+                        <div className="h-10 w-10 rounded-full bg-card border border-neutral-800 flex items-center justify-center text-xs font-bold text-foreground font-mono uppercase">
                           {r.user.substring(0, 2)}
                         </div>
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-neutral-200">{r.user}</span>
+                            <span className="text-xs font-bold text-foreground">{r.user}</span>
                             <span className="flex text-amber-500">
                               {Array.from({ length: r.rating }).map((_, i) => (
                                 <Star key={i} className="h-3 w-3 fill-amber-500" />
                               ))}
                             </span>
                           </div>
-                          <p className="text-xs text-neutral-400 font-medium leading-relaxed">
+                          <p className="text-xs text-foreground font-medium leading-relaxed">
                             {r.comment}
                           </p>
                         </div>
@@ -388,7 +383,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
         {/* Related Products Grid */}
         {related.length > 0 && (
           <div className="border-t border-neutral-900 pt-10">
-            <h3 className="text-lg font-bold text-neutral-200 mb-6 flex items-center gap-2">
+            <h3 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
               <MessageSquare className="h-4 w-4 text-red-500" /> You Might Also Like
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -396,9 +391,9 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                 <div
                   key={p.id}
                   onClick={() => router.push(`/product/${p.id}`)}
-                  className="group p-4 rounded-3xl bg-neutral-900/30 border border-neutral-900/60 hover:border-neutral-800 cursor-pointer flex flex-col gap-3 shadow-md transition-all duration-300"
+                  className="group p-4 rounded-3xl bg-card/30 border border-neutral-900/60 hover:border-neutral-800 cursor-pointer flex flex-col gap-3 shadow-md transition-all duration-300"
                 >
-                  <div className="h-36 w-full bg-neutral-950 border border-neutral-800/80 rounded-2xl overflow-hidden shrink-0">
+                  <div className="h-36 w-full bg-background border border-neutral-800/80 rounded-2xl overflow-hidden shrink-0">
                     <img
                       src={getProductImage(p.imageUrl, p.category, p.name)}
                       alt={p.name}
@@ -406,7 +401,7 @@ export default function ProductClient({ product, related }: ProductClientProps) 
                     />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-neutral-200 truncate">{p.name}</h4>
+                    <h4 className="text-xs font-bold text-foreground truncate">{p.name}</h4>
                     <p className="text-[10px] font-bold text-amber-500 mt-1">₹{p.price}</p>
                   </div>
                 </div>

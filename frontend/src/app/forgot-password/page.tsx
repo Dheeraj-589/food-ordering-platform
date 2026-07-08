@@ -57,7 +57,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <PublicRoute>
-      <main className="min-h-screen bg-neutral-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
+      <main className="min-h-screen bg-background flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
         {/* Glow circles */}
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-red-500/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-neutral-800/10 rounded-full blur-[120px] pointer-events-none" />
@@ -77,10 +77,10 @@ export default function ForgotPasswordPage() {
               </Link>
             </div>
 
-            <div className="bg-neutral-900/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
+            <div className="bg-card/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
               <div className="mb-6">
-                <h2 className="text-xl font-bold text-neutral-100">Forgot Password</h2>
-                <p className="text-sm text-neutral-400 mt-1">
+                <h2 className="text-xl font-bold text-foreground">Forgot Password</h2>
+                <p className="text-sm text-foreground mt-1">
                   Enter your email address and we will send you a 6-digit OTP code to reset your
                   password.
                 </p>
@@ -89,14 +89,14 @@ export default function ForgotPasswordPage() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                 {/* Email Field */}
                 <div className="space-y-1.5">
-                  <Label htmlFor="email" className="text-xs font-semibold text-neutral-400">
+                  <Label htmlFor="email" className="text-xs font-semibold text-foreground">
                     Email Address
                   </Label>
                   <Input
                     id="email"
                     type="email"
                     placeholder="name@example.com"
-                    className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
+                    className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
                     disabled={isLoading}
                     {...register('email')}
                   />
@@ -108,7 +108,7 @@ export default function ForgotPasswordPage() {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 shadow-lg shadow-red-950/20"
+                  className="w-full bg-red-600 hover:bg-red-700 text-foreground font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 shadow-lg shadow-red-950/20"
                 >
                   {isLoading ? (
                     <>
@@ -121,10 +121,10 @@ export default function ForgotPasswordPage() {
               </form>
 
               <div className="mt-6 text-center text-sm">
-                <span className="text-neutral-400">Back to </span>
+                <span className="text-foreground">Back to </span>
                 <Link
                   href="/login"
-                  className="text-red-500 hover:text-red-400 font-semibold transition-all"
+                  className="text-red-500 hover:text-red-700 font-semibold transition-all"
                 >
                   Sign In
                 </Link>

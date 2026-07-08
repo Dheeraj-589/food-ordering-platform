@@ -206,23 +206,23 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
       {/* Top Filter Bar */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-neutral-100">Order Management</h2>
-          <p className="text-xs text-neutral-500 mt-1">
+          <h2 className="text-xl font-bold text-foreground">Order Management</h2>
+          <p className="text-xs text-foreground mt-1">
             Advanced listing, status timeline routers, refund triggers, and bulk operations.
           </p>
         </div>
 
         {/* Filters Panel */}
-        <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-neutral-400">
-          <div className="flex items-center gap-1.5 bg-neutral-900 border border-neutral-850 px-3 py-1.5 rounded-xl">
-            <Filter className="h-3.5 w-3.5 text-neutral-500" />
+        <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-foreground">
+          <div className="flex items-center gap-1.5 bg-card border border-neutral-300/50 px-3 py-1.5 rounded-xl">
+            <Filter className="h-3.5 w-3.5 text-foreground" />
             <select
               value={statusFilter}
               onChange={(e) => {
                 setStatusFilter(e.target.value);
                 setPage(1);
               }}
-              className="bg-transparent border-none outline-none cursor-pointer text-neutral-300 font-sans"
+              className="bg-transparent border-none outline-none cursor-pointer text-foreground font-sans"
             >
               <option value="all">All Statuses</option>
               <option value="pending">Pending</option>
@@ -233,14 +233,14 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
             </select>
           </div>
 
-          <div className="flex items-center gap-1.5 bg-neutral-900 border border-neutral-850 px-3 py-1.5 rounded-xl">
+          <div className="flex items-center gap-1.5 bg-card border border-neutral-300/50 px-3 py-1.5 rounded-xl">
             <select
               value={paymentFilter}
               onChange={(e) => {
                 setPaymentFilter(e.target.value);
                 setPage(1);
               }}
-              className="bg-transparent border-none outline-none cursor-pointer text-neutral-300 font-sans"
+              className="bg-transparent border-none outline-none cursor-pointer text-foreground font-sans"
             >
               <option value="all">All Payments</option>
               <option value="paid">Paid</option>
@@ -256,21 +256,21 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="p-3 bg-neutral-900/60 border border-red-500/20 rounded-2xl flex justify-between items-center gap-4 text-xs font-bold shrink-0"
+          className="p-3 bg-card/60 border border-red-500/20 rounded-2xl flex justify-between items-center gap-4 text-xs font-bold shrink-0"
         >
-          <span className="text-neutral-300 font-bold">
+          <span className="text-foreground font-bold">
             {selectedOrderIds.length} orders selected
           </span>
           <div className="flex items-center gap-2">
             <button
               onClick={() => handleBulkStatusUpdate('preparing')}
-              className="px-3 py-1.5 rounded-xl bg-neutral-950 border border-neutral-800 text-neutral-300 hover:text-white cursor-pointer"
+              className="px-3 py-1.5 rounded-xl bg-background border border-neutral-800 text-foreground hover:text-primary cursor-pointer"
             >
               Mark Preparing
             </button>
             <button
               onClick={() => handleBulkStatusUpdate('delivered')}
-              className="px-3 py-1.5 rounded-xl bg-neutral-950 border border-neutral-800 text-neutral-300 hover:text-white cursor-pointer"
+              className="px-3 py-1.5 rounded-xl bg-background border border-neutral-800 text-foreground hover:text-primary cursor-pointer"
             >
               Mark Delivered
             </button>
@@ -285,10 +285,10 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
       )}
 
       {/* Table Container */}
-      <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
+      <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
         <div className="overflow-x-auto rounded-2xl border border-neutral-900 max-h-[550px] overflow-y-auto scrollbar-thin">
-          <table className="w-full text-left text-xs font-semibold text-neutral-400">
-            <thead className="bg-neutral-950 text-neutral-500 font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
+          <table className="w-full text-left text-xs font-semibold text-foreground">
+            <thead className="bg-background text-foreground font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
               <tr>
                 <th className="p-4 w-10">
                   <input
@@ -325,13 +325,13 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
             <tbody className="divide-y divide-neutral-900">
               {loading ? (
                 <tr>
-                  <td colSpan={8} className="p-8 text-center text-neutral-500 font-bold">
+                  <td colSpan={8} className="p-8 text-center text-foreground font-bold">
                     Loading order records...
                   </td>
                 </tr>
               ) : paginatedOrders.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="p-8 text-center text-neutral-500 font-bold">
+                  <td colSpan={8} className="p-8 text-center text-foreground font-bold">
                     No matching orders found.
                   </td>
                 </tr>
@@ -339,7 +339,7 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
                 paginatedOrders.map((order) => {
                   const isChecked = selectedOrderIds.includes(order.id);
                   return (
-                    <tr key={order.id} className="hover:bg-neutral-900/20">
+                    <tr key={order.id} className="hover:bg-card/20">
                       <td className="p-4">
                         <input
                           type="checkbox"
@@ -348,45 +348,43 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
                           className="h-3.5 w-3.5 accent-red-600 rounded cursor-pointer"
                         />
                       </td>
-                      <td className="p-4 font-black text-white">#{order.id}</td>
+                      <td className="p-4 font-black text-foreground">#{order.id}</td>
                       <td className="p-4">
-                        <span className="text-neutral-200 font-bold block">{order.user?.name}</span>
-                        <span className="text-[10px] text-neutral-500 block truncate max-w-[150px]">
+                        <span className="text-foreground font-bold block">{order.user?.name}</span>
+                        <span className="text-[10px] text-foreground block truncate max-w-[150px]">
                           {order.user?.email}
                         </span>
                       </td>
-                      <td className="p-4 font-bold text-neutral-300">₹{order.totalAmount}</td>
+                      <td className="p-4 font-bold text-foreground">₹{order.totalAmount}</td>
                       <td className="p-4">
                         <span
-                          className={`px-2 py-0.5 rounded text-[9px] font-extrabold uppercase border ${
-                            order.status === 'pending'
-                              ? 'bg-blue-600/10 text-blue-500 border-blue-500/20'
-                              : order.status === 'preparing'
-                                ? 'bg-amber-600/10 text-amber-500 border-amber-500/20'
-                                : order.status === 'out-for-delivery'
-                                  ? 'bg-indigo-600/10 text-indigo-500 border-indigo-500/20'
-                                  : order.status === 'delivered'
-                                    ? 'bg-emerald-600/10 text-emerald-500 border-emerald-500/20'
-                                    : 'bg-red-600/10 text-red-500 border-red-500/20'
-                          }`}
+                          className={`px-2 py-0.5 rounded text-[9px] font-extrabold uppercase border ${order.status === 'pending'
+                            ? 'bg-blue-600/10 text-blue-500 border-blue-500/20'
+                            : order.status === 'preparing'
+                              ? 'bg-amber-600/10 text-amber-500 border-amber-500/20'
+                              : order.status === 'out-for-delivery'
+                                ? 'bg-indigo-600/10 text-indigo-500 border-indigo-500/20'
+                                : order.status === 'delivered'
+                                  ? 'bg-emerald-600/10 text-emerald-500 border-emerald-500/20'
+                                  : 'bg-red-600/10 text-red-500 border-red-500/20'
+                            }`}
                         >
                           {order.status}
                         </span>
                       </td>
                       <td className="p-4">
                         <span
-                          className={`px-2 py-0.5 rounded text-[9px] font-extrabold uppercase border ${
-                            order.paymentStatus === 'paid'
-                              ? 'bg-emerald-600/10 text-emerald-500 border-emerald-500/20'
-                              : order.paymentStatus === 'pending'
-                                ? 'bg-amber-600/10 text-amber-500 border-amber-500/20'
-                                : 'bg-red-600/10 text-red-500 border-red-500/20'
-                          }`}
+                          className={`px-2 py-0.5 rounded text-[9px] font-extrabold uppercase border ${order.paymentStatus === 'paid'
+                            ? 'bg-emerald-600/10 text-emerald-500 border-emerald-500/20'
+                            : order.paymentStatus === 'pending'
+                              ? 'bg-amber-600/10 text-amber-500 border-amber-500/20'
+                              : 'bg-red-600/10 text-red-500 border-red-500/20'
+                            }`}
                         >
                           {order.paymentStatus}
                         </span>
                       </td>
-                      <td className="p-4 font-semibold text-neutral-500">
+                      <td className="p-4 font-semibold text-foreground">
                         {new Date(order.createdAt).toLocaleDateString([], {
                           month: 'short',
                           day: 'numeric',
@@ -399,7 +397,7 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
                       <td className="p-4 text-right">
                         <button
                           onClick={() => handleOpenDetails(order)}
-                          className="p-2 rounded-lg bg-neutral-900 border border-neutral-850 hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1.5"
+                          className="p-2 rounded-lg bg-card border border-neutral-300/50 hover:text-primary transition-colors cursor-pointer inline-flex items-center gap-1.5"
                         >
                           <Eye className="h-3.5 w-3.5" />
                           <span>Dispatch</span>
@@ -416,21 +414,21 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
         {/* Pagination footer */}
         {totalPages > 1 && (
           <div className="flex justify-between items-center pt-2">
-            <span className="text-[10px] text-neutral-500 font-bold uppercase">
+            <span className="text-[10px] text-foreground font-bold uppercase">
               Page {page} of {totalPages} ({filteredOrders.length} entries)
             </span>
             <div className="flex gap-2">
               <button
                 disabled={page === 1}
                 onClick={() => setPage((p) => p - 1)}
-                className="p-2 rounded-lg bg-neutral-900 border border-neutral-850 text-neutral-400 hover:text-white disabled:opacity-40 cursor-pointer"
+                className="p-2 rounded-lg bg-card border border-neutral-300/50 text-foreground hover:text-primary disabled:opacity-40 cursor-pointer"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
               <button
                 disabled={page === totalPages}
                 onClick={() => setPage((p) => p + 1)}
-                className="p-2 rounded-lg bg-neutral-900 border border-neutral-850 text-neutral-400 hover:text-white disabled:opacity-40 cursor-pointer"
+                className="p-2 rounded-lg bg-card border border-neutral-300/50 text-foreground hover:text-primary disabled:opacity-40 cursor-pointer"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>
@@ -450,11 +448,11 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
           </DialogHeader>
 
           {selectedOrder && (
-            <div className="py-4 space-y-5 text-xs font-semibold text-muted-foreground">
+            <div className="py-4 space-y-5 text-xs font-semibold text-foreground">
               {/* Customer and Delivery summary */}
               <div className="grid grid-cols-2 gap-4 bg-secondary p-4 rounded-2xl border border-border">
                 <div className="space-y-1">
-                  <span className="text-[9px] uppercase tracking-widest text-neutral-400 block">
+                  <span className="text-[9px] uppercase tracking-widest text-foreground block">
                     Recipient Customer
                   </span>
                   <span className="text-foreground font-bold text-sm block">
@@ -466,7 +464,7 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
                   </span>
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[9px] uppercase tracking-widest text-neutral-400 block">
+                  <span className="text-[9px] uppercase tracking-widest text-foreground block">
                     Billing Details
                   </span>
                   <span className="text-primary font-bold text-sm block">
@@ -483,12 +481,12 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
 
               {/* Order Items Table */}
               <div className="space-y-2">
-                <span className="text-[9px] uppercase tracking-widest text-neutral-400 block">
+                <span className="text-[9px] uppercase tracking-widest text-foreground block">
                   Ordered Basket Items
                 </span>
                 <div className="border border-border rounded-xl overflow-hidden">
                   <table className="w-full text-left text-xs font-semibold">
-                    <thead className="bg-secondary text-neutral-500 border-b border-border">
+                    <thead className="bg-secondary text-foreground border-b border-border">
                       <tr>
                         <th className="p-2.5">Menu Item</th>
                         <th className="p-2.5">Qty</th>
@@ -499,7 +497,7 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
                       {selectedOrder.items?.map((item, idx) => (
                         <tr key={idx}>
                           <td className="p-2.5">{item.product?.name}</td>
-                          <td className="p-2.5 text-muted-foreground">x{item.quantity}</td>
+                          <td className="p-2.5 text-foreground">x{item.quantity}</td>
                           <td className="p-2.5 text-right">₹{item.price * item.quantity}</td>
                         </tr>
                       ))}
@@ -510,7 +508,7 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
 
               {/* Dispatch Timeline status progress */}
               <div className="space-y-3">
-                <span className="text-[9px] uppercase tracking-widest text-neutral-400 block">
+                <span className="text-[9px] uppercase tracking-widest text-foreground block">
                   Status Timeline Actions
                 </span>
                 <div className="flex gap-2 flex-wrap">
@@ -520,11 +518,10 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
                     <button
                       key={st}
                       onClick={() => handleUpdateSingleStatus(selectedOrder.id, st)}
-                      className={`px-3 py-1.5 rounded-xl border text-[10px] uppercase font-bold cursor-pointer transition-all ${
-                        selectedOrder.status === st
-                          ? 'bg-primary text-white border-primary shadow'
-                          : 'bg-transparent border-border hover:bg-secondary text-muted-foreground'
-                      }`}
+                      className={`px-3 py-1.5 rounded-xl border text-[10px] uppercase font-bold cursor-pointer transition-all ${selectedOrder.status === st
+                        ? 'bg-primary text-foreground border-primary shadow'
+                        : 'bg-transparent border-border hover:bg-secondary text-foreground'
+                        }`}
                     >
                       {st.replace('-', ' ')}
                     </button>
@@ -534,7 +531,7 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
 
               {/* Delivery Partner Assignment */}
               <div className="space-y-3 p-4 bg-secondary border border-border rounded-2xl">
-                <span className="text-[9px] uppercase tracking-widest text-neutral-400 block">
+                <span className="text-[9px] uppercase tracking-widest text-foreground block">
                   Assign Active Delivery Partner
                 </span>
                 <div className="flex gap-2 items-center font-sans">
@@ -552,7 +549,7 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
                   </select>
                   <button
                     onClick={() => handleAssignDelivery(selectedOrder.id)}
-                    className="px-4 py-2 rounded-xl bg-primary text-white font-bold text-xs hover:bg-primary/95 cursor-pointer shadow"
+                    className="px-4 py-2 rounded-xl bg-primary text-foreground font-bold text-xs hover:bg-primary/95 cursor-pointer shadow"
                   >
                     Assign Rider
                   </button>
@@ -572,7 +569,7 @@ export default function OrdersTab({ searchTerm }: OrdersTabProps) {
 
                 <button
                   onClick={() => setDetailsOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-secondary border border-border text-muted-foreground hover:bg-neutral-100 cursor-pointer"
+                  className="px-4 py-2 rounded-xl bg-secondary border border-border text-foreground hover:bg-neutral-100 cursor-pointer"
                 >
                   Close Panel
                 </button>

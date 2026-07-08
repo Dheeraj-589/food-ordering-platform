@@ -49,17 +49,17 @@ const FEATURES = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="why-us" className="w-full py-16 md:py-24 bg-neutral-950/40 select-none">
+    <section id="why-us" className="w-full py-16 md:py-24 bg-background/40 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Heading */}
         <div className="text-center space-y-3">
           <span className="inline-flex items-center gap-1 text-[10px] font-extrabold tracking-widest text-red-500 bg-red-500/10 px-3 py-1 rounded-full uppercase">
             <Sparkles className="h-3.5 w-3.5" /> Our Standards
           </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-neutral-100 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground tracking-tight">
             Why Pizza Lovers Choose Us
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-500 font-medium max-w-md mx-auto">
+          <p className="text-xs sm:text-sm text-foreground font-medium max-w-md mx-auto">
             We hold ourselves to the highest standards of culinary hygiene, logistical speed, and
             transaction security.
           </p>
@@ -74,7 +74,7 @@ export default function WhyChooseUs() {
                 key={feat.id}
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.3, ease: 'easeOut' }}
-                className="group p-5 rounded-3xl bg-neutral-900/30 border border-neutral-900/60 hover:border-neutral-800 hover:bg-neutral-900/50 flex flex-col items-center text-center space-y-4 shadow-lg"
+                className="group p-5 rounded-3xl bg-card/30 border border-neutral-900/60 hover:border-neutral-800 hover:bg-card/50 flex flex-col items-center text-center space-y-4 shadow-lg"
               >
                 {/* Icon Circle */}
                 <div
@@ -85,8 +85,8 @@ export default function WhyChooseUs() {
 
                 {/* Info Text */}
                 <div className="space-y-1.5">
-                  <h4 className="text-sm font-bold text-neutral-200">{feat.title}</h4>
-                  <p className="text-xs text-neutral-500 font-medium leading-relaxed">
+                  <h4 className="text-sm font-bold text-foreground">{feat.title}</h4>
+                  <p className="text-xs text-foreground font-medium leading-relaxed">
                     {feat.description}
                   </p>
                 </div>

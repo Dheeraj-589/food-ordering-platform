@@ -18,7 +18,7 @@ export default function AnalyticsTab({ stats, loading }: AnalyticsTabProps) {
         {Array.from({ length: 4 }).map((_, idx) => (
           <div
             key={idx}
-            className="p-6 rounded-3xl bg-neutral-900 border border-neutral-850 animate-pulse h-64"
+            className="p-6 rounded-3xl bg-card border border-neutral-300/50 animate-pulse h-64"
           />
         ))}
       </div>
@@ -70,21 +70,20 @@ export default function AnalyticsTab({ stats, loading }: AnalyticsTabProps) {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold text-neutral-100">Analytics Console</h2>
-          <p className="text-xs text-neutral-500 mt-1">
+          <h2 className="text-xl font-bold text-foreground">Analytics Console</h2>
+          <p className="text-xs text-foreground mt-1">
             Gourmet sales distribution, category volume, and order hourly frequency audits.
           </p>
         </div>
 
         {/* Period Selector */}
-        <div className="flex bg-neutral-950 border border-neutral-850 p-1 rounded-xl text-xs font-bold text-neutral-400">
+        <div className="flex bg-background border border-neutral-300/50 p-1 rounded-xl text-xs font-bold text-foreground">
           {(['daily', 'weekly', 'monthly'] as const).map((period) => (
             <button
               key={period}
               onClick={() => setRevenuePeriod(period)}
-              className={`px-4 py-1.5 rounded-lg capitalize cursor-pointer transition-all ${
-                revenuePeriod === period ? 'bg-red-600/10 text-red-500' : 'hover:text-neutral-200'
-              }`}
+              className={`px-4 py-1.5 rounded-lg capitalize cursor-pointer transition-all ${revenuePeriod === period ? 'bg-red-600/10 text-red-500' : 'hover:text-primary'
+                }`}
             >
               {period}
             </button>
@@ -94,8 +93,8 @@ export default function AnalyticsTab({ stats, loading }: AnalyticsTabProps) {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Revenue Performance Area Chart */}
-        <div className="p-6 rounded-3xl bg-neutral-900 border border-neutral-850 shadow-sm space-y-4">
-          <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-500 block">
+        <div className="p-6 rounded-3xl bg-card border border-neutral-300/50 shadow-sm space-y-4">
+          <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
             Revenue Performance (INR)
           </span>
 
@@ -193,8 +192,8 @@ export default function AnalyticsTab({ stats, loading }: AnalyticsTabProps) {
         </div>
 
         {/* Peak Order Hours Bar Chart */}
-        <div className="p-6 rounded-3xl bg-neutral-900 border border-neutral-850 shadow-sm space-y-4">
-          <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-500 block">
+        <div className="p-6 rounded-3xl bg-card border border-neutral-300/50 shadow-sm space-y-4">
+          <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
             Hourly Order Load (Peak Hours)
           </span>
 
@@ -260,9 +259,9 @@ export default function AnalyticsTab({ stats, loading }: AnalyticsTabProps) {
         </div>
 
         {/* Orders by Category Donut Chart */}
-        <div className="p-6 rounded-3xl bg-neutral-900 border border-neutral-850 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="p-6 rounded-3xl bg-card border border-neutral-300/50 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex-1 space-y-4 w-full">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-500 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Orders By Category Share
             </span>
             <div className="space-y-2.5">
@@ -273,11 +272,11 @@ export default function AnalyticsTab({ stats, loading }: AnalyticsTabProps) {
                   <div key={idx} className="flex justify-between items-center text-xs">
                     <div className="flex items-center gap-2">
                       <div className="h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
-                      <span className="font-bold text-neutral-300 capitalize">
+                      <span className="font-bold text-foreground capitalize">
                         {c.category.toLowerCase()}
                       </span>
                     </div>
-                    <span className="font-extrabold text-neutral-400">
+                    <span className="font-extrabold text-foreground">
                       {percent}% ({c.count} items)
                     </span>
                   </div>
@@ -315,28 +314,28 @@ export default function AnalyticsTab({ stats, loading }: AnalyticsTabProps) {
               <circle cx="50" cy="50" r="29" fill="#121212" />
             </svg>
             <div className="absolute flex flex-col items-center justify-center">
-              <span className="text-[9px] font-extrabold text-neutral-500 uppercase tracking-widest">
+              <span className="text-[9px] font-extrabold text-foreground uppercase tracking-widest">
                 Total
               </span>
-              <span className="text-xl font-black text-neutral-100">{categoryTotal}</span>
+              <span className="text-xl font-black text-foreground">{categoryTotal}</span>
             </div>
           </div>
         </div>
 
         {/* Top Product / Customers Leaderboard */}
-        <div className="p-6 rounded-3xl bg-neutral-900 border border-neutral-850 shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="p-6 rounded-3xl bg-card border border-neutral-300/50 shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="space-y-4">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-500 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Top Selling Pizzas
             </span>
             <div className="space-y-3">
               {charts.topSellingPizza.map((p, idx) => (
                 <div key={idx} className="space-y-1.5">
-                  <div className="flex justify-between text-xs font-bold text-neutral-300">
+                  <div className="flex justify-between text-xs font-bold text-foreground">
                     <span>{p.name}</span>
                     <span>{p.count} sold</span>
                   </div>
-                  <div className="w-full h-1.5 bg-neutral-950 rounded-full overflow-hidden">
+                  <div className="w-full h-1.5 bg-background rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${Math.min((p.count / 50) * 100, 100)}%` }}
@@ -350,18 +349,18 @@ export default function AnalyticsTab({ stats, loading }: AnalyticsTabProps) {
           </div>
 
           <div className="space-y-4">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-500 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Top Customer Spends
             </span>
             <div className="space-y-3">
               {charts.topCustomers.map((c, idx) => (
                 <div
                   key={idx}
-                  className="flex justify-between items-center text-xs font-bold p-2.5 rounded-xl bg-neutral-950 border border-neutral-850/60"
+                  className="flex justify-between items-center text-xs font-bold p-2.5 rounded-xl bg-background border border-neutral-300/50/60"
                 >
                   <div>
-                    <span className="text-neutral-200 block">{c.name}</span>
-                    <span className="text-[10px] text-neutral-500">{c.orders} orders placed</span>
+                    <span className="text-foreground block">{c.name}</span>
+                    <span className="text-[10px] text-foreground">{c.orders} orders placed</span>
                   </div>
                   <span className="text-red-500 text-sm font-extrabold">
                     ₹{c.spend.toLocaleString()}

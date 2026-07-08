@@ -92,8 +92,8 @@ export default function NotificationsTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold text-neutral-100">Broadcast Manager</h2>
-        <p className="text-xs text-neutral-500 mt-1">
+        <h2 className="text-xl font-bold text-foreground">Broadcast Manager</h2>
+        <p className="text-xs text-foreground mt-1">
           Send HTML marketing email campaigns and push dashboard notifications to all registered
           customer users.
         </p>
@@ -101,17 +101,17 @@ export default function NotificationsTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Form panel */}
-        <div className="lg:col-span-2 p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
-          <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-500 block">
+        <div className="lg:col-span-2 p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
+          <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
             Draft Newsletter Broadcast
           </span>
 
           <form
             onSubmit={handleBroadcast}
-            className="space-y-4 text-xs font-semibold text-neutral-400"
+            className="space-y-4 text-xs font-semibold text-foreground"
           >
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Email Subject Line
               </label>
               <input
@@ -119,12 +119,12 @@ export default function NotificationsTab() {
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 placeholder="E.g. Sunday Funday: Buy 1 Pizza Get 1 Pizza Free!"
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 placeholder-neutral-700 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground placeholder:text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Announcement Message Body
               </label>
               <textarea
@@ -132,7 +132,7 @@ export default function NotificationsTab() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Details of the marketing push, codes, or seasonal offerings..."
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 placeholder-neutral-700 outline-none focus:border-red-500/50 resize-none font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground placeholder:text-foreground outline-none focus:border-red-500/50 resize-none font-sans"
               />
             </div>
 
@@ -140,7 +140,7 @@ export default function NotificationsTab() {
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-[10px] font-extrabold uppercase flex items-center gap-1.5 cursor-pointer shadow transition-transform active:scale-95"
+                className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-foreground text-[10px] font-extrabold uppercase flex items-center gap-1.5 cursor-pointer shadow transition-transform active:scale-95"
               >
                 {loading ? (
                   <Loader2 className="h-4.5 w-4.5 animate-spin" />
@@ -154,8 +154,8 @@ export default function NotificationsTab() {
         </div>
 
         {/* Info panel */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4 text-xs font-semibold text-neutral-500 leading-relaxed">
-          <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4 text-xs font-semibold text-foreground leading-relaxed">
+          <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
             Notification Policies
           </span>
           <p>
@@ -170,15 +170,15 @@ export default function NotificationsTab() {
       </div>
 
       {/* Broadcast History Table */}
-      <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
-        <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block flex items-center gap-1.5">
-          <Clock className="h-4 w-4 text-neutral-500" /> Broadcast History Logs
+      <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
+        <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block flex items-center gap-1.5">
+          <Clock className="h-4 w-4 text-foreground" /> Broadcast History Logs
         </span>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-xs font-semibold text-neutral-400 text-left border-collapse">
+          <table className="w-full text-xs font-semibold text-foreground text-left border-collapse">
             <thead>
-              <tr className="border-b border-neutral-850 text-neutral-500 text-[10px] uppercase tracking-wider">
+              <tr className="border-b border-neutral-300/50 text-foreground text-[10px] uppercase tracking-wider">
                 <th className="py-3 px-4">Date Sent</th>
                 <th className="py-3 px-4">Subject</th>
                 <th className="py-3 px-4 text-center">Recipients</th>
@@ -189,35 +189,34 @@ export default function NotificationsTab() {
             <tbody>
               {fetching && broadcasts.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="py-8 text-center text-neutral-600">
+                  <td colSpan={5} className="py-8 text-center text-foreground">
                     Loading broadcast history logs...
                   </td>
                 </tr>
               ) : broadcasts.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="py-8 text-center text-neutral-600">
+                  <td colSpan={5} className="py-8 text-center text-foreground">
                     No marketing newsletters broadcasted yet.
                   </td>
                 </tr>
               ) : (
                 broadcasts.map((b) => (
-                  <tr key={b.id} className="border-b border-neutral-850/50 hover:bg-neutral-950/20">
-                    <td className="py-3 px-4 text-neutral-500">
+                  <tr key={b.id} className="border-b border-neutral-300/50/50 hover:bg-background/20">
+                    <td className="py-3 px-4 text-foreground">
                       {new Date(b.sentAt).toLocaleString()}
                     </td>
-                    <td className="py-3 px-4 text-neutral-200 font-bold truncate max-w-xs">
+                    <td className="py-3 px-4 text-foreground font-bold truncate max-w-xs">
                       {b.subject}
                     </td>
-                    <td className="py-3 px-4 text-center font-bold text-neutral-300">
+                    <td className="py-3 px-4 text-center font-bold text-foreground">
                       {b.recipientsCount}
                     </td>
                     <td className="py-3 px-4">
                       <span
-                        className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] uppercase tracking-wider font-extrabold border ${
-                          b.status === 'success'
-                            ? 'border-emerald-500/20 bg-emerald-500/5 text-emerald-400'
-                            : 'border-red-500/20 bg-red-500/5 text-red-400'
-                        }`}
+                        className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] uppercase tracking-wider font-extrabold border ${b.status === 'success'
+                          ? 'border-emerald-500/20 bg-emerald-500/5 text-emerald-700'
+                          : 'border-red-500/20 bg-red-500/5 text-red-700'
+                          }`}
                       >
                         {b.status === 'success' ? 'Completed' : 'Failed'}
                       </span>
@@ -225,7 +224,7 @@ export default function NotificationsTab() {
                     <td className="py-3 px-4 text-right">
                       <button
                         onClick={() => handleOpenDetails(b)}
-                        className="p-1 rounded bg-neutral-950 border border-neutral-800 hover:border-red-500/30 text-neutral-400 hover:text-neutral-200 cursor-pointer"
+                        className="p-1 rounded bg-background border border-neutral-800 hover:border-red-500/30 text-foreground hover:text-primary cursor-pointer"
                         title="View Delivery Details"
                       >
                         <Eye className="h-4 w-4" />
@@ -241,17 +240,17 @@ export default function NotificationsTab() {
 
       {/* Detail Dialog */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="bg-neutral-900 border border-neutral-800 text-neutral-100 max-w-lg rounded-3xl p-6 shadow-2xl">
-          <DialogHeader className="border-b border-neutral-850 pb-4">
-            <DialogTitle className="text-sm font-extrabold text-neutral-200 uppercase tracking-widest flex items-center gap-2">
+        <DialogContent className="bg-card border border-neutral-800 text-foreground max-w-lg rounded-3xl p-6 shadow-2xl">
+          <DialogHeader className="border-b border-neutral-300/50 pb-4">
+            <DialogTitle className="text-sm font-extrabold text-foreground uppercase tracking-widest flex items-center gap-2">
               <Mail className="h-5 w-5 text-red-500" /> Delivery Status Log
             </DialogTitle>
             {selectedBroadcast && (
               <div className="pt-2 text-left space-y-1">
-                <h4 className="text-xs font-bold text-neutral-300">
+                <h4 className="text-xs font-bold text-foreground">
                   Subject: "{selectedBroadcast.subject}"
                 </h4>
-                <p className="text-[10px] text-neutral-500">
+                <p className="text-[10px] text-foreground">
                   Sent on: {new Date(selectedBroadcast.sentAt).toLocaleString()}
                 </p>
               </div>
@@ -259,20 +258,20 @@ export default function NotificationsTab() {
           </DialogHeader>
 
           <div className="max-h-80 overflow-y-auto space-y-2 py-4 pr-1 scrollbar-none text-xs">
-            <span className="text-[9px] font-extrabold uppercase tracking-widest text-neutral-500 block mb-2">
+            <span className="text-[9px] font-extrabold uppercase tracking-widest text-foreground block mb-2">
               Recipient Delivery Matrix
             </span>
 
             {modalDeliveryList.length === 0 ? (
-              <p className="text-neutral-500 text-center py-4">No individual logs recorded.</p>
+              <p className="text-foreground text-center py-4">No individual logs recorded.</p>
             ) : (
               modalDeliveryList.map((d, index) => (
                 <div
                   key={index}
-                  className="p-3 bg-neutral-950 border border-neutral-900 rounded-xl flex items-center justify-between"
+                  className="p-3 bg-background border border-neutral-900 rounded-xl flex items-center justify-between"
                 >
                   <div className="space-y-0.5 text-left">
-                    <span className="font-bold text-neutral-300 block">{d.email}</span>
+                    <span className="font-bold text-foreground block">{d.email}</span>
                     {d.error && (
                       <span className="text-[9px] font-medium text-red-500 block">
                         Err: {d.error}
@@ -281,11 +280,11 @@ export default function NotificationsTab() {
                   </div>
                   <div>
                     {d.status === 'success' ? (
-                      <span className="flex items-center gap-1.5 text-[9px] font-extrabold uppercase text-emerald-400">
+                      <span className="flex items-center gap-1.5 text-[9px] font-extrabold uppercase text-emerald-700">
                         <CheckCircle className="h-3.5 w-3.5" /> Sent
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1.5 text-[9px] font-extrabold uppercase text-red-400">
+                      <span className="flex items-center gap-1.5 text-[9px] font-extrabold uppercase text-red-700">
                         <AlertCircle className="h-3.5 w-3.5" /> Failed
                       </span>
                     )}

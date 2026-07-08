@@ -11,7 +11,7 @@ export function LoadingSkeleton({ className, ...props }: SkeletonProps) {
   return (
     <div
       className={cn(
-        'animate-pulse rounded-2xl bg-neutral-900/60 border border-neutral-800/40 relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-neutral-800/20 before:to-transparent',
+        'animate-pulse rounded-2xl bg-card/60 border border-neutral-800/40 relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-neutral-800/20 before:to-transparent',
         className,
       )}
       {...props}
@@ -21,7 +21,7 @@ export function LoadingSkeleton({ className, ...props }: SkeletonProps) {
 
 export function ProductCardSkeleton() {
   return (
-    <div className="bg-neutral-950/40 border border-neutral-900 rounded-3xl p-4 space-y-4">
+    <div className="bg-background/40 border border-neutral-900 rounded-3xl p-4 space-y-4">
       <LoadingSkeleton className="aspect-square w-full rounded-2xl" />
       <div className="space-y-2">
         <div className="flex justify-between items-center">

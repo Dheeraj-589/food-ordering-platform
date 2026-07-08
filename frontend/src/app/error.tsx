@@ -17,7 +17,7 @@ export default function ErrorPage({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
       <Navbar />
 
       <section className="flex-1 flex flex-col items-center justify-center px-6 py-20 text-center space-y-6">
@@ -27,7 +27,7 @@ export default function ErrorPage({
 
         <div className="space-y-2 max-w-md">
           <h1 className="text-3xl font-extrabold tracking-tight">System Error (500)</h1>
-          <p className="text-sm text-neutral-400 font-medium leading-relaxed">
+          <p className="text-sm text-foreground font-medium leading-relaxed">
             We encountered an internal application error while servicing your request. Our support
             staff has been alerted.
           </p>

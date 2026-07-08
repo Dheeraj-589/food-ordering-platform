@@ -56,8 +56,8 @@ export default function CustomersTab() {
       {/* Header controls */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold text-neutral-100">Customer Directory</h2>
-          <p className="text-xs text-neutral-500 mt-1">
+          <h2 className="text-xl font-bold text-foreground">Customer Directory</h2>
+          <p className="text-xs text-foreground mt-1">
             Review active system users, block spammers, audit loyalty tiers, and track customer
             lifetime values.
           </p>
@@ -65,7 +65,7 @@ export default function CustomersTab() {
 
         {/* Local Search */}
         <div className="relative w-full sm:w-64">
-          <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-neutral-500">
+          <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-foreground">
             <Search className="h-4 w-4" />
           </div>
           <input
@@ -73,16 +73,16 @@ export default function CustomersTab() {
             placeholder="Search email, name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-neutral-905 border border-neutral-800 rounded-xl pl-10 pr-4 py-2 text-xs text-neutral-300 outline-none focus:border-red-500"
+            className="w-full bg-neutral-905 border border-neutral-800 rounded-xl pl-10 pr-4 py-2 text-xs text-foreground outline-none focus:border-red-500"
           />
         </div>
       </div>
 
       {/* Grid List Table */}
-      <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
+      <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
         <div className="overflow-x-auto rounded-2xl border border-neutral-900 max-h-[500px] overflow-y-auto scrollbar-thin">
-          <table className="w-full text-left text-xs font-semibold text-neutral-400">
-            <thead className="bg-neutral-950 text-neutral-500 font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
+          <table className="w-full text-left text-xs font-semibold text-foreground">
+            <thead className="bg-background text-foreground font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
               <tr>
                 <th className="p-4">Customer Details</th>
                 <th className="p-4">Phone Number</th>
@@ -95,47 +95,46 @@ export default function CustomersTab() {
             <tbody className="divide-y divide-neutral-900">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-neutral-500 font-bold">
+                  <td colSpan={6} className="p-8 text-center text-foreground font-bold">
                     Loading users registry...
                   </td>
                 </tr>
               ) : filteredUsers.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-neutral-500 font-bold">
+                  <td colSpan={6} className="p-8 text-center text-foreground font-bold">
                     No users matches search criteria.
                   </td>
                 </tr>
               ) : (
                 filteredUsers.map((u) => (
-                  <tr key={u.id} className="hover:bg-neutral-900/20">
+                  <tr key={u.id} className="hover:bg-card/20">
                     <td className="p-4 flex items-center gap-3">
-                      <div className="h-8 w-8 bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden flex items-center justify-center font-extrabold text-white shrink-0">
+                      <div className="h-8 w-8 bg-background border border-neutral-800 rounded-xl overflow-hidden flex items-center justify-center font-extrabold text-foreground shrink-0">
                         {u.name ? u.name[0].toUpperCase() : 'C'}
                       </div>
                       <div>
-                        <span className="text-neutral-200 font-bold block">{u.name}</span>
-                        <span className="text-[10px] text-neutral-500 block truncate max-w-xs">
+                        <span className="text-foreground font-bold block">{u.name}</span>
+                        <span className="text-[10px] text-foreground block truncate max-w-xs">
                           {u.email}
                         </span>
                       </div>
                     </td>
-                    <td className="p-4 font-semibold text-neutral-400">{u.phoneNumber || 'N/A'}</td>
-                    <td className="p-4 font-bold text-neutral-400 capitalize">
+                    <td className="p-4 font-semibold text-foreground">{u.phoneNumber || 'N/A'}</td>
+                    <td className="p-4 font-bold text-foreground capitalize">
                       <span
-                        className={`px-2 py-0.5 rounded text-[9px] uppercase border ${
-                          u.role === 'admin'
-                            ? 'bg-red-600/10 text-red-500 border-red-500/20'
-                            : u.role === 'delivery'
-                              ? 'bg-blue-600/10 text-blue-500 border-blue-500/20'
-                              : 'bg-neutral-950 border-neutral-850 text-neutral-400'
-                        }`}
+                        className={`px-2 py-0.5 rounded text-[9px] uppercase border ${u.role === 'admin'
+                          ? 'bg-red-600/10 text-red-500 border-red-500/20'
+                          : u.role === 'delivery'
+                            ? 'bg-blue-600/10 text-blue-500 border-blue-500/20'
+                            : 'bg-background border-neutral-300/50 text-foreground'
+                          }`}
                       >
                         {u.role}
                       </span>
                     </td>
-                    <td className="p-4 font-bold text-neutral-300">
+                    <td className="p-4 font-bold text-foreground">
                       {u.loyaltyPoints || 0} pts
-                      <span className="text-[9px] text-neutral-500 block font-semibold">
+                      <span className="text-[9px] text-foreground block font-semibold">
                         {u.rewardLevel || 'Bronze'} Tier
                       </span>
                     </td>
@@ -154,11 +153,10 @@ export default function CustomersTab() {
                       {u.role !== 'admin' && (
                         <button
                           onClick={() => handleToggleBlock(u)}
-                          className={`p-2 rounded-lg border cursor-pointer transition-colors inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider ${
-                            u.status === 'blocked'
-                              ? 'bg-emerald-650/10 border-emerald-500/20 text-emerald-500 hover:bg-emerald-950/20'
-                              : 'bg-red-650/10 border-red-500/20 text-red-500 hover:bg-red-950/20'
-                          }`}
+                          className={`p-2 rounded-lg border cursor-pointer transition-colors inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider ${u.status === 'blocked'
+                            ? 'bg-emerald-650/10 border-emerald-500/20 text-emerald-500 hover:bg-emerald-950/20'
+                            : 'bg-red-650/10 border-red-500/20 text-red-500 hover:bg-red-950/20'
+                            }`}
                         >
                           {u.status === 'blocked' ? (
                             <>

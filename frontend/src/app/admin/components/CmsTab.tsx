@@ -94,7 +94,7 @@ export default function CmsTab() {
 
   if (loading) {
     return (
-      <div className="p-8 text-center text-neutral-500 font-bold">
+      <div className="p-8 text-center text-foreground font-bold">
         Loading CMS configurations panel...
       </div>
     );
@@ -104,19 +104,19 @@ export default function CmsTab() {
     <div className="space-y-6">
       {/* Header controls */}
       <div>
-        <h2 className="text-xl font-bold text-neutral-100 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
           <FileText className="h-5 w-5 text-red-500" /> Layout CMS Editor
         </h2>
-        <p className="text-xs text-neutral-500 mt-1">
+        <p className="text-xs text-foreground mt-1">
           Configure announcement banners, homepage hero captions, buttons, and footer links.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs font-semibold text-neutral-400">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-xs font-semibold text-foreground">
         {/* Banner Block */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
           <div className="flex justify-between items-center border-b border-neutral-950 pb-2">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Announcement Bar Banner
             </span>
             <button
@@ -134,7 +134,7 @@ export default function CmsTab() {
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+            <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
               Header Marquee Text
             </label>
             <input
@@ -142,15 +142,15 @@ export default function CmsTab() {
               value={announcementText}
               onChange={(e) => setAnnouncementText(e.target.value)}
               placeholder="Announcements or deals running at store top..."
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+              className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
             />
           </div>
         </div>
 
         {/* Hero Slider settings */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4">
           <div className="flex justify-between items-center border-b border-neutral-950 pb-2">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Homepage Hero Section
             </span>
             <button
@@ -169,7 +169,7 @@ export default function CmsTab() {
 
           <div className="space-y-3">
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Hero Section Title
               </label>
               <input
@@ -177,12 +177,12 @@ export default function CmsTab() {
                 value={heroTitle}
                 onChange={(e) => setHeroTitle(e.target.value)}
                 placeholder="Title text banner..."
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+              <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                 Hero Section Subtitle
               </label>
               <textarea
@@ -190,31 +190,31 @@ export default function CmsTab() {
                 value={heroSubtitle}
                 onChange={(e) => setHeroSubtitle(e.target.value)}
                 placeholder="Subtitle paragraphs text..."
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 resize-none font-sans"
+                className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 resize-none font-sans"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   Primary Button Text
                 </label>
                 <input
                   type="text"
                   value={heroBtnText}
                   onChange={(e) => setHeroBtnText(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                  className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   Primary Link Path
                 </label>
                 <input
                   type="text"
                   value={heroBtnLink}
                   onChange={(e) => setHeroBtnLink(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                  className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
                 />
               </div>
             </div>
@@ -222,9 +222,9 @@ export default function CmsTab() {
         </div>
 
         {/* Footer configurations */}
-        <div className="p-6 bg-neutral-900 border border-neutral-850 rounded-3xl space-y-4 lg:col-span-2">
+        <div className="p-6 bg-card border border-neutral-300/50 rounded-3xl space-y-4 lg:col-span-2">
           <div className="flex justify-between items-center border-b border-neutral-950 pb-2">
-            <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-400 block">
+            <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground block">
               Footer Content Blocks
             </span>
             <button
@@ -244,50 +244,50 @@ export default function CmsTab() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-3">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   Store Address
                 </label>
                 <input
                   type="text"
                   value={footerAddress}
                   onChange={(e) => setFooterAddress(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                  className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   Contact Phone
                 </label>
                 <input
                   type="text"
                   value={footerPhone}
                   onChange={(e) => setFooterPhone(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                  className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
                 />
               </div>
             </div>
 
             <div className="space-y-3">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   Contact Email
                 </label>
                 <input
                   type="text"
                   value={footerEmail}
                   onChange={(e) => setFooterEmail(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                  className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block font-sans">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block font-sans">
                   Copyright Tagline
                 </label>
                 <input
                   type="text"
                   value={footerCopyright}
                   onChange={(e) => setFooterCopyright(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-2.5 text-neutral-200 outline-none focus:border-red-500/50 font-sans"
+                  className="w-full bg-background border border-neutral-800 rounded-xl px-4 py-2.5 text-foreground outline-none focus:border-red-500/50 font-sans"
                 />
               </div>
             </div>

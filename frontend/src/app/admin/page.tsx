@@ -96,7 +96,7 @@ export default function AdminDashboardPage() {
 
   if (isLoading || !isAuthenticated || (user?.role !== 'admin' && user?.role !== 'manager')) {
     return (
-      <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center select-none text-neutral-500">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center select-none text-foreground">
         <div className="h-8 w-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin mb-3"></div>
         <span className="text-xs font-bold uppercase tracking-wider">
           Verifying Authorization...

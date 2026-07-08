@@ -79,7 +79,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="min-h-screen bg-neutral-950 text-neutral-100 relative overflow-hidden select-none font-sans antialiased flex flex-col">
+      <main className="min-h-screen bg-background text-foreground relative overflow-hidden select-none font-sans antialiased flex flex-col">
         {/* Top Announcements Scrolling Bar */}
         <AnnouncementBar />
 

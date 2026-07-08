@@ -32,7 +32,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-neutral-950/20 select-none border-t border-neutral-900/60 relative overflow-hidden">
+    <section className="w-full py-16 md:py-24 bg-background/20 select-none border-t border-neutral-900/60 relative overflow-hidden">
       {/* Background Soft Blobs */}
       <div className="absolute -bottom-10 left-10 w-44 h-44 bg-red-600/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -45,10 +45,10 @@ export default function Newsletter() {
 
           {/* Heading */}
           <div className="space-y-2">
-            <h3 className="text-xl sm:text-2xl font-black text-neutral-100">
+            <h3 className="text-xl sm:text-2xl font-black text-foreground">
               Join the Gourmet Circle
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-500 font-medium max-w-sm mx-auto">
+            <p className="text-xs sm:text-sm text-foreground font-medium max-w-sm mx-auto">
               Subscribe to get exclusive access to chef specials, promo codes, and weekend flash
               sales.
             </p>
@@ -65,20 +65,20 @@ export default function Newsletter() {
                 onSubmit={handleSubmit}
                 className="w-full max-w-md flex flex-col sm:flex-row gap-2"
               >
-                <div className="flex-1 flex items-center gap-2.5 px-3.5 py-3 rounded-2xl bg-neutral-950 border border-neutral-900 focus-within:border-red-500/50 transition-colors">
+                <div className="flex-1 flex items-center gap-2.5 px-3.5 py-3 rounded-2xl bg-background border border-neutral-900 focus-within:border-red-500/50 transition-colors">
                   <input
                     type="email"
                     placeholder="Enter your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-transparent border-0 outline-none text-xs font-semibold text-neutral-200 placeholder-neutral-600 font-sans"
+                    className="w-full bg-transparent border-0 outline-none text-xs font-semibold text-foreground placeholder-neutral-600 font-sans"
                     required
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-3 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs tracking-wider uppercase shadow-lg shadow-red-950/20 flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                  className="px-6 py-3 rounded-2xl bg-red-600 hover:bg-red-700 text-foreground font-bold text-xs tracking-wider uppercase shadow-lg shadow-red-950/20 flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
                 >
                   {loading ? (
                     <>
@@ -95,7 +95,7 @@ export default function Newsletter() {
                 key="subscribed-success"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-400"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-700"
               >
                 <Check className="h-4 w-4" /> Welcome on board! Check your inbox soon.
               </motion.div>

@@ -28,7 +28,7 @@ export default function OverviewTab({ stats, loading }: OverviewTabProps) {
         {Array.from({ length: 10 }).map((_, idx) => (
           <div
             key={idx}
-            className="p-5 rounded-2xl bg-neutral-900 border border-neutral-800 animate-pulse space-y-3"
+            className="p-5 rounded-2xl bg-card border border-neutral-800 animate-pulse space-y-3"
           >
             <div className="h-4 bg-neutral-850 rounded w-1/2" />
             <div className="h-8 bg-neutral-850 rounded w-3/4" />
@@ -117,8 +117,8 @@ export default function OverviewTab({ stats, loading }: OverviewTabProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-bold text-neutral-100">Store Overview</h2>
-        <p className="text-xs text-neutral-500 mt-1">
+        <h2 className="text-xl font-bold text-foreground">Store Overview</h2>
+        <p className="text-xs text-foreground mt-1">
           Real-time status indicators, active baking workflows, and gross margin trackers.
         </p>
       </div>
@@ -131,10 +131,10 @@ export default function OverviewTab({ stats, loading }: OverviewTabProps) {
               key={idx}
               whileHover={{ y: -4 }}
               transition={{ duration: 0.2 }}
-              className="p-5 rounded-2xl bg-neutral-900 border border-neutral-850 flex flex-col justify-between min-h-[120px] shadow-sm relative overflow-hidden"
+              className="p-5 rounded-2xl bg-card border border-neutral-300/50 flex flex-col justify-between min-h-[120px] shadow-sm relative overflow-hidden"
             >
               <div className="flex justify-between items-start gap-4">
-                <span className="text-[10px] uppercase tracking-widest font-extrabold text-neutral-500">
+                <span className="text-[10px] uppercase tracking-widest font-extrabold text-foreground">
                   {card.title}
                 </span>
                 <div className={`p-1.5 rounded-lg border ${card.color} shrink-0`}>
@@ -143,10 +143,10 @@ export default function OverviewTab({ stats, loading }: OverviewTabProps) {
               </div>
 
               <div className="mt-4">
-                <span className="text-2xl font-extrabold text-neutral-100 tracking-tight block">
+                <span className="text-2xl font-extrabold text-foreground tracking-tight block">
                   {card.value}
                 </span>
-                <span className="text-[10px] text-neutral-500 font-semibold mt-1 block">
+                <span className="text-[10px] text-foreground font-semibold mt-1 block">
                   {card.sub}
                 </span>
               </div>

@@ -41,7 +41,7 @@ export default function ContactClient() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground flex flex-col font-sans overflow-x-hidden">
       <Navbar />
 
       <section className="max-w-4xl mx-auto px-6 py-16 md:py-24 space-y-12 flex-1 w-full">
@@ -50,7 +50,7 @@ export default function ContactClient() {
             Customer Support
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Get in Touch</h1>
-          <p className="text-neutral-400 max-w-xl mx-auto text-sm md:text-base font-medium">
+          <p className="text-foreground max-w-xl mx-auto text-sm md:text-base font-medium">
             Have questions about your order, feedback, or business inquiries? We are available 24
             hours a day.
           </p>
@@ -58,11 +58,11 @@ export default function ContactClient() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-neutral-900">
           {/* Card 1 */}
-          <div className="p-6 rounded-3xl bg-neutral-900/30 border border-neutral-900 flex gap-4 items-start shadow-lg">
+          <div className="p-6 rounded-3xl bg-card/30 border border-neutral-900 flex gap-4 items-start shadow-lg">
             <Phone className="h-6 w-6 text-red-500 shrink-0" />
             <div className="space-y-1">
-              <h3 className="font-bold text-neutral-200">Call Support</h3>
-              <p className="text-xs text-neutral-400 font-medium">
+              <h3 className="font-bold text-foreground">Call Support</h3>
+              <p className="text-xs text-foreground font-medium">
                 For instant delivery updates & changes
               </p>
               <p className="text-sm font-extrabold text-amber-500 pt-1">{storeDetails.phone}</p>
@@ -70,11 +70,11 @@ export default function ContactClient() {
           </div>
 
           {/* Card 2 */}
-          <div className="p-6 rounded-3xl bg-neutral-900/30 border border-neutral-900 flex gap-4 items-start shadow-lg">
+          <div className="p-6 rounded-3xl bg-card/30 border border-neutral-900 flex gap-4 items-start shadow-lg">
             <Mail className="h-6 w-6 text-red-500 shrink-0" />
             <div className="space-y-1">
-              <h3 className="font-bold text-neutral-200">Email Support</h3>
-              <p className="text-xs text-neutral-400 font-medium">
+              <h3 className="font-bold text-foreground">Email Support</h3>
+              <p className="text-xs text-foreground font-medium">
                 For complaints, feedback or corporate orders
               </p>
               <p className="text-sm font-extrabold text-amber-500 pt-1">{storeDetails.email}</p>
@@ -82,11 +82,11 @@ export default function ContactClient() {
           </div>
 
           {/* Card 3 */}
-          <div className="p-6 rounded-3xl bg-neutral-900/30 border border-neutral-900 flex gap-4 items-start shadow-lg">
+          <div className="p-6 rounded-3xl bg-card/30 border border-neutral-900 flex gap-4 items-start shadow-lg">
             <MapPin className="h-6 w-6 text-red-500 shrink-0" />
             <div className="space-y-1">
-              <h3 className="font-bold text-neutral-200">Headquarters</h3>
-              <p className="text-xs text-neutral-400 font-medium">Foodies Express Culinary Labs</p>
+              <h3 className="font-bold text-foreground">Headquarters</h3>
+              <p className="text-xs text-foreground font-medium">Foodies Express Culinary Labs</p>
               <p className="text-sm font-extrabold text-neutral-350 pt-1 leading-relaxed">
                 {storeDetails.address}
               </p>
@@ -94,11 +94,11 @@ export default function ContactClient() {
           </div>
 
           {/* Card 4 */}
-          <div className="p-6 rounded-3xl bg-neutral-900/30 border border-neutral-900 flex gap-4 items-start shadow-lg">
+          <div className="p-6 rounded-3xl bg-card/30 border border-neutral-900 flex gap-4 items-start shadow-lg">
             <Clock className="h-6 w-6 text-red-500 shrink-0" />
             <div className="space-y-1">
-              <h3 className="font-bold text-neutral-200">Kitchen Timings</h3>
-              <p className="text-xs text-neutral-400 font-medium">Hot kitchen prep hours</p>
+              <h3 className="font-bold text-foreground">Kitchen Timings</h3>
+              <p className="text-xs text-foreground font-medium">Hot kitchen prep hours</p>
               <p className="text-sm font-extrabold text-neutral-350 pt-1">
                 {businessHours.days}: {businessHours.open} - {businessHours.close}
               </p>

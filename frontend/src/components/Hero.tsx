@@ -92,7 +92,7 @@ export default function Hero() {
           </div>
 
           {/* Premium Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-100 leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-tight">
             {heroContent.title.split(' Delivered ').length > 1 ? (
               <>
                 {heroContent.title.split(' Delivered ')[0]} <br />
@@ -113,7 +113,7 @@ export default function Hero() {
           </h1>
 
           {/* Subtext */}
-          <p className="text-sm sm:text-base text-neutral-400 font-medium max-w-lg mx-auto lg:mx-0 leading-relaxed">
+          <p className="text-sm sm:text-base text-foreground font-medium max-w-lg mx-auto lg:mx-0 leading-relaxed">
             {heroContent.subtitle}
           </p>
 
@@ -127,14 +127,14 @@ export default function Hero() {
                   router.push(heroContent.buttonLink);
                 }
               }}
-              className="group w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-red-600 to-amber-500 text-white font-bold text-sm tracking-wide shadow-xl shadow-red-950/20 hover:shadow-red-600/35 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="group w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-red-600 to-amber-500 text-foreground font-bold text-sm tracking-wide shadow-xl shadow-red-950/20 hover:shadow-red-600/35 transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               {heroContent.buttonText}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 transition-transform" />
             </button>
             <button
               onClick={handleScrollToMenu}
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-300 font-bold text-sm tracking-wide hover:text-white hover:border-neutral-700 hover:bg-neutral-800/80 transition-all cursor-pointer"
+              className="w-full sm:w-auto px-8 py-4 rounded-full bg-card border border-neutral-800 text-foreground font-bold text-sm tracking-wide hover:text-primary hover:border-neutral-700 hover:bg-neutral-800/80 transition-all cursor-pointer"
             >
               Explore Menu
             </button>
@@ -143,20 +143,20 @@ export default function Hero() {
           {/* Trust points */}
           <div className="grid grid-cols-3 gap-4 pt-6 border-t border-neutral-900/60 max-w-md mx-auto lg:mx-0">
             <div>
-              <p className="text-xl sm:text-2xl font-black text-neutral-100">100%</p>
-              <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mt-0.5">
+              <p className="text-xl sm:text-2xl font-black text-foreground">100%</p>
+              <p className="text-[10px] text-foreground font-bold uppercase tracking-wider mt-0.5">
                 Fresh Sourdough
               </p>
             </div>
             <div>
-              <p className="text-xl sm:text-2xl font-black text-neutral-100">30m</p>
-              <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mt-0.5">
+              <p className="text-xl sm:text-2xl font-black text-foreground">30m</p>
+              <p className="text-[10px] text-foreground font-bold uppercase tracking-wider mt-0.5">
                 Delivery Time
               </p>
             </div>
             <div>
-              <p className="text-xl sm:text-2xl font-black text-neutral-100">24/7</p>
-              <p className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider mt-0.5">
+              <p className="text-xl sm:text-2xl font-black text-foreground">24/7</p>
+              <p className="text-[10px] text-foreground font-bold uppercase tracking-wider mt-0.5">
                 Customer Care
               </p>
             </div>
@@ -179,7 +179,7 @@ export default function Hero() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-              className="absolute w-full h-full rounded-full border border-neutral-900/40 p-4 bg-neutral-950/20 backdrop-blur-sm cursor-pointer shadow-2xl shadow-neutral-950"
+              className="absolute w-full h-full rounded-full border border-neutral-900/40 p-4 bg-background/20 backdrop-blur-sm cursor-pointer shadow-2xl shadow-neutral-950"
             >
               <img
                 src={heroContent.imageUrl}
@@ -235,16 +235,16 @@ export default function Hero() {
               style={{ x: useSpring(useMotionValue(10)), y: useSpring(useMotionValue(-10)) }}
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-8 -right-8 p-3.5 rounded-2xl bg-neutral-950/90 backdrop-blur-xl border border-neutral-800 shadow-2xl flex items-center gap-3 select-none pointer-events-none"
+              className="absolute -top-8 -right-8 p-3.5 rounded-2xl bg-background/90 backdrop-blur-xl border border-neutral-800 shadow-2xl flex items-center gap-3 select-none pointer-events-none"
             >
               <div className="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
                 <Sparkles className="h-5 w-5" />
               </div>
               <div>
-                <p className="text-[10px] text-neutral-500 font-extrabold uppercase tracking-wider">
+                <p className="text-[10px] text-foreground font-extrabold uppercase tracking-wider">
                   OFFER CODES
                 </p>
-                <p className="text-xs font-black text-neutral-100">50% OFF FIRST ORDER</p>
+                <p className="text-xs font-black text-foreground">50% OFF FIRST ORDER</p>
               </div>
             </motion.div>
 
@@ -252,16 +252,16 @@ export default function Hero() {
             <motion.div
               animate={{ x: [-8, 8, -8] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-8 -left-8 p-3.5 rounded-2xl bg-neutral-950/90 backdrop-blur-xl border border-neutral-800 shadow-2xl flex items-center gap-3 select-none pointer-events-none"
+              className="absolute -bottom-8 -left-8 p-3.5 rounded-2xl bg-background/90 backdrop-blur-xl border border-neutral-800 shadow-2xl flex items-center gap-3 select-none pointer-events-none"
             >
               <div className="h-10 w-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-2xl">
                 🏍️
               </div>
               <div>
-                <p className="text-[10px] text-neutral-500 font-extrabold uppercase tracking-wider">
+                <p className="text-[10px] text-foreground font-extrabold uppercase tracking-wider">
                   ON THE ROAD
                 </p>
-                <p className="text-xs font-black text-neutral-100">Live Delivery Tracking</p>
+                <p className="text-xs font-black text-foreground">Live Delivery Tracking</p>
               </div>
             </motion.div>
           </motion.div>

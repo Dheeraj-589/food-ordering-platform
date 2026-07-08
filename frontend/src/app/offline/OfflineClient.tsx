@@ -11,7 +11,7 @@ export default function OfflineClient() {
   };
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans overflow-x-hidden">
+    <main className="min-h-screen bg-background text-foreground flex flex-col font-sans overflow-x-hidden">
       <Navbar />
 
       <section className="flex-1 flex flex-col items-center justify-center px-6 py-20 text-center space-y-6">
@@ -21,7 +21,7 @@ export default function OfflineClient() {
 
         <div className="space-y-2 max-w-md">
           <h1 className="text-3xl font-extrabold tracking-tight">Connection Lost</h1>
-          <p className="text-sm text-neutral-400 font-medium leading-relaxed">
+          <p className="text-sm text-foreground font-medium leading-relaxed">
             Oops! It looks like you are currently offline. Please check your network cables or Wi-Fi
             configurations and try again to order some hot fresh pizzas!
           </p>

@@ -68,7 +68,7 @@ function VerifyEmailContent() {
   };
 
   return (
-    <div className="bg-neutral-900/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
+    <div className="bg-card/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
       <OtpInput
         email={email}
         onVerify={handleVerifyOtp}
@@ -80,7 +80,7 @@ function VerifyEmailContent() {
           type="button"
           variant="ghost"
           onClick={() => router.push('/register')}
-          className="text-neutral-400 hover:text-neutral-200"
+          className="text-foreground hover:text-primary"
         >
           &larr; Back to Registration
         </Button>
@@ -92,7 +92,7 @@ function VerifyEmailContent() {
 export default function VerifyEmailPage() {
   return (
     <PublicRoute>
-      <main className="min-h-screen bg-neutral-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
+      <main className="min-h-screen bg-background flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
         {/* Glow circles */}
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-red-500/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-neutral-800/10 rounded-full blur-[120px] pointer-events-none" />
@@ -114,7 +114,7 @@ export default function VerifyEmailPage() {
 
             <Suspense
               fallback={
-                <div className="bg-neutral-900/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl flex flex-col items-center justify-center min-h-[300px]">
+                <div className="bg-card/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl flex flex-col items-center justify-center min-h-[300px]">
                   <div className="h-8 w-8 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>
               }

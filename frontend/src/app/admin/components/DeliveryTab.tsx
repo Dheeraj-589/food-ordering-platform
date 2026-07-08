@@ -67,10 +67,10 @@ export default function DeliveryTab() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-xl font-bold text-neutral-100 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
           <Truck className="h-5 w-5 text-red-500" /> Delivery Dispatch Hub
         </h2>
-        <p className="text-xs text-neutral-500 mt-1">
+        <p className="text-xs text-foreground mt-1">
           Route path tracking, recipient delivery details, simulated street maps, and dispatcher
           resolutions.
         </p>
@@ -78,14 +78,14 @@ export default function DeliveryTab() {
 
       {loading && orders.length === 0 ? (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[400px]">
-          <div className="lg:col-span-1 rounded-3xl bg-neutral-900 border border-neutral-850 animate-pulse" />
-          <div className="lg:col-span-2 rounded-3xl bg-neutral-900 border border-neutral-850 animate-pulse" />
+          <div className="lg:col-span-1 rounded-3xl bg-card border border-neutral-300/50 animate-pulse" />
+          <div className="lg:col-span-2 rounded-3xl bg-card border border-neutral-300/50 animate-pulse" />
         </div>
       ) : orders.length === 0 ? (
-        <div className="p-12 text-center border border-dashed border-neutral-800 rounded-3xl flex flex-col items-center justify-center gap-3 text-neutral-500 select-none">
-          <NavigationOff className="h-8 w-8 text-neutral-600" />
+        <div className="p-12 text-center border border-dashed border-neutral-800 rounded-3xl flex flex-col items-center justify-center gap-3 text-foreground select-none">
+          <NavigationOff className="h-8 w-8 text-foreground" />
           <span className="text-xs font-bold uppercase tracking-wider">No active dispatches</span>
-          <span className="text-[10px] text-neutral-600">
+          <span className="text-[10px] text-foreground">
             All riders are currently idle or docked.
           </span>
         </div>
@@ -93,7 +93,7 @@ export default function DeliveryTab() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Active Deliveries List */}
           <div className="lg:col-span-1 space-y-3 max-h-[500px] overflow-y-auto pr-1">
-            <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-extrabold block">
+            <span className="text-[10px] uppercase tracking-widest text-foreground font-extrabold block">
               Assigned Deliveries ({orders.length})
             </span>
             {orders.map((order) => {
@@ -102,23 +102,22 @@ export default function DeliveryTab() {
                 <div
                   key={order.id}
                   onClick={() => setActiveDelivery(order)}
-                  className={`p-4 rounded-2xl border transition-all cursor-pointer ${
-                    isSelected
-                      ? 'bg-neutral-900 border-red-500/35 shadow'
-                      : 'bg-neutral-900/40 border-neutral-850 hover:border-neutral-800'
-                  }`}
+                  className={`p-4 rounded-2xl border transition-all cursor-pointer ${isSelected
+                    ? 'bg-card border-red-500/35 shadow'
+                    : 'bg-card/40 border-neutral-300/50 hover:border-neutral-800'
+                    }`}
                 >
                   <div className="flex justify-between items-center text-xs">
-                    <span className="font-black text-white">#{order.id}</span>
+                    <span className="font-black text-foreground">#{order.id}</span>
                     <span className="px-2 py-0.5 rounded bg-indigo-600/10 text-indigo-500 border border-indigo-500/20 text-[8px] font-extrabold uppercase">
                       Out For Delivery
                     </span>
                   </div>
                   <div className="mt-3">
-                    <span className="text-xs font-bold text-neutral-300 block">
+                    <span className="text-xs font-bold text-foreground block">
                       {order.user?.name}
                     </span>
-                    <span className="text-[10px] text-neutral-500 block truncate mt-0.5">
+                    <span className="text-[10px] text-foreground block truncate mt-0.5">
                       {order.deliveryAddress}
                     </span>
                   </div>
@@ -136,30 +135,30 @@ export default function DeliveryTab() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="bg-neutral-900 border border-neutral-850 rounded-3xl p-6 space-y-6 flex flex-col justify-between"
+                  className="bg-card border border-neutral-300/50 rounded-3xl p-6 space-y-6 flex flex-col justify-between"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Customer summary */}
                     <div className="space-y-4">
                       <div>
-                        <span className="text-[9px] uppercase tracking-widest text-neutral-500 font-extrabold block">
+                        <span className="text-[9px] uppercase tracking-widest text-foreground font-extrabold block">
                           Recipient Customer
                         </span>
-                        <span className="text-sm font-extrabold text-neutral-200 block mt-1">
+                        <span className="text-sm font-extrabold text-foreground block mt-1">
                           {activeDelivery.user?.name}
                         </span>
-                        <span className="text-xs text-neutral-400 block mt-0.5 font-sans">
+                        <span className="text-xs text-foreground block mt-0.5 font-sans">
                           {activeDelivery.deliveryAddress}
                         </span>
                       </div>
 
                       <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-xs font-bold text-neutral-300">
-                          <Phone className="h-4 w-4 text-neutral-500" />
+                        <div className="flex items-center gap-2 text-xs font-bold text-foreground">
+                          <Phone className="h-4 w-4 text-foreground" />
                           <span>{activeDelivery.user?.phoneNumber || '+91 99999 88888'}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-xs font-bold text-neutral-300">
-                          <User className="h-4 w-4 text-neutral-500" />
+                        <div className="flex items-center gap-2 text-xs font-bold text-foreground">
+                          <User className="h-4 w-4 text-foreground" />
                           <span>Rider Assigned: Rahul Sharma</span>
                         </div>
                       </div>
@@ -170,7 +169,7 @@ export default function DeliveryTab() {
                           onClick={() =>
                             handleUpdateStatus(activeDelivery.id, 'delivered', 'Delivered')
                           }
-                          className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[10px] uppercase flex items-center gap-1 cursor-pointer transition-transform active:scale-95 shadow"
+                          className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-foreground font-extrabold text-[10px] uppercase flex items-center gap-1 cursor-pointer transition-transform active:scale-95 shadow"
                         >
                           <CheckCircle2 className="h-3.5 w-3.5" /> Mark Delivered
                         </button>
@@ -186,7 +185,7 @@ export default function DeliveryTab() {
                     </div>
 
                     {/* Premium simulated SVG Map */}
-                    <div className="relative border border-neutral-800 rounded-2xl h-48 bg-neutral-950 overflow-hidden select-none flex items-center justify-center">
+                    <div className="relative border border-neutral-800 rounded-2xl h-48 bg-background overflow-hidden select-none flex items-center justify-center">
                       <svg
                         className="absolute inset-0 h-full w-full opacity-20"
                         xmlns="http://www.w3.org/2000/svg"
@@ -211,8 +210,8 @@ export default function DeliveryTab() {
 
                       {/* Store Pin */}
                       <div className="absolute left-[38px] top-[138px] flex flex-col items-center">
-                        <MapPin className="h-5 w-5 text-neutral-400 fill-neutral-900 shrink-0" />
-                        <span className="text-[7px] font-black uppercase text-neutral-500 bg-neutral-900 border border-neutral-800 px-1 rounded block mt-0.5">
+                        <MapPin className="h-5 w-5 text-foreground fill-neutral-900 shrink-0" />
+                        <span className="text-[7px] font-black uppercase text-foreground bg-card border border-neutral-800 px-1 rounded block mt-0.5">
                           Store
                         </span>
                       </div>
@@ -220,7 +219,7 @@ export default function DeliveryTab() {
                       {/* Customer Pin */}
                       <div className="absolute left-[268px] top-[18px] flex flex-col items-center">
                         <MapPin className="h-5 w-5 text-red-500 fill-neutral-900 shrink-0 animate-bounce" />
-                        <span className="text-[7px] font-black uppercase text-red-500 bg-neutral-900 border border-neutral-800 px-1 rounded block mt-0.5">
+                        <span className="text-[7px] font-black uppercase text-red-500 bg-card border border-neutral-800 px-1 rounded block mt-0.5">
                           Customer
                         </span>
                       </div>
@@ -238,10 +237,10 @@ export default function DeliveryTab() {
                         }}
                         className="absolute left-[46px] top-[146px] p-1 bg-red-600 rounded-full border border-white shrink-0 z-10"
                       >
-                        <Navigation className="h-3 w-3 text-white rotate-45" />
+                        <Navigation className="h-3 w-3 text-foreground rotate-45" />
                       </motion.div>
 
-                      <div className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded bg-neutral-900/80 border border-neutral-800 text-[8px] font-bold text-neutral-400">
+                      <div className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded bg-card/80 border border-neutral-800 text-[8px] font-bold text-foreground">
                         <Map className="h-2.5 w-2.5" /> Map Tracker Simulation
                       </div>
                     </div>

@@ -84,14 +84,14 @@ export default function UserMenu() {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-800/80 transition-all duration-200 cursor-pointer select-none"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-800/80 transition-all duration-200 cursor-pointer select-none"
       >
-        <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-red-600 to-amber-500 flex items-center justify-center text-white text-xs font-bold font-sans uppercase">
+        <div className="h-7 w-7 rounded-full bg-gradient-to-tr from-red-600 to-amber-500 flex items-center justify-center text-foreground text-xs font-bold font-sans uppercase">
           {user.name.substring(0, 2)}
         </div>
-        <span className="hidden sm:inline text-sm font-semibold text-neutral-200">{firstName}</span>
+        <span className="hidden sm:inline text-sm font-semibold text-foreground">{firstName}</span>
         <ChevronDown
-          className={`h-4 w-4 text-neutral-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 text-foreground transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>
 
@@ -103,15 +103,15 @@ export default function UserMenu() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className="absolute right-0 mt-2 w-56 rounded-2xl bg-neutral-950/90 backdrop-blur-xl border border-neutral-800/60 p-2 shadow-2xl z-[100]"
+            className="absolute right-0 mt-2 w-56 rounded-2xl bg-background/90 backdrop-blur-xl border border-neutral-800/60 p-2 shadow-2xl z-[100]"
           >
             {/* User Info Header */}
             <div className="px-3 py-2.5 border-b border-neutral-900">
-              <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">
+              <p className="text-xs font-semibold text-foreground uppercase tracking-wider">
                 Account
               </p>
-              <p className="text-sm font-bold text-neutral-100 mt-0.5 truncate">{user.name}</p>
-              <p className="text-xs text-neutral-400 truncate">{user.email}</p>
+              <p className="text-sm font-bold text-foreground mt-0.5 truncate">{user.name}</p>
+              <p className="text-xs text-foreground truncate">{user.email}</p>
             </div>
 
             {/* Menu Items */}
@@ -122,7 +122,7 @@ export default function UserMenu() {
                     router.push('/admin');
                     setIsOpen(false);
                   }}
-                  className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-red-500 hover:text-red-400 hover:bg-red-950/10 border border-red-500/10 transition-colors text-left cursor-pointer"
+                  className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-red-500 hover:text-red-700 hover:bg-red-950/10 border border-red-500/10 transition-colors text-left cursor-pointer"
                 >
                   <ShieldCheck className="h-4 w-4 text-red-500" />
                   <span>{user.role === 'manager' ? 'Manager Dashboard' : 'Admin Dashboard'}</span>
@@ -133,9 +133,9 @@ export default function UserMenu() {
                   router.push('/dashboard?tab=profile');
                   setIsOpen(false);
                 }}
-                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-900/60 transition-colors text-left cursor-pointer"
+                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-foreground hover:text-primary hover:bg-card/60 transition-colors text-left cursor-pointer"
               >
-                <UserIcon className="h-4 w-4 text-neutral-400" />
+                <UserIcon className="h-4 w-4 text-foreground" />
                 <span>My Profile</span>
               </button>
               <button
@@ -143,9 +143,9 @@ export default function UserMenu() {
                   router.push('/dashboard?tab=orders');
                   setIsOpen(false);
                 }}
-                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-900/60 transition-colors text-left cursor-pointer"
+                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-foreground hover:text-primary hover:bg-card/60 transition-colors text-left cursor-pointer"
               >
-                <ShoppingBag className="h-4 w-4 text-neutral-400" />
+                <ShoppingBag className="h-4 w-4 text-foreground" />
                 <span>Order History</span>
               </button>
               <button
@@ -153,9 +153,9 @@ export default function UserMenu() {
                   router.push('/dashboard?tab=addresses');
                   setIsOpen(false);
                 }}
-                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-neutral-300 hover:text-white hover:bg-neutral-900/60 transition-colors text-left cursor-pointer"
+                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-foreground hover:text-primary hover:bg-card/60 transition-colors text-left cursor-pointer"
               >
-                <MapPin className="h-4 w-4 text-neutral-400" />
+                <MapPin className="h-4 w-4 text-foreground" />
                 <span>Saved Addresses</span>
               </button>
             </div>
@@ -164,7 +164,7 @@ export default function UserMenu() {
             <div className="mt-1 pt-1 border-t border-neutral-900">
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-red-400 hover:text-red-300 hover:bg-red-950/20 transition-colors text-left cursor-pointer"
+                className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-semibold text-red-700 hover:text-red-300 hover:bg-red-950/20 transition-colors text-left cursor-pointer"
               >
                 <LogOut className="h-4 w-4" />
                 <span>Log Out</span>
@@ -179,7 +179,7 @@ export default function UserMenu() {
         open={activeModal === 'profile'}
         onOpenChange={(open) => !open && setActiveModal(null)}
       >
-        <DialogContent className="bg-neutral-950 border-neutral-900 text-neutral-100 max-w-md rounded-3xl p-6 shadow-2xl">
+        <DialogContent className="bg-background border-neutral-900 text-foreground max-w-md rounded-3xl p-6 shadow-2xl">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold flex items-center gap-2">
               <UserIcon className="h-5 w-5 text-red-500" /> Profile Overview
@@ -192,7 +192,7 @@ export default function UserMenu() {
               </div>
               <div>
                 <h3 className="text-lg font-bold">{user.name}</h3>
-                <p className="text-xs font-semibold text-neutral-400 tracking-widest uppercase flex items-center gap-1 mt-0.5">
+                <p className="text-xs font-semibold text-foreground tracking-widest uppercase flex items-center gap-1 mt-0.5">
                   <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
                   {user.role} Account
                 </p>
@@ -200,33 +200,33 @@ export default function UserMenu() {
             </div>
 
             <div className="grid grid-cols-1 gap-3">
-              <div className="bg-neutral-900/40 border border-neutral-900/60 p-3 rounded-2xl flex items-start gap-3">
-                <Mail className="h-4 w-4 text-neutral-400 mt-0.5" />
+              <div className="bg-card/40 border border-neutral-900/60 p-3 rounded-2xl flex items-start gap-3">
+                <Mail className="h-4 w-4 text-foreground mt-0.5" />
                 <div>
-                  <p className="text-xs text-neutral-500 font-bold uppercase tracking-wider">
+                  <p className="text-xs text-foreground font-bold uppercase tracking-wider">
                     Email
                   </p>
-                  <p className="text-sm font-medium text-neutral-200 mt-0.5">{user.email}</p>
+                  <p className="text-sm font-medium text-foreground mt-0.5">{user.email}</p>
                 </div>
               </div>
-              <div className="bg-neutral-900/40 border border-neutral-900/60 p-3 rounded-2xl flex items-start gap-3">
-                <Phone className="h-4 w-4 text-neutral-400 mt-0.5" />
+              <div className="bg-card/40 border border-neutral-900/60 p-3 rounded-2xl flex items-start gap-3">
+                <Phone className="h-4 w-4 text-foreground mt-0.5" />
                 <div>
-                  <p className="text-xs text-neutral-500 font-bold uppercase tracking-wider">
+                  <p className="text-xs text-foreground font-bold uppercase tracking-wider">
                     Phone
                   </p>
-                  <p className="text-sm font-medium text-neutral-200 mt-0.5">
+                  <p className="text-sm font-medium text-foreground mt-0.5">
                     {user.phoneNumber || 'N/A'}
                   </p>
                 </div>
               </div>
-              <div className="bg-neutral-900/40 border border-neutral-900/60 p-3 rounded-2xl flex items-start gap-3">
-                <Calendar className="h-4 w-4 text-neutral-400 mt-0.5" />
+              <div className="bg-card/40 border border-neutral-900/60 p-3 rounded-2xl flex items-start gap-3">
+                <Calendar className="h-4 w-4 text-foreground mt-0.5" />
                 <div>
-                  <p className="text-xs text-neutral-500 font-bold uppercase tracking-wider">
+                  <p className="text-xs text-foreground font-bold uppercase tracking-wider">
                     Member Since
                   </p>
-                  <p className="text-sm font-medium text-neutral-200 mt-0.5">
+                  <p className="text-sm font-medium text-foreground mt-0.5">
                     {new Date(user.createdAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
@@ -245,7 +245,7 @@ export default function UserMenu() {
         open={activeModal === 'orders'}
         onOpenChange={(open) => !open && setActiveModal(null)}
       >
-        <DialogContent className="bg-neutral-950 border-neutral-900 text-neutral-100 max-w-2xl rounded-3xl p-6 shadow-2xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="bg-background border-neutral-900 text-foreground max-w-2xl rounded-3xl p-6 shadow-2xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold flex items-center gap-2">
               <ShoppingBag className="h-5 w-5 text-red-500" /> Order History
@@ -255,13 +255,13 @@ export default function UserMenu() {
             {isLoadingOrders ? (
               <div className="flex flex-col items-center justify-center py-12 gap-2">
                 <Loader2 className="h-8 w-8 text-red-500 animate-spin" />
-                <span className="text-sm text-neutral-400 font-medium">Retrieving orders...</span>
+                <span className="text-sm text-foreground font-medium">Retrieving orders...</span>
               </div>
             ) : orders.length === 0 ? (
-              <div className="text-center py-12 bg-neutral-900/20 border border-dashed border-neutral-900 rounded-3xl">
-                <ShoppingBag className="h-10 w-10 text-neutral-600 mx-auto mb-2" />
-                <p className="text-sm font-semibold text-neutral-300">No orders placed yet</p>
-                <p className="text-xs text-neutral-500 mt-1">
+              <div className="text-center py-12 bg-card/20 border border-dashed border-neutral-900 rounded-3xl">
+                <ShoppingBag className="h-10 w-10 text-foreground mx-auto mb-2" />
+                <p className="text-sm font-semibold text-foreground">No orders placed yet</p>
+                <p className="text-xs text-foreground mt-1">
                   Place your first pizza order to see it here!
                 </p>
               </div>
@@ -270,16 +270,16 @@ export default function UserMenu() {
                 {orders.map((order) => (
                   <div
                     key={order.id}
-                    className="p-4 rounded-2xl bg-neutral-900/40 border border-neutral-900 flex flex-col gap-3"
+                    className="p-4 rounded-2xl bg-card/40 border border-neutral-900 flex flex-col gap-3"
                   >
                     <div className="flex justify-between items-center pb-2 border-b border-neutral-900">
                       <div>
-                        <p className="text-xs text-neutral-500 font-semibold">ORDER ID</p>
-                        <p className="text-sm font-bold text-neutral-200">#FEX-{order.id}</p>
+                        <p className="text-xs text-foreground font-semibold">ORDER ID</p>
+                        <p className="text-sm font-bold text-foreground">#FEX-{order.id}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-xs text-neutral-500 font-semibold">PLACED ON</p>
-                        <p className="text-xs font-semibold text-neutral-300">
+                        <p className="text-xs text-foreground font-semibold">PLACED ON</p>
+                        <p className="text-xs font-semibold text-foreground">
                           {new Date(order.createdAt).toLocaleDateString('en-US', {
                             month: 'short',
                             day: 'numeric',
@@ -293,10 +293,10 @@ export default function UserMenu() {
                     <div className="space-y-1">
                       {order.items.map((item) => (
                         <div key={item.id} className="flex justify-between text-sm">
-                          <span className="text-neutral-400">
+                          <span className="text-foreground">
                             {item.quantity}x {item.product.name}
                           </span>
-                          <span className="font-semibold text-neutral-300">
+                          <span className="font-semibold text-foreground">
                             ₹{item.price * item.quantity}
                           </span>
                         </div>
@@ -319,12 +319,12 @@ export default function UserMenu() {
                             {order.status.replace('-', ' ')}
                           </span>
                         )}
-                        <span className="text-xs font-bold text-neutral-500 bg-neutral-900 px-2.5 py-1 rounded-full capitalize">
+                        <span className="text-xs font-bold text-foreground bg-card px-2.5 py-1 rounded-full capitalize">
                           {order.paymentStatus}
                         </span>
                       </div>
                       <div className="text-right">
-                        <span className="text-xs text-neutral-500 font-semibold block">
+                        <span className="text-xs text-foreground font-semibold block">
                           TOTAL AMOUNT
                         </span>
                         <span className="text-base font-bold text-red-500">
@@ -345,7 +345,7 @@ export default function UserMenu() {
         open={activeModal === 'addresses'}
         onOpenChange={(open) => !open && setActiveModal(null)}
       >
-        <DialogContent className="bg-neutral-950 border-neutral-900 text-neutral-100 max-w-md rounded-3xl p-6 shadow-2xl">
+        <DialogContent className="bg-background border-neutral-900 text-foreground max-w-md rounded-3xl p-6 shadow-2xl">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold flex items-center gap-2">
               <MapPin className="h-5 w-5 text-red-500" /> Saved Addresses
@@ -359,7 +359,7 @@ export default function UserMenu() {
                   const savedAddresses = user.addresses ? JSON.parse(user.addresses) : [];
                   if (!Array.isArray(savedAddresses) || savedAddresses.length === 0) {
                     return (
-                      <p className="text-xs text-neutral-500 text-center py-4 font-medium">
+                      <p className="text-xs text-foreground text-center py-4 font-medium">
                         No saved addresses yet. You can add them in your Customer Dashboard.
                       </p>
                     );
@@ -367,17 +367,17 @@ export default function UserMenu() {
                   return savedAddresses.map((addr: any) => (
                     <div
                       key={addr.id}
-                      className="p-3.5 rounded-2xl bg-neutral-900/40 border border-neutral-800 flex justify-between items-start"
+                      className="p-3.5 rounded-2xl bg-card/40 border border-neutral-800 flex justify-between items-start"
                     >
                       <div>
                         <span className="text-xs font-bold text-red-500 bg-red-950/40 px-2 py-0.5 rounded-md uppercase tracking-wider">
                           {addr.type || 'Address'}
                         </span>
-                        <p className="text-sm font-semibold text-neutral-200 mt-2">
+                        <p className="text-sm font-semibold text-foreground mt-2">
                           {addr.doorNo ? `${addr.doorNo}, ` : ''}
                           {addr.street || ''}
                         </p>
-                        <p className="text-xs text-neutral-500 mt-0.5">
+                        <p className="text-xs text-foreground mt-0.5">
                           {addr.city || ''}, {addr.state || ''} - {addr.zipCode || ''}
                         </p>
                       </div>
@@ -386,7 +386,7 @@ export default function UserMenu() {
                   ));
                 } catch (e) {
                   return (
-                    <p className="text-xs text-neutral-500 text-center py-4 font-medium">
+                    <p className="text-xs text-foreground text-center py-4 font-medium">
                       Failed to parse saved addresses.
                     </p>
                   );
@@ -399,7 +399,7 @@ export default function UserMenu() {
                 setActiveModal(null);
                 router.push('/dashboard?tab=addresses');
               }}
-              className="w-full py-2.5 rounded-2xl bg-neutral-900 hover:bg-neutral-800/80 border border-neutral-800 text-xs font-bold tracking-wider text-neutral-300 hover:text-white transition-all cursor-pointer text-center"
+              className="w-full py-2.5 rounded-2xl bg-card hover:bg-neutral-800/80 border border-neutral-800 text-xs font-bold tracking-wider text-foreground hover:text-primary transition-all cursor-pointer text-center"
             >
               MANAGE ADDRESSES
             </button>

@@ -93,7 +93,7 @@ export default function RegisterPage() {
 
   return (
     <PublicRoute>
-      <main className="min-h-screen bg-neutral-950 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
+      <main className="min-h-screen bg-background flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
         {/* Glow circles */}
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-red-500/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] bg-neutral-800/10 rounded-full blur-[120px] pointer-events-none" />
@@ -113,10 +113,10 @@ export default function RegisterPage() {
               </Link>
             </div>
 
-            <div className="bg-neutral-900/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
+            <div className="bg-card/40 backdrop-blur-xl border border-neutral-900 rounded-2xl py-8 px-6 sm:px-10 shadow-2xl">
               <div className="mb-6">
-                <h2 className="text-xl font-bold text-neutral-100">Create an account</h2>
-                <p className="text-sm text-neutral-400 mt-1">
+                <h2 className="text-xl font-bold text-foreground">Create an account</h2>
+                <p className="text-sm text-foreground mt-1">
                   Get delicious food delivered in minutes
                 </p>
               </div>
@@ -124,13 +124,13 @@ export default function RegisterPage() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 {/* Full Name */}
                 <div className="space-y-1.5">
-                  <Label htmlFor="name" className="text-xs font-semibold text-neutral-400">
+                  <Label htmlFor="name" className="text-xs font-semibold text-foreground">
                     Full Name
                   </Label>
                   <Input
                     id="name"
                     placeholder="John Doe"
-                    className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
+                    className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
                     disabled={isLoading}
                     {...register('name')}
                   />
@@ -141,14 +141,14 @@ export default function RegisterPage() {
 
                 {/* Email */}
                 <div className="space-y-1.5">
-                  <Label htmlFor="email" className="text-xs font-semibold text-neutral-400">
+                  <Label htmlFor="email" className="text-xs font-semibold text-foreground">
                     Email Address
                   </Label>
                   <Input
                     id="email"
                     type="email"
                     placeholder="john@example.com"
-                    className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
+                    className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
                     disabled={isLoading}
                     {...register('email')}
                   />
@@ -159,13 +159,13 @@ export default function RegisterPage() {
 
                 {/* Phone */}
                 <div className="space-y-1.5">
-                  <Label htmlFor="phone" className="text-xs font-semibold text-neutral-400">
+                  <Label htmlFor="phone" className="text-xs font-semibold text-foreground">
                     Phone Number
                   </Label>
                   <Input
                     id="phone"
                     placeholder="+91 99999 99999"
-                    className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
+                    className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
                     disabled={isLoading}
                     {...register('phone')}
                   />
@@ -176,7 +176,7 @@ export default function RegisterPage() {
 
                 {/* Password */}
                 <div className="space-y-1.5">
-                  <Label htmlFor="password" className="text-xs font-semibold text-neutral-400">
+                  <Label htmlFor="password" className="text-xs font-semibold text-foreground">
                     Password
                   </Label>
                   <div className="relative">
@@ -184,14 +184,14 @@ export default function RegisterPage() {
                       id="password"
                       type={showPassword ? 'text' : 'password'}
                       placeholder="••••••••"
-                      className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40 pr-10"
+                      className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40 pr-10"
                       disabled={isLoading}
                       {...register('password')}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-neutral-300 focus:outline-none"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground hover:text-primary focus:outline-none"
                     >
                       {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -207,7 +207,7 @@ export default function RegisterPage() {
                 <div className="space-y-1.5">
                   <Label
                     htmlFor="confirmPassword"
-                    className="text-xs font-semibold text-neutral-400"
+                    className="text-xs font-semibold text-foreground"
                   >
                     Confirm Password
                   </Label>
@@ -215,7 +215,7 @@ export default function RegisterPage() {
                     id="confirmPassword"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
-                    className="w-full bg-neutral-950/50 border-neutral-900 text-neutral-100 placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
+                    className="w-full bg-background/50 border-neutral-900 text-foreground placeholder:text-neutral-700 focus:border-red-500 focus:ring-red-950/40"
                     disabled={isLoading}
                     {...register('confirmPassword')}
                   />
@@ -228,8 +228,8 @@ export default function RegisterPage() {
 
                 {/* Real-time Checklist for strong password */}
                 {password.length > 0 && (
-                  <div className="bg-neutral-950/80 p-3 rounded-lg border border-neutral-900/60 space-y-2 mt-2 text-xs">
-                    <p className="font-semibold text-neutral-400 mb-1">Password must include:</p>
+                  <div className="bg-background/80 p-3 rounded-lg border border-neutral-900/60 space-y-2 mt-2 text-xs">
+                    <p className="font-semibold text-foreground mb-1">Password must include:</p>
                     <div className="grid grid-cols-2 gap-x-2 gap-y-1">
                       <div className="flex items-center gap-1.5">
                         {hasMinLength ? (
@@ -237,7 +237,7 @@ export default function RegisterPage() {
                         ) : (
                           <X className="h-3 w-3 text-red-500 shrink-0" />
                         )}
-                        <span className={hasMinLength ? 'text-emerald-500' : 'text-neutral-500'}>
+                        <span className={hasMinLength ? 'text-emerald-500' : 'text-foreground'}>
                           8+ Characters
                         </span>
                       </div>
@@ -247,7 +247,7 @@ export default function RegisterPage() {
                         ) : (
                           <X className="h-3 w-3 text-red-500 shrink-0" />
                         )}
-                        <span className={hasUppercase ? 'text-emerald-500' : 'text-neutral-500'}>
+                        <span className={hasUppercase ? 'text-emerald-500' : 'text-foreground'}>
                           Uppercase Letter
                         </span>
                       </div>
@@ -257,7 +257,7 @@ export default function RegisterPage() {
                         ) : (
                           <X className="h-3 w-3 text-red-500 shrink-0" />
                         )}
-                        <span className={hasLowercase ? 'text-emerald-500' : 'text-neutral-500'}>
+                        <span className={hasLowercase ? 'text-emerald-500' : 'text-foreground'}>
                           Lowercase Letter
                         </span>
                       </div>
@@ -267,7 +267,7 @@ export default function RegisterPage() {
                         ) : (
                           <X className="h-3 w-3 text-red-500 shrink-0" />
                         )}
-                        <span className={hasNumber ? 'text-emerald-500' : 'text-neutral-500'}>
+                        <span className={hasNumber ? 'text-emerald-500' : 'text-foreground'}>
                           One Digit
                         </span>
                       </div>
@@ -277,7 +277,7 @@ export default function RegisterPage() {
                         ) : (
                           <X className="h-3 w-3 text-red-500 shrink-0" />
                         )}
-                        <span className={hasSpecial ? 'text-emerald-500' : 'text-neutral-500'}>
+                        <span className={hasSpecial ? 'text-emerald-500' : 'text-foreground'}>
                           Special Character
                         </span>
                       </div>
@@ -287,7 +287,7 @@ export default function RegisterPage() {
                         ) : (
                           <X className="h-3 w-3 text-red-500 shrink-0" />
                         )}
-                        <span className={passwordsMatch ? 'text-emerald-500' : 'text-neutral-500'}>
+                        <span className={passwordsMatch ? 'text-emerald-500' : 'text-foreground'}>
                           Passwords Match
                         </span>
                       </div>
@@ -298,7 +298,7 @@ export default function RegisterPage() {
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 mt-4 shadow-lg shadow-red-950/20"
+                  className="w-full bg-red-600 hover:bg-red-700 text-foreground font-medium py-3 rounded-lg flex items-center justify-center transition-all duration-200 mt-4 shadow-lg shadow-red-950/20"
                 >
                   {isLoading ? (
                     <>
@@ -311,10 +311,10 @@ export default function RegisterPage() {
               </form>
 
               <div className="mt-6 text-center text-sm">
-                <span className="text-neutral-400">Already have an account? </span>
+                <span className="text-foreground">Already have an account? </span>
                 <Link
                   href="/login"
-                  className="text-red-500 hover:text-red-400 font-semibold transition-all"
+                  className="text-red-500 hover:text-red-700 font-semibold transition-all"
                 >
                   Sign In
                 </Link>

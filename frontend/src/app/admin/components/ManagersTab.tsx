@@ -101,8 +101,8 @@ export default function ManagersTab() {
       {/* Header controls */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold text-neutral-100">Managers Directory</h2>
-          <p className="text-xs text-neutral-500 mt-1">
+          <h2 className="text-xl font-bold text-foreground">Managers Directory</h2>
+          <p className="text-xs text-foreground mt-1">
             Configure manager credentials, adjust administrative rights, and audit system access
             blocks.
           </p>
@@ -111,7 +111,7 @@ export default function ManagersTab() {
         <div className="flex items-center gap-3 w-full sm:w-auto">
           {/* Local Search */}
           <div className="relative w-full sm:w-64">
-            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-neutral-500">
+            <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-foreground">
               <Search className="h-4 w-4" />
             </div>
             <input
@@ -119,13 +119,13 @@ export default function ManagersTab() {
               placeholder="Search managers..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-neutral-905 border border-neutral-800 rounded-xl pl-10 pr-4 py-2 text-xs text-neutral-300 outline-none focus:border-red-500"
+              className="w-full bg-neutral-905 border border-neutral-800 rounded-xl pl-10 pr-4 py-2 text-xs text-foreground outline-none focus:border-red-500"
             />
           </div>
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2.5 px-6 rounded-xl flex items-center gap-1.5 cursor-pointer shadow whitespace-nowrap"
+            className="bg-red-600 hover:bg-red-700 text-foreground font-bold text-xs py-2.5 px-6 rounded-xl flex items-center gap-1.5 cursor-pointer shadow whitespace-nowrap"
           >
             <Plus className="h-4.5 w-4.5" /> ADD MANAGER
           </button>
@@ -133,10 +133,10 @@ export default function ManagersTab() {
       </div>
 
       {/* Grid List Table */}
-      <div className="p-6 rounded-3xl bg-neutral-900/20 border border-neutral-900/60 shadow-lg space-y-4">
+      <div className="p-6 rounded-3xl bg-card/20 border border-neutral-900/60 shadow-lg space-y-4">
         <div className="overflow-x-auto rounded-2xl border border-neutral-900 max-h-[500px] overflow-y-auto scrollbar-thin">
-          <table className="w-full text-left text-xs font-semibold text-neutral-400">
-            <thead className="bg-neutral-950 text-neutral-500 font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
+          <table className="w-full text-left text-xs font-semibold text-foreground">
+            <thead className="bg-background text-foreground font-bold uppercase tracking-wider sticky top-0 z-10 shadow">
               <tr>
                 <th className="p-4">Manager Details</th>
                 <th className="p-4">Phone Number</th>
@@ -148,32 +148,32 @@ export default function ManagersTab() {
             <tbody className="divide-y divide-neutral-900">
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="p-8 text-center text-neutral-500 font-bold">
+                  <td colSpan={5} className="p-8 text-center text-foreground font-bold">
                     Loading managers registry...
                   </td>
                 </tr>
               ) : filteredManagers.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-8 text-center text-neutral-500 font-bold">
+                  <td colSpan={5} className="p-8 text-center text-foreground font-bold">
                     No managers matches search criteria.
                   </td>
                 </tr>
               ) : (
                 filteredManagers.map((u) => (
-                  <tr key={u.id} className="hover:bg-neutral-900/20">
+                  <tr key={u.id} className="hover:bg-card/20">
                     <td className="p-4 flex items-center gap-3">
-                      <div className="h-8 w-8 bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden flex items-center justify-center font-extrabold text-white shrink-0">
+                      <div className="h-8 w-8 bg-background border border-neutral-800 rounded-xl overflow-hidden flex items-center justify-center font-extrabold text-foreground shrink-0">
                         {u.name ? u.name[0].toUpperCase() : 'M'}
                       </div>
                       <div>
-                        <span className="text-neutral-200 font-bold block">{u.name}</span>
-                        <span className="text-[10px] text-neutral-500 block truncate max-w-xs">
+                        <span className="text-foreground font-bold block">{u.name}</span>
+                        <span className="text-[10px] text-foreground block truncate max-w-xs">
                           {u.email}
                         </span>
                       </div>
                     </td>
-                    <td className="p-4 font-semibold text-neutral-400">{u.phoneNumber || 'N/A'}</td>
-                    <td className="p-4 font-bold text-neutral-400 capitalize">
+                    <td className="p-4 font-semibold text-foreground">{u.phoneNumber || 'N/A'}</td>
+                    <td className="p-4 font-bold text-foreground capitalize">
                       <span className="px-2 py-0.5 rounded text-[9px] uppercase border bg-amber-600/10 text-amber-500 border-amber-500/20">
                         {u.role}
                       </span>
@@ -192,11 +192,10 @@ export default function ManagersTab() {
                     <td className="p-4 text-right">
                       <button
                         onClick={() => handleToggleBlock(u)}
-                        className={`p-2 rounded-lg border cursor-pointer transition-colors inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider ${
-                          u.status === 'blocked'
-                            ? 'bg-emerald-600/10 text-emerald-500 border-emerald-500/20 hover:bg-emerald-600/20'
-                            : 'bg-red-600/10 text-red-500 border-red-500/20 hover:bg-red-600/20'
-                        }`}
+                        className={`p-2 rounded-lg border cursor-pointer transition-colors inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider ${u.status === 'blocked'
+                          ? 'bg-emerald-600/10 text-emerald-500 border-emerald-500/20 hover:bg-emerald-600/20'
+                          : 'bg-red-600/10 text-red-500 border-red-500/20 hover:bg-red-600/20'
+                          }`}
                       >
                         {u.status === 'blocked' ? 'Unblock' : 'Block'}
                       </button>
@@ -212,26 +211,26 @@ export default function ManagersTab() {
       {/* Creation Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-neutral-950 border border-neutral-900 rounded-3xl p-6 w-full max-w-md shadow-2xl relative space-y-4">
+          <div className="bg-background border border-neutral-900 rounded-3xl p-6 w-full max-w-md shadow-2xl relative space-y-4">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors cursor-pointer"
+              className="absolute top-4 right-4 text-foreground hover:text-primary transition-colors cursor-pointer"
             >
               <X className="h-5 w-5" />
             </button>
 
             <div>
-              <h3 className="text-lg font-bold text-neutral-100 flex items-center gap-2">
+              <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
                 <Shield className="h-5 w-5 text-red-500" /> Register Manager
               </h3>
-              <p className="text-xs text-neutral-500 mt-1">
+              <p className="text-xs text-foreground mt-1">
                 Configure credentials for corporate restaurant administration.
               </p>
             </div>
 
             <form onSubmit={handleCreateManager} className="space-y-4 pt-2">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                   Full Name *
                 </label>
                 <input
@@ -245,7 +244,7 @@ export default function ManagersTab() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                   Email Address *
                 </label>
                 <input
@@ -259,7 +258,7 @@ export default function ManagersTab() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                   Phone Number
                 </label>
                 <input
@@ -272,7 +271,7 @@ export default function ManagersTab() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block">
+                <label className="text-[10px] font-bold text-foreground uppercase tracking-widest block">
                   Access Password *
                 </label>
                 <input
@@ -289,14 +288,14 @@ export default function ManagersTab() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="flex-1 py-2.5 rounded-xl border border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors font-bold text-xs cursor-pointer"
+                  className="flex-1 py-2.5 rounded-xl border border-neutral-800 text-foreground hover:text-primary hover:bg-card transition-colors font-bold text-xs cursor-pointer"
                 >
                   CANCEL
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 disabled:bg-neutral-800 text-white font-bold text-xs transition-colors cursor-pointer"
+                  className="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 disabled:bg-neutral-800 text-foreground font-bold text-xs transition-colors cursor-pointer"
                 >
                   {isSubmitting ? 'CREATING...' : 'CREATE ACCOUNT'}
                 </button>
